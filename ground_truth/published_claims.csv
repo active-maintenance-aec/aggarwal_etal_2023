@@ -1,0 +1,217 @@
+claim_id,location,claim_type,value_paper,digits,units,comparison,needs_block,note
+abstract_campaign_cost,"Abstract, p. 1",definitional,8.9,1,million_dollars,,FALSE,Also stated in the Introduction and twice in Methods. The deposit carries no spending field for the programme as a whole.
+abstract_sample_millions,"Abstract, p. 1",pipeline,2,0,million,,TRUE,'conducted among 2 million ... persuadable voters'
+abstract_n_states,"Abstract, p. 1",definitional,5,0,count,,FALSE,"'five battleground states', spelled out; named in Methods as Arizona, Wisconsin, Michigan, North Carolina and Pennsylvania"
+abstract_programme_months,"Abstract, p. 1",definitional,8,0,count,,FALSE,'8-month-long advertising programme'; spelled as 'eight months' nowhere
+abstract_biden_effect,"Abstract, p. 1",pipeline,0.4,1,percentage_points,,TRUE,Restated in the Introduction and in Results as '0.4 point increase'
+abstract_biden_se,"Abstract, p. 1",pipeline,0.2,1,percentage_points,,TRUE,
+abstract_trump_effect,"Abstract, p. 1",pipeline,0.3,1,percentage_points,,TRUE,Restated in the Introduction and in Results as '0.3 point decrease'
+abstract_trump_se,"Abstract, p. 1",pipeline,0.3,1,percentage_points,,TRUE,
+abstract_dic,"Abstract, p. 1",pipeline,0.7,1,percentage_points,,TRUE,Restated identically in the Introduction and in Results
+abstract_dic_t,"Abstract, p. 1",pipeline,-2.09,2,unit,,TRUE,
+abstract_dic_df,"Abstract, p. 1",pipeline,1035571,0,count,,TRUE,
+abstract_dic_p,"Abstract, p. 1",pipeline,0.036,3,unit,,TRUE,
+abstract_dic_ci_low,"Abstract, p. 1",pipeline,-0.014,3,unit,,TRUE,
+abstract_dic_ci_high,"Abstract, p. 1",pipeline,0,0,unit,,TRUE,"Printed as a bare 0; the estimate is -0.000452, which renders as 0 at the printed precision"
+intro_impressions_per_participant,"Introduction, p. 3",definitional,754,0,count,,FALSE,Facebook delivery data; no impressions field is deposited
+intro_party_registration_missing,"Introduction, p. 3",pipeline,72,0,percent,,TRUE,'party registration was not available for a large proportion of the participant pool (72%)'
+intro_tss_low_bucket_min,"Introduction, p. 3",definitional,30,0,unit,,TRUE,
+intro_tss_low_bucket_max,"Introduction, p. 3",definitional,40,0,unit,,TRUE,
+intro_tss_high_bucket_min,"Introduction, p. 3",definitional,60,0,unit,,TRUE,
+intro_tss_high_bucket_max,"Introduction, p. 3",definitional,70,0,unit,,TRUE,
+results_ate_pp,"Results, p. 3",pipeline,-0.06,2,percentage_points,,TRUE,
+results_ate_se_pp,"Results, p. 3",pipeline,0.12,2,percentage_points,,TRUE,
+results_ate_t,"Results, p. 3",pipeline,-0.52,2,unit,,TRUE,
+results_ate_df,"Results, p. 3",pipeline,1999277,0,count,,TRUE,
+results_ate_p,"Results, p. 3",pipeline,0.60,2,unit,,TRUE,
+results_ate_estimate,"Results, p. 3",pipeline,-0.0006,4,unit,,TRUE,
+results_ate_ci_low,"Results, p. 3",pipeline,-0.0030,4,unit,,TRUE,
+results_ate_ci_high,"Results, p. 3",pipeline,0.0017,4,unit,,TRUE,
+results_equivalence_bound,"Results, p. 3",definitional,0.333,3,percentage_points,,TRUE,"'plus or minus one-third of a percentage point', spelled out"
+results_tost_p,"Results, p. 3",pipeline,0.013,3,unit,,TRUE,
+results_early_dic_pp,"Results, p. 4",pipeline,1.0,1,percentage_points,,TRUE,
+results_in_person_dic_pp,"Results, p. 4",pipeline,0.3,1,percentage_points,,TRUE,
+results_equality_f,"Results, p. 4",pipeline,20.99,2,unit,,TRUE,
+results_equality_num_df,"Results, p. 4",pipeline,1,0,count,,TRUE,
+results_equality_den_df,"Results, p. 4",pipeline,1035571,0,count,,TRUE,
+results_equality_p,"Results, p. 4",pipeline,0.0001,4,unit,<,TRUE,Printed as P < 0.0001
+figure_1_caption_n_total,"Fig. 1 caption, p. 2",pipeline,1999282,0,count,,TRUE,Total / Total
+figure_1_caption_n_age_18_39,"Fig. 1 caption, p. 2",pipeline,1379017,0,count,,TRUE,Age / 18-39
+figure_1_caption_n_age_40_plus,"Fig. 1 caption, p. 2",pipeline,620265,0,count,,TRUE,Age / 40+
+figure_1_caption_n_female,"Fig. 1 caption, p. 2",pipeline,978041,0,count,,TRUE,Gender / Female
+figure_1_caption_n_other_gender,"Fig. 1 caption, p. 2",pipeline,1021241,0,count,,TRUE,Gender / Other
+figure_1_caption_n_black,"Fig. 1 caption, p. 2",pipeline,233546,0,count,,TRUE,Race / Black
+figure_1_caption_n_latinx,"Fig. 1 caption, p. 2",pipeline,179036,0,count,,TRUE,Race / Latinx
+figure_1_caption_n_white,"Fig. 1 caption, p. 2",pipeline,1531129,0,count,,TRUE,Race / White
+figure_1_caption_n_other_race,"Fig. 1 caption, p. 2",pipeline,55571,0,count,,TRUE,Race / Other
+figure_1_caption_n_margin_under_3,"Fig. 1 caption, p. 2",pipeline,1337057,0,count,,TRUE,Margin / Vote margin less than 3pp
+figure_1_caption_n_margin_over_3,"Fig. 1 caption, p. 2",pipeline,662225,0,count,,TRUE,Margin / Vote margin more than 3pp
+figure_1_caption_n_democrat,"Fig. 1 caption, p. 2",pipeline,182945,0,count,,TRUE,Partisanship / Democrat
+figure_1_caption_n_republican,"Fig. 1 caption, p. 2",pipeline,71875,0,count,,TRUE,Partisanship / Republican
+figure_1_caption_n_unknown_party,"Fig. 1 caption, p. 2",pipeline,1442071,0,count,,TRUE,Partisanship / Unknown
+figure_1_caption_n_other_party,"Fig. 1 caption, p. 2",pipeline,302391,0,count,,TRUE,Partisanship / Other
+figure_1_caption_n_tss_30_40,"Fig. 1 caption, p. 2",pipeline,522918,0,count,,TRUE,Trump support / 30 to 40
+figure_1_caption_n_tss_40_50,"Fig. 1 caption, p. 2",pipeline,485371,0,count,,TRUE,Trump support / 40 to 50
+figure_1_caption_n_tss_50_60,"Fig. 1 caption, p. 2",pipeline,478333,0,count,,TRUE,Trump support / 50 to 60
+figure_1_caption_n_tss_60_70,"Fig. 1 caption, p. 2",pipeline,512660,0,count,,TRUE,Trump support / 60 to 70
+figure_2_caption_n_dic,"Fig. 2 caption, p. 3",pipeline,1035578,0,count,,TRUE,
+figure_2_caption_n_interaction,"Fig. 2 caption, p. 3",pipeline,1999282,0,count,,TRUE,
+figure_3_caption_n,"Fig. 3 caption, p. 4",pipeline,1999282,0,count,,TRUE,
+figure_3_caption_panel_range_pp,"Fig. 3 caption, p. 4",definitional,15,0,percentage_points,,FALSE,'The vertical scales of all three facets cover a 15 percentage point range'; asserted in figure_3_turnout_by_tss_score.R at the point of use
+figure_5_caption_n,"Fig. 5 caption, p. 8",pipeline,1999282,0,count,,TRUE,
+figure_4_eligible_voters,"Fig. 4, p. 5",definitional,31146729,0,count,,FALSE,All voters registered as of February 2020 in five states
+figure_4_step_1_sampled,"Fig. 4, p. 5",definitional,700000,0,count,,FALSE,"sample of 700,000 from all eligible"
+figure_4_step_2_sampled,"Fig. 4, p. 5",definitional,564872,0,count,,FALSE,18 to 24 year olds sampled
+figure_4_step_2_pool,"Fig. 4, p. 5",definitional,2094514,0,count,,FALSE,18 to 24 year olds eligible
+figure_4_step_3_sampled,"Fig. 4, p. 5",definitional,454521,0,count,,FALSE,25 to 34 year olds sampled
+figure_4_step_3_pool,"Fig. 4, p. 5",definitional,5056020,0,count,,FALSE,25 to 34 year olds eligible
+figure_4_step_4_sampled,"Fig. 4, p. 5",definitional,327230,0,count,,FALSE,Black voters sampled
+figure_4_step_4_pool,"Fig. 4, p. 5",definitional,3252002,0,count,,FALSE,"Black voters eligible, stated with a question mark"
+figure_4_step_5_sampled,"Fig. 4, p. 5",definitional,68842,0,count,,FALSE,Latinx voters sampled
+figure_4_step_5_pool,"Fig. 4, p. 5",definitional,1267156,0,count,,FALSE,"Latinx voters eligible, stated with a question mark"
+figure_4_step_6_sampled,"Fig. 4, p. 5",definitional,448812,0,count,,FALSE,women sampled
+figure_4_step_6_pool,"Fig. 4, p. 5",definitional,15976028,0,count,,FALSE,women eligible
+figure_4_assigned_control,"Fig. 4, p. 5",definitional,2486157,0,count,,FALSE,assigned to control before the targeting and archival restrictions
+figure_4_assigned_treatment,"Fig. 4, p. 5",definitional,28660572,0,count,,FALSE,assigned to treatment before the targeting and archival restrictions
+figure_4_assignment_sums_to_eligible,"Fig. 4, p. 5",structural,31146729,0,count,,TRUE,The control and treatment assignment counts must sum to the eligible population
+figure_4_n_control,"Fig. 4, p. 5",pipeline,287735,0,count,,TRUE,
+figure_4_n_treatment,"Fig. 4, p. 5",pipeline,1711547,0,count,,TRUE,
+figure_4_n_strata,"Fig. 4, p. 5",pipeline,18,0,count,,TRUE,'This procedure generated 18 strata of subjects'
+figure_4_tss_target_min,"Fig. 4, p. 5",definitional,30,0,unit,,TRUE,
+figure_4_tss_target_max,"Fig. 4, p. 5",definitional,70,0,unit,,TRUE,
+figure_4_pts_target_min,"Fig. 4, p. 5",definitional,20,0,unit,,TRUE,
+figure_4_pts_target_max,"Fig. 4, p. 5",definitional,80,0,unit,,TRUE,
+figure_4_attention_percentile,"Fig. 4, p. 5",definitional,50,0,unit,,FALSE,
+figure_4_archival_age_min,"Fig. 4, p. 5",definitional,18,0,unit,,FALSE,
+figure_4_archival_age_max,"Fig. 4, p. 5",definitional,55,0,unit,,FALSE,
+figure_4_archival_college_max,"Fig. 4, p. 5",definitional,50,0,unit,,FALSE,
+figure_4_archival_pts_min,"Fig. 4, p. 5",definitional,20,0,unit,,FALSE,
+figure_5_axis_breaks,"Fig. 5, p. 8",definitional,5,0,count,,FALSE,"Axis breaks at -0.010, -0.005, 0, 0.005 and 0.010; set in figure_5_balance.R at the point of use"
+figure_1_cells_reproduced,"Fig. 1, p. 2",pipeline,114,0,count,,TRUE,"Cells reproduced of cells published, at the precision the float prints"
+figure_2_cells_reproduced,"Fig. 2, p. 3",pipeline,36,0,count,,TRUE,"Cells reproduced of cells published, at the precision the float prints"
+table_1_cells_reproduced,"Table 1, p. 8",pipeline,95,0,count,,TRUE,"Cells reproduced of cells published, at the precision the float prints"
+supplementary_table_1_cells_reproduced,"Supplementary Table 1, p. 20",pipeline,399,0,count,,TRUE,"Cells reproduced of cells published, at the precision the float prints"
+supplementary_table_2_cells_reproduced,"Supplementary Table 2, p. 21",pipeline,126,0,count,,TRUE,"Cells reproduced of cells published, at the precision the float prints"
+supplementary_table_3_cells_reproduced,"Supplementary Table 3, p. 21",pipeline,176,0,count,,TRUE,"Cells reproduced of cells published, at the precision the float prints"
+figure_1_agrees_with_supplementary_table_1,"Fig. 1, p. 2",descriptive,,,,,TRUE,"Figure 1 prints an estimate and a standard error on the face of each point; Supplementary Table 1 prints the same quantities. The two transcriptions are compared to each other, not assumed equal."
+figure_2_agrees_with_supplementary_table_2,"Fig. 2, p. 3",descriptive,,,,,TRUE,Same check for Figure 2 against Supplementary Table 2
+figure_3_points_plotted,"Fig. 3, p. 4",pipeline,246,0,count,,TRUE,"Figure 3 prints no numbers on its face. The count is read off the page: the caption says one-point bins, the horizontal axis runs 30 to 70, and there are three facets and two conditions, so 41 times 3 times 2."
+figure_5_points_plotted,"Fig. 5, p. 8",pipeline,22,0,count,,TRUE,Figure 5 prints no numbers on its face. The count is the number of covariate labels printed on its vertical axis.
+methods_n_analysis_sample,"Methods, Analysis, p. 6",pipeline,1999282,0,count,,TRUE,
+methods_n_covariates,"Methods, Field experimental design, p. 6",pipeline,21,0,count,,TRUE,"'Out of 21 covariates, only two exhibited statistically significant imbalance'"
+methods_n_significant_imbalance,"Methods, Field experimental design, p. 6",pipeline,2,0,count,,TRUE,"'only two exhibited', spelled out"
+methods_tss100_estimate,"Methods, p. 6",pipeline,-0.001,3,unit,,TRUE,
+methods_tss100_t,"Methods, p. 6",pipeline,-2.260,3,unit,,TRUE,
+methods_tss100_df,"Methods, p. 6",pipeline,1999280,0,count,,TRUE,
+methods_tss100_p,"Methods, p. 6",pipeline,0.024,3,unit,,TRUE,
+methods_tss100_ci_low,"Methods, p. 6",pipeline,-0.001,3,unit,,TRUE,
+methods_tss100_ci_high,"Methods, p. 6",pipeline,0,0,unit,,TRUE,
+methods_tss6070_estimate,"Methods, p. 6",pipeline,-0.003,3,unit,,TRUE,
+methods_tss6070_t,"Methods, p. 6",pipeline,-2.609,3,unit,,TRUE,
+methods_tss6070_df,"Methods, p. 6",pipeline,1999280,0,count,,TRUE,
+methods_tss6070_p,"Methods, p. 6",pipeline,0.009,3,unit,,TRUE,
+methods_tss6070_ci_low,"Methods, p. 6",pipeline,-0.006,3,unit,,TRUE,
+methods_tss6070_ci_high,"Methods, p. 6",pipeline,-0.001,3,unit,,TRUE,
+methods_bh_p_tss100,"Methods, p. 6",pipeline,0.262,3,unit,,TRUE,
+methods_bh_p_tss6070,"Methods, p. 6",pipeline,0.200,3,unit,,TRUE,
+methods_omnibus_f,"Methods, p. 6",pipeline,1.0266,4,unit,,TRUE,
+methods_omnibus_p,"Methods, p. 6",pipeline,0.425,3,unit,,TRUE,
+methods_omnibus_df_first_subscript,"Methods, p. 6",pipeline,1999264,0,count,,TRUE,"Printed as the first subscript of the F statistic, where an F test takes its numerator degrees of freedom first"
+methods_omnibus_df_second_subscript,"Methods, p. 6",pipeline,-18,0,count,,TRUE,"Printed as the second subscript, negative"
+methods_excluded_age,"Methods, p. 6",definitional,55,0,unit,,FALSE,'it unfortunately excluded voters over 55 years of age'
+methods_n_unique_ads,"Methods, Advertising campaign and content, p. 6",definitional,536,0,count,,FALSE,"The deposited treatment_descriptives.csv describes the in-house testing programme, 262 rows and 149 distinct treatments, not the paid programme"
+methods_missing_race_share,"Methods, p. 6",descriptive,4,0,percent,,TRUE,"'we are missing race data for 4% of the sample where race was uncoded'; describes the assignment population, not the analysis subset"
+methods_spend_biden,"Methods, p. 6",pipeline,368800,0,dollars,,TRUE,
+methods_spend_trump,"Methods, p. 6",pipeline,3254600,0,dollars,,TRUE,
+methods_spend_both,"Methods, p. 6",pipeline,244500,0,dollars,,TRUE,
+methods_spend_promoted_news,"Methods, p. 6",pipeline,1275000,0,dollars,,TRUE,
+methods_spend_video,"Methods, p. 6",pipeline,2288900,0,dollars,,TRUE,
+methods_spend_other_formats,"Methods, p. 6",pipeline,304000,0,dollars,,TRUE,
+methods_click_through_rate,"Methods, Dosage and treatment delivery, p. 7",definitional,1,0,percent,,FALSE,Facebook delivery data; not deposited
+methods_video_view_seconds,"Methods, p. 7",definitional,2,0,count,,FALSE,
+methods_video_view_rate,"Methods, p. 7",definitional,53,0,percent,,FALSE,
+methods_match_rate,"Methods, p. 7",definitional,60,0,percent,,FALSE,Stated three times: Methods p. 7 twice and Supplementary Information section A
+methods_fb_q3_revenue_share,"Methods, p. 7",transcribed,3,0,percent,,FALSE,From reference 35
+methods_treatment_audience,"Methods, p. 7",definitional,1993216,0,count,,TRUE,"Printed as '1,993,216 million'; the parenthetical states it is 3,322,027 programme-eligible voters times the 60 per cent match rate"
+methods_programme_eligible,"Methods, p. 7",definitional,3322027,0,count,,FALSE,
+methods_treatment_audience_scale,"Methods, p. 7",descriptive,,,,,TRUE,"The treatment audience is stated on the scale the sentence's own parenthetical implies. The sentence reads 'a treatment audience of 1,993,216 million (3,322,027 programme-eligible voters x our 60% match rate)'."
+methods_cost_per_voter,"Methods, p. 7",definitional,4.46,2,dollars,approx,TRUE,"US$8.9 million divided by the treatment audience. The campaign cost is stated to two significant figures, so the quotient is determined only to about half a cent and 4.46 and 4.47 are both inside it. No verdict is taken."
+methods_russia_spend,"Discussion, p. 5",transcribed,150000,0,dollars,,FALSE,From reference 24
+methods_fox_news_month,"Methods, p. 7",transcribed,1,0,count,,FALSE,
+methods_ad_ban_weeks,"Methods, p. 7",definitional,1,0,count,,FALSE,
+methods_501c4,"Methods, Research origins, p. 5",structural,501,0,unit,,FALSE,The 501(c)(4) tax designation
+methods_vote_history_elections,"Methods, Analysis, p. 6",definitional,3,0,count,,TRUE,"'a count of whether the participant voted in the 2012, 2016 and 2018 elections'"
+methods_margin_threshold,"Methods, Subgroups, p. 5",definitional,3,0,percentage_points,,FALSE,"'greater than three points', spelled out"
+methods_r_version,"Methods, Statistical software, p. 7",definitional,4.1.1,,version,,FALSE,
+methods_tidyverse_version,"Methods, Statistical software, p. 7",definitional,1.3.1,,version,,FALSE,
+methods_estimatr_version,"Methods, Statistical software, p. 7",definitional,0.30.6,,version,,FALSE,
+methods_car_version,"Methods, Statistical software, p. 7",definitional,3.1.0,,version,,FALSE,
+methods_hc2,"Methods, Statistical software, p. 7",definitional,2,0,unit,,FALSE,'HC2 robust standard errors'
+methods_tss_data_min,"Methods, p. 5",definitional,30,0,unit,,TRUE,"The Trump support score range the targeting criteria state, checked against the analysis data"
+methods_tss_data_max,"Methods, p. 5",definitional,70,0,unit,,TRUE,
+methods_pts_range_holds,"Fig. 4, p. 5",descriptive,,,,,TRUE,"'Presidential turnout score between 20 and 80' as a targeting criterion, checked against the deposited analysis set"
+methods_ci_level,"Methods, p. 6",definitional,95,0,percent,,TRUE,Every interval in the article is a 95 per cent confidence interval
+reporting_summary_r_version,"Reporting Summary, pp. 11-12",transcribed,4.1.1,,unit,,FALSE,restates Methods
+reporting_summary_tidyverse_version,"Reporting Summary, pp. 11-12",transcribed,1.3.1,,unit,,FALSE,restates Methods
+reporting_summary_estimatr_version,"Reporting Summary, pp. 11-12",transcribed,0.30.6,,unit,,FALSE,restates Methods
+reporting_summary_car_version,"Reporting Summary, pp. 11-12",transcribed,3.1.0,,unit,,FALSE,restates Methods
+reporting_summary_tss_min,"Reporting Summary, pp. 11-12",transcribed,30,,unit,,FALSE,restates the targeting criteria
+reporting_summary_tss_max,"Reporting Summary, pp. 11-12",transcribed,70,,unit,,FALSE,restates the targeting criteria
+reporting_summary_college_max,"Reporting Summary, pp. 11-12",transcribed,50,,unit,,FALSE,restates the targeting criteria
+reporting_summary_turnout_min,"Reporting Summary, pp. 11-12",transcribed,20,,unit,,FALSE,restates the targeting criteria
+reporting_summary_age_min,"Reporting Summary, pp. 11-12",transcribed,18,,unit,,FALSE,restates the archival subset criteria
+reporting_summary_age_max,"Reporting Summary, pp. 11-12",transcribed,55,,unit,,FALSE,restates the archival subset criteria
+reporting_summary_n_strata,"Reporting Summary, pp. 11-12",transcribed,18,,unit,,FALSE,restates Methods
+reporting_summary_scale_max,"Reporting Summary, pp. 11-12",transcribed,100,,unit,,FALSE,"'out of 100', stated four times"
+reporting_summary_timing,"Reporting Summary, p. 12",transcribed,,,,,FALSE,"Timing given as July-November 2020, where Methods describes an 8-month programme running from March 2020 to election day. Recorded as an unresolved internal inconsistency, not corrected."
+si_contents_sections,"SI Contents, p. 1",structural,6,0,count,,FALSE,"Sections A to F, with page numbers 2, 3, 5, 9, 15 and 18"
+si_n_supplementary_figures,"SI, throughout",structural,4,0,count,,TRUE,
+si_n_supplementary_tables,"SI, pp. 20-21",structural,3,0,count,,TRUE,
+si_a_match_rate,"SI section A, p. 2",definitional,60,0,percent,,FALSE,'audience match rates were always around 60%'
+si_a_precise_scheme_rate,"SI section A, p. 2",definitional,82,0,percent,,FALSE,wireless phones and personal emails prioritised
+si_a_name_address_rate,"SI section A, p. 2",definitional,81,0,percent,,FALSE,name and address prioritised
+si_a_young_precise_rate,"SI section A, p. 2",definitional,64,0,percent,,FALSE,"younger voters, precise scheme"
+si_a_young_name_rate,"SI section A, p. 2",definitional,59,0,percent,,FALSE,"younger voters, name and address"
+si_a_consistency_low,"SI section A, p. 2",definitional,59,0,percent,,FALSE,'ranged from 59 - 82%'
+si_a_consistency_high,"SI section A, p. 2",definitional,82,0,percent,,FALSE,'ranged from 59 - 82%'
+si_a_compliance_shift,"SI section A, p. 2",definitional,60,0,percent,,FALSE,'a 60 percentage point increase in the probability of being treated'
+si_b_spend_buckets,"SI section B.2, p. 3",definitional,10,0,count,,FALSE,"The API returns spend in ten buckets, from <100 to >1M"
+si_c_total_spend_all_advertisers,"SI section C, p. 5",pipeline,349006000,0,dollars,,TRUE,
+si_c_largest_bucket,"SI section C, p. 5",definitional,1,0,million_dollars,,FALSE,
+si_c_acronym_spend_low,"SI section C, p. 5",pipeline,3867900,0,dollars,,TRUE,
+si_c_acronym_spend_high,"SI section C, p. 5",pipeline,5921963,0,dollars,,TRUE,
+si_c_acronym_share,"SI section C, p. 5",pipeline,1,0,percent,approx,TRUE,'approximately 1% of spending on Facebook on the presidential campaign in our target states'
+si_c_wesleyan_total,"SI section C, p. 5",definitional,977761865,0,dollars,,FALSE,Wesleyan Media Project data; the file the deposit's figure_C4.R reads is not deposited
+si_c_wesleyan_acronym,"SI section C, p. 5",definitional,6603488,0,dollars,,FALSE,Same source
+si_c_wesleyan_share,"SI section C, p. 5",definitional,0.67,2,percent,,TRUE,Checkable against the two figures the same sentence prints
+si_c_fb_q3_revenue_share,"SI section C, p. 5",transcribed,3,0,percent,,FALSE,
+si_c_july_highest_spend,"SI section C, p. 8",descriptive,,,,,TRUE,'Acronym spent more on persuasion in July than in any other month'
+si_c_broken_cross_reference,"SI section C, p. 8",structural,,,,,TRUE,'see main Figure ??'; an unresolved cross-reference in the published document
+si_c_states_in_text,"SI section C, p. 5",structural,5,0,count,,FALSE,"The query is described as targeting AZ, MI, NC, PA or WI"
+si_c_states_in_caption,"SI Figure 3 caption, p. 6",structural,6,0,count,,FALSE,"The caption of the figure that query produces lists AZ, GA, MI, NC, PA or WI"
+si_c_state_lists_agree,"SI section C, pp. 5-6",descriptive,,,,,TRUE,The state list in the query description and the state list in the caption of the figure it produces name the same states
+si_d_pap_registration_date,"SI section D, p. 9",structural,22,0,count,,FALSE,"'registered by Acronym on November 22, 2020'; the reproduced plan is dated November 11, 2020. Unresolved."
+si_d_persuasion_audience,"SI section D, pp. 10-14",transcribed,5,,unit,,FALSE,'an audience of 5M swing-state voters'
+si_d_persuasion_holdout,"SI section D, pp. 10-14",transcribed,450,,unit,,FALSE,'450K voters'
+si_d_turnout_audience,"SI section D, pp. 10-14",transcribed,1.8,,unit,,FALSE,'an audience of 1.8M swing-state voters'
+si_d_turnout_holdout,"SI section D, pp. 10-14",transcribed,370,,unit,,FALSE,'370K voters'
+si_d_topic_categories,"SI section D, pp. 10-14",transcribed,6,,unit,,FALSE,six numbered treatment topic categories
+si_d_holdout_surveys,"SI section D, pp. 10-14",transcribed,3,,unit,,FALSE,'3 global holdout check in surveys'
+si_d_party_categories,"SI section D, pp. 10-14",transcribed,3,,unit,,FALSE,'3 categories' of party registration
+si_d_vote_history_elections,"SI section D, pp. 10-14",transcribed,3,,unit,,FALSE,'Number of times voted out of 3'
+si_d_black_threshold,"SI section D, pp. 10-14",transcribed,10,,unit,,FALSE,'if Black voters < 10% of sample'
+si_e_sql_limit_1,"SI section E, pp. 15-17",transcribed,700000,0,count,,FALSE,"ORDER BY RANDOM() LIMIT 700000, the whole-population draw"
+si_e_sql_limit_2,"SI section E, pp. 15-17",transcribed,564872,0,count,,FALSE,"LIMIT 564872, the 18 to 24 oversample"
+si_e_sql_limit_3,"SI section E, pp. 15-17",transcribed,454521,0,count,,FALSE,"LIMIT 454521, the 25 to 34 oversample"
+si_e_sql_limit_4,"SI section E, pp. 15-17",transcribed,327230,0,count,,FALSE,"LIMIT 327230, the Black oversample"
+si_e_sql_limit_5,"SI section E, pp. 15-17",transcribed,68842,0,count,,FALSE,"LIMIT 68842, the Hispanic oversample"
+si_e_sql_limit_6,"SI section E, pp. 15-17",transcribed,448812,0,count,,FALSE,"LIMIT 448812, the women oversample"
+si_e_sql_limits_match_figure_4,"SI section E, pp. 15-17",structural,6,0,count,,TRUE,The six SQL sampling limits must equal the six sample sizes Figure 4 lists
+si_figure_1_coverage,"SI Figure 1, p. 3",structural,,,,,FALSE,"Zero coverage. Its script figure_B1.R reads fielding_dates.rds and fielding_dates_survey.rds, neither of which is in the deposit; the third input, treatment_descriptives.csv, is. The figure prints only axis breaks at 0, 5, 10 and 15."
+si_figure_1_axis_breaks,"SI Figure 1, p. 3",definitional,4,0,count,,FALSE,"The only numbers Supplementary Figure 1 prints: axis breaks at 0, 5, 10 and 15, counted off the published page"
+si_figure_4_coverage,"SI Figure 4, p. 7",structural,,,,,FALSE,"Zero coverage. Its script figure_C4.R reads weekly_adds_for_page_id_disclaimer_041322.csv, which is not in the deposit. Its axis labels print dollar and percentage breaks only."
+si_figure_4_axis_breaks,"SI Figure 4, p. 7",definitional,16,0,count,,FALSE,"The only numbers Supplementary Figure 4 prints: six dollar breaks on the Acronym panel, four on the all-sponsors panel and six percentage breaks below, counted off the published page"
+si_figure_2_series_per_panel,"SI Figure 2, p. 4",structural,3,0,count,,TRUE,"Each panel's legend prints three levels: Other, Promoted news and Traditional video on the left, Biden, Both and Trump on the right. The number of plotted points is not readable from the page; figure_b2_acronym_spending.csv carries every one of them."
+si_figure_2_axis_breaks,"SI Figure 2, p. 4",definitional,4,0,count,,FALSE,"Dollar breaks at 0, 200,000, 400,000 and 600,000, counted off the published page; the scale that produces them is set in figure_b2_acronym_spending.R"
+si_figure_3_axis_breaks,"SI Figure 3, p. 6",definitional,5,0,count,,FALSE,"Dollar breaks at 0, 5,000,000, 10,000,000, 15,000,000 and 20,000,000, counted off the published page"
+si_figure_3_month_labels,"SI Figure 3, p. 6",structural,3,0,count,,TRUE,"Three month labels on the horizontal axis: April 2020, July 2020 and October 2020. The number of plotted weeks is not readable from the page; figure_c3_facebook_spending.csv carries every one of them."

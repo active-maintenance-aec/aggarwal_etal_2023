@@ -1,0 +1,20 @@
+covariate,level,n
+Age,18-39,1379017
+Age,40+,620265
+Gender,Female,978041
+Gender,Other,1021241
+Margin,Vote margin less than 3pp,1337057
+Margin,Vote margin more than 3pp,662225
+Partisanship,Democrat,182945
+Partisanship,Other,302391
+Partisanship,Republican,71875
+Partisanship,Unknown,1442071
+Race,Black,233546
+Race,Latinx,179036
+Race,Other,55571
+Race,White,1531129
+Total,Total,1999282
+Trump support,30 to 40,522918
+Trump support,40 to 50,485371
+Trump support,50 to 60,478333
+Trump support,60 to 70,512660

@@ -1,0 +1,163 @@
+---
+title: "Errata for *A 2 million-person, campaign-wide field experiment shows how digital advertising affects voter turnout*"
+format:
+  pdf:
+    output-file: aggarwal_etal_2023_errata.pdf
+    toc: false
+    number-sections: false
+    geometry: margin=1in
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(here)
+here::i_am("errata.qmd")
+
+gt <- read_csv(
+  here::here("ground_truth", "aggarwal_etal_2023_ground_truth.csv"),
+  col_types = cols(value_paper = col_character(), .default = col_guess())
+)
+extraction <- read_csv(
+  here::here("ground_truth", "published_claims.csv"),
+  col_types = cols(value_paper = col_character(), needs_block = col_logical(),
+                   .default = col_guess())
+)
+
+# claim_id is never missing here, but indexing with a bare logical would return
+# extra NA elements the moment one were, so every lookup asserts a single row.
+value <- function(id, column = "value_rewrite") {
+  row <- gt[!is.na(gt$claim_id) & gt$claim_id == id, ]
+  stopifnot(nrow(row) == 1)
+  row[[column]]
+}
+
+published <- function(id) {
+  row <- extraction[extraction$claim_id == id, ]
+  stopifnot(nrow(row) == 1)
+  row$value_paper
+}
+
+number_word <- function(x) {
+  words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+             "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+             "seventeen", "eighteen", "nineteen", "twenty", "twenty-one", "twenty-two",
+             "twenty-three", "twenty-four")
+  words[as.integer(x)]
+}
+
+with_commas <- function(x) format(round(as.numeric(x)), big.mark = ",", scientific = FALSE)
+
+# Monthly persuasion spending, from the figure the sentence describes.
+monthly_spend <-
+  read_csv(here::here("maintained", "output", "figure_b2_acronym_spending.csv"),
+           show_col_types = FALSE) |>
+  filter(panel == "Keyword") |>
+  group_by(month) |>
+  summarize(spend_lb = sum(spend_lb), .groups = "drop") |>
+  arrange(desc(spend_lb))
+
+top_month <- format(monthly_spend$month[1], "%B")
+top_spend <- with_commas(monthly_spend$spend_lb[1])
+july_spend <- with_commas(monthly_spend$spend_lb[monthly_spend$month == as.Date("2020-07-01")])
+
+n_covariates <- value("methods_n_covariates")
+n_covariates_word <- number_word(n_covariates)
+
+audience <- with_commas(published("methods_treatment_audience"))
+eligible <- with_commas(published("methods_programme_eligible"))
+
+omnibus_num_df <- value("methods_omnibus_df_first_subscript")
+omnibus_den_df <- format(round(value("methods_omnibus_df_second_subscript")), scientific = FALSE)
+omnibus_den_df_commas <- with_commas(value("methods_omnibus_df_second_subscript"))
+omnibus_f <- sprintf("%.4f", value("methods_omnibus_f"))
+omnibus_p <- sprintf("%.3f", value("methods_omnibus_p"))
+
+wesleyan_share <- sprintf("%.2f", value("si_c_wesleyan_share"))
+wesleyan_total <- with_commas(published("si_c_wesleyan_total"))
+wesleyan_acronym <- with_commas(published("si_c_wesleyan_acronym"))
+```
+
+Five corrections to *Nature Human Behaviour* article `r "10.1038/s41562-022-01487-4"`. None of
+them changes a conclusion of the article. Every corrected value below is computed at render time
+from a full reproduction of the published analysis, held in the repository
+`active-maintenance-aec/aggarwal_etal_2023`. Bold marks the tokens that changed; everything else
+in each corrected sentence is the published wording.
+
+## 1. The month of heaviest persuasion spending
+
+> In fact, we observe significant early spending (Acronym spent more on persuasion in
+> **July** than in any other month, see main Figure **??**), and we find much stronger effects on
+> early voting than day of voting (see Figure 3 in the main text).
+
+**Corrected:** In fact, we observe significant early spending (Acronym spent more on persuasion
+in **`r top_month`** than in any other month, see **Supplementary Figure 2**), and we find much
+stronger effects on early voting than day of voting (see Figure 3 in the main text).
+
+The figure the sentence points at is Supplementary Figure 2, whose two panels split Acronym's
+monthly lower-bound spending on persuasion advertisements by format and by keyword. Summed over
+either panel's series, the largest month is `r top_month` 2020 at US\$`r top_spend`,
+against US\$`r july_spend` in July. The cross-reference did not resolve when the document was
+typeset. The sentence's argument, that Acronym spent heavily earlier in the campaign than other
+left-leaning advertisers did, is unaffected: `r top_month` is earlier than July.
+
+## 2. The number of pre-treatment covariates tested for balance
+
+> As shown in Fig. 5, the random assignment procedure generated treatment and control groups that
+> were balanced on pre-treatment characteristics in this subset. Out of **21** covariates, only two
+> exhibited statistically significant imbalance.
+
+**Corrected:** As shown in Fig. 5, the random assignment procedure generated treatment and control
+groups that were balanced on pre-treatment characteristics in this subset. Out of
+**`r n_covariates`** covariates, only two exhibited statistically significant imbalance.
+
+Figure 5 plots `r n_covariates_word` covariates and Supplementary Table 3 prints
+`r n_covariates_word` rows. The count of two significant imbalances is right, and so is
+everything the paragraph goes on to say about them.
+
+## 3. The size of the treatment audience
+
+> The full cost of the advertising campaign was US\$8.9 million, spread out over a treatment
+> audience of **`r audience` million** (`r eligible` programme-eligible voters × our 60% match
+> rate), amounting to US\$4.46 of advertising expenditure per voter.
+
+**Corrected:** The full cost of the advertising campaign was US\$8.9 million, spread out over a
+treatment audience of **`r audience`** (`r eligible` programme-eligible voters × our 60% match
+rate), amounting to US\$4.46 of advertising expenditure per voter.
+
+The parenthetical states the arithmetic: `r eligible` times a 60 per cent match rate is
+`r audience` people. The word "million" makes the figure a million times too large.
+
+## 4. The degrees of freedom of the balance F test
+
+> An F-test comparing a regression of treatment status on covariates with strata fixed effects
+> versus a restricted model predicting treatment status from strata fixed effects was
+> non-significant (F~**`r published("methods_omnibus_df_first_subscript")`,−18**~ =
+> `r omnibus_f`; P = `r omnibus_p`).
+
+**Corrected:** An F-test comparing a regression of treatment status on covariates with strata
+fixed effects versus a restricted model predicting treatment status from strata fixed effects was
+non-significant (F~**`r omnibus_num_df`,`r omnibus_den_df`**~ = `r omnibus_f`;
+P = `r omnibus_p`).
+
+An F statistic carries its numerator degrees of freedom first. The unrestricted model has
+`r omnibus_num_df` more parameters than the restricted one and leaves `r omnibus_den_df_commas` residual
+degrees of freedom. The published subscripts are the second row of the Wald test's printed
+output, where the first figure is that model's residual degrees of freedom and the second is the
+difference in parameters, printed as a negative number. The statistic and the p-value are right.
+
+## 5. Acronym's share of federal advertising spending on Facebook
+
+> According to this data, there was a total of approximately US\$`r wesleyan_total` spent on
+> federal races on Facebook from 2/1/2020 to 11/3/2020, US\$`r wesleyan_acronym` (**0.67%**) of
+> which was from Acronym.
+
+**Corrected:** According to this data, there was a total of approximately US\$`r wesleyan_total`
+spent on federal races on Facebook from 2/1/2020 to 11/3/2020, US\$`r wesleyan_acronym`
+(**`r wesleyan_share`%**) of which was from Acronym.
+
+A rounding artifact rather than a substantive error: the quotient of the sentence's own two
+figures is `r sprintf("%.4f", value("si_c_wesleyan_share"))` per cent, which rounds up. The share
+is kept at two decimal places because at one decimal the published and corrected figures are the
+same.

@@ -1,0 +1,20 @@
+# The deposited archive is fetched from Dataverse by download_original.R, not redistributed.
+original/
+
+# Working log stays private, per the house rule for public repos.
+notes.md
+
+# Quarto build artifacts
+/.quarto/
+*_files/
+report/maintained/
+
+# RStudio project state
+.Rproj.user/
+
+**/*.quarto_ipynb
+
+.DS_Store
+
+# Rendered errata; the PDF is built from errata.qmd
+/errata_files/

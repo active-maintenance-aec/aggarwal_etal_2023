@@ -1,0 +1,4 @@
+script,line_number,writes_to,text
+figure_3.R,185,output/figure_3.pdf,"ggsave(""output/figure_3.pdf"", plot = g, width = 8.5, height = 4.5)"
+table_1.R,66,output/table_1a.tex,"hline.after = c(), file = ""output/table_1a.tex"")"
+table_1.R,71,output/table_1b.tex,"hline.after = c(), file = ""output/table_1b.tex"")"

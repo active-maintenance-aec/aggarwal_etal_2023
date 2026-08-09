@@ -1,0 +1,52 @@
+panel,group,month,spend_lb,n_ads
+Ad Format,Other,2020-01-01,21000,25
+Ad Format,Other,2020-02-01,67600,64
+Ad Format,Other,2020-03-01,57900,52
+Ad Format,Other,2020-04-01,60100,53
+Ad Format,Other,2020-05-01,62100,52
+Ad Format,Other,2020-06-01,35300,50
+Ad Format,Other,2020-07-01,0,1
+Ad Format,Promoted news,2020-01-01,12500,49
+Ad Format,Promoted news,2020-02-01,23400,67
+Ad Format,Promoted news,2020-03-01,64600,261
+Ad Format,Promoted news,2020-04-01,68200,280
+Ad Format,Promoted news,2020-05-01,104600,253
+Ad Format,Promoted news,2020-06-01,91100,820
+Ad Format,Promoted news,2020-07-01,190600,676
+Ad Format,Promoted news,2020-08-01,179700,1456
+Ad Format,Promoted news,2020-09-01,208300,3374
+Ad Format,Promoted news,2020-10-01,332000,5975
+Ad Format,Promoted news,2020-11-01,0,8
+Ad Format,Traditional video,2020-01-01,115500,21
+Ad Format,Traditional video,2020-02-01,486000,39
+Ad Format,Traditional video,2020-03-01,195700,65
+Ad Format,Traditional video,2020-04-01,104700,30
+Ad Format,Traditional video,2020-05-01,241700,70
+Ad Format,Traditional video,2020-06-01,364200,74
+Ad Format,Traditional video,2020-07-01,376000,140
+Ad Format,Traditional video,2020-08-01,109400,129
+Ad Format,Traditional video,2020-09-01,268600,131
+Ad Format,Traditional video,2020-10-01,27100,22
+Keyword,Biden,2020-06-01,1700,16
+Keyword,Biden,2020-07-01,14100,128
+Keyword,Biden,2020-08-01,66700,498
+Keyword,Biden,2020-09-01,189300,388
+Keyword,Biden,2020-10-01,97000,1470
+Keyword,Biden,2020-11-01,0,2
+Keyword,Both,2020-06-01,9100,187
+Keyword,Both,2020-07-01,46000,129
+Keyword,Both,2020-08-01,38100,101
+Keyword,Both,2020-09-01,88400,1246
+Keyword,Both,2020-10-01,62900,1415
+Keyword,Both,2020-11-01,0,3
+Keyword,Trump,2020-01-01,149000,95
+Keyword,Trump,2020-02-01,577000,170
+Keyword,Trump,2020-03-01,318200,378
+Keyword,Trump,2020-04-01,233000,363
+Keyword,Trump,2020-05-01,408400,375
+Keyword,Trump,2020-06-01,479800,741
+Keyword,Trump,2020-07-01,506500,560
+Keyword,Trump,2020-08-01,184300,986
+Keyword,Trump,2020-09-01,199200,1871
+Keyword,Trump,2020-10-01,199200,3112
+Keyword,Trump,2020-11-01,0,3

@@ -1,0 +1,23 @@
+pass,script,exit_status,outcome,stopped_at
+as_shipped,helper_file.R,0,clean,NA
+as_shipped,in_text_calculations.R,1,error,"Error in waldtest(omni_fit, omni_fit_restricted, test = ""F"") :"
+as_shipped,figure_1.R,0,clean,NA
+as_shipped,figure_2.R,1,error,"Error in xtable(arrange(mutate(select(gg_df, inquiry, outcome, estimator, :"
+as_shipped,figure_3.R,1,error,Error in `ggsave()`:
+as_shipped,figure_5.R,0,clean,NA
+as_shipped,table_1.R,1,error,"Error in file(file, ifelse(append, ""a"", ""w"")) :"
+as_shipped,figure_B1.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+as_shipped,figure_B2.R,0,clean,NA
+as_shipped,figure_C3.R,0,clean,NA
+as_shipped,figure_C4.R,1,error,Error:
+stripped,helper_file.R,0,clean,NA
+stripped,in_text_calculations.R,1,error,"Error in waldtest(omni_fit, omni_fit_restricted, test = ""F"") :"
+stripped,figure_1.R,0,clean,NA
+stripped,figure_2.R,1,error,"Error in xtable(arrange(mutate(select(gg_df, inquiry, outcome, estimator, :"
+stripped,figure_3.R,1,error,Error in `ggsave()`:
+stripped,figure_5.R,0,clean,NA
+stripped,table_1.R,1,error,"Error in file(file, ifelse(append, ""a"", ""w"")) :"
+stripped,figure_B1.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+stripped,figure_B2.R,0,clean,NA
+stripped,figure_C3.R,0,clean,NA
+stripped,figure_C4.R,1,error,Error:

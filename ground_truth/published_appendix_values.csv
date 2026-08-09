@@ -1,0 +1,702 @@
+float,row_key,quantity,value_paper,digits
+supplementary_table_1,Age | 18-39 | Full adjustment set,ci_lower,-0.003,3
+supplementary_table_1,Age | 18-39 | Full adjustment set,ci_upper,0.002,3
+supplementary_table_1,Age | 18-39 | Full adjustment set,df,1378983,0
+supplementary_table_1,Age | 18-39 | Full adjustment set,estimate,-0.001,3
+supplementary_table_1,Age | 18-39 | Full adjustment set,p_value,0.622,3
+supplementary_table_1,Age | 18-39 | Full adjustment set,se,0.001,3
+supplementary_table_1,Age | 18-39 | Full adjustment set,t,-0.493,3
+supplementary_table_1,Age | 18-39 | PAP adjustment set,ci_lower,-0.003,3
+supplementary_table_1,Age | 18-39 | PAP adjustment set,ci_upper,0.002,3
+supplementary_table_1,Age | 18-39 | PAP adjustment set,df,1379012,0
+supplementary_table_1,Age | 18-39 | PAP adjustment set,estimate,-0.001,3
+supplementary_table_1,Age | 18-39 | PAP adjustment set,p_value,0.495,3
+supplementary_table_1,Age | 18-39 | PAP adjustment set,se,0.001,3
+supplementary_table_1,Age | 18-39 | PAP adjustment set,t,-0.682,3
+supplementary_table_1,Age | 18-39 | Unadjusted,ci_lower,-0.003,3
+supplementary_table_1,Age | 18-39 | Unadjusted,ci_upper,0.002,3
+supplementary_table_1,Age | 18-39 | Unadjusted,df,1379015,0
+supplementary_table_1,Age | 18-39 | Unadjusted,estimate,0.000,3
+supplementary_table_1,Age | 18-39 | Unadjusted,p_value,0.761,3
+supplementary_table_1,Age | 18-39 | Unadjusted,se,0.001,3
+supplementary_table_1,Age | 18-39 | Unadjusted,t,-0.304,3
+supplementary_table_1,Age | 40+ | Full adjustment set,ci_lower,-0.006,3
+supplementary_table_1,Age | 40+ | Full adjustment set,ci_upper,0.005,3
+supplementary_table_1,Age | 40+ | Full adjustment set,df,620243,0
+supplementary_table_1,Age | 40+ | Full adjustment set,estimate,0.000,3
+supplementary_table_1,Age | 40+ | Full adjustment set,p_value,0.953,3
+supplementary_table_1,Age | 40+ | Full adjustment set,se,0.003,3
+supplementary_table_1,Age | 40+ | Full adjustment set,t,-0.059,3
+supplementary_table_1,Age | 40+ | PAP adjustment set,ci_lower,-0.006,3
+supplementary_table_1,Age | 40+ | PAP adjustment set,ci_upper,0.005,3
+supplementary_table_1,Age | 40+ | PAP adjustment set,df,620260,0
+supplementary_table_1,Age | 40+ | PAP adjustment set,estimate,0.000,3
+supplementary_table_1,Age | 40+ | PAP adjustment set,p_value,0.871,3
+supplementary_table_1,Age | 40+ | PAP adjustment set,se,0.003,3
+supplementary_table_1,Age | 40+ | PAP adjustment set,t,-0.162,3
+supplementary_table_1,Age | 40+ | Unadjusted,ci_lower,-0.006,3
+supplementary_table_1,Age | 40+ | Unadjusted,ci_upper,0.007,3
+supplementary_table_1,Age | 40+ | Unadjusted,df,620263,0
+supplementary_table_1,Age | 40+ | Unadjusted,estimate,0.000,3
+supplementary_table_1,Age | 40+ | Unadjusted,p_value,0.881,3
+supplementary_table_1,Age | 40+ | Unadjusted,se,0.003,3
+supplementary_table_1,Age | 40+ | Unadjusted,t,0.150,3
+supplementary_table_1,ATE | ATE | Full adjustment set,ci_lower,-0.003,3
+supplementary_table_1,ATE | ATE | Full adjustment set,ci_upper,0.002,3
+supplementary_table_1,ATE | ATE | Full adjustment set,df,1999248,0
+supplementary_table_1,ATE | ATE | Full adjustment set,estimate,-0.001,3
+supplementary_table_1,ATE | ATE | Full adjustment set,p_value,0.663,3
+supplementary_table_1,ATE | ATE | Full adjustment set,se,0.001,3
+supplementary_table_1,ATE | ATE | Full adjustment set,t,-0.436,3
+supplementary_table_1,ATE | ATE | PAP adjustment set,ci_lower,-0.003,3
+supplementary_table_1,ATE | ATE | PAP adjustment set,ci_upper,0.002,3
+supplementary_table_1,ATE | ATE | PAP adjustment set,df,1999277,0
+supplementary_table_1,ATE | ATE | PAP adjustment set,estimate,-0.001,3
+supplementary_table_1,ATE | ATE | PAP adjustment set,p_value,0.600,3
+supplementary_table_1,ATE | ATE | PAP adjustment set,se,0.001,3
+supplementary_table_1,ATE | ATE | PAP adjustment set,t,-0.525,3
+supplementary_table_1,ATE | ATE | Unadjusted,ci_lower,-0.003,3
+supplementary_table_1,ATE | ATE | Unadjusted,ci_upper,0.002,3
+supplementary_table_1,ATE | ATE | Unadjusted,df,1999280,0
+supplementary_table_1,ATE | ATE | Unadjusted,estimate,0.000,3
+supplementary_table_1,ATE | ATE | Unadjusted,p_value,0.842,3
+supplementary_table_1,ATE | ATE | Unadjusted,se,0.001,3
+supplementary_table_1,ATE | ATE | Unadjusted,t,-0.200,3
+supplementary_table_1,Gender | Female | Full adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Gender | Female | Full adjustment set,ci_upper,0.002,3
+supplementary_table_1,Gender | Female | Full adjustment set,df,978016,0
+supplementary_table_1,Gender | Female | Full adjustment set,estimate,-0.001,3
+supplementary_table_1,Gender | Female | Full adjustment set,p_value,0.438,3
+supplementary_table_1,Gender | Female | Full adjustment set,se,0.002,3
+supplementary_table_1,Gender | Female | Full adjustment set,t,-0.775,3
+supplementary_table_1,Gender | Female | PAP adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Gender | Female | PAP adjustment set,ci_upper,0.002,3
+supplementary_table_1,Gender | Female | PAP adjustment set,df,978036,0
+supplementary_table_1,Gender | Female | PAP adjustment set,estimate,-0.001,3
+supplementary_table_1,Gender | Female | PAP adjustment set,p_value,0.417,3
+supplementary_table_1,Gender | Female | PAP adjustment set,se,0.002,3
+supplementary_table_1,Gender | Female | PAP adjustment set,t,-0.812,3
+supplementary_table_1,Gender | Female | Unadjusted,ci_lower,-0.005,3
+supplementary_table_1,Gender | Female | Unadjusted,ci_upper,0.002,3
+supplementary_table_1,Gender | Female | Unadjusted,df,978039,0
+supplementary_table_1,Gender | Female | Unadjusted,estimate,-0.001,3
+supplementary_table_1,Gender | Female | Unadjusted,p_value,0.411,3
+supplementary_table_1,Gender | Female | Unadjusted,se,0.002,3
+supplementary_table_1,Gender | Female | Unadjusted,t,-0.821,3
+supplementary_table_1,Gender | Other | Full adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Gender | Other | Full adjustment set,ci_upper,0.004,3
+supplementary_table_1,Gender | Other | Full adjustment set,df,1021216,0
+supplementary_table_1,Gender | Other | Full adjustment set,estimate,0.000,3
+supplementary_table_1,Gender | Other | Full adjustment set,p_value,0.980,3
+supplementary_table_1,Gender | Other | Full adjustment set,se,0.002,3
+supplementary_table_1,Gender | Other | Full adjustment set,t,0.025,3
+supplementary_table_1,Gender | Other | PAP adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Gender | Other | PAP adjustment set,ci_upper,0.004,3
+supplementary_table_1,Gender | Other | PAP adjustment set,df,1021236,0
+supplementary_table_1,Gender | Other | PAP adjustment set,estimate,0.000,3
+supplementary_table_1,Gender | Other | PAP adjustment set,p_value,0.996,3
+supplementary_table_1,Gender | Other | PAP adjustment set,se,0.002,3
+supplementary_table_1,Gender | Other | PAP adjustment set,t,-0.005,3
+supplementary_table_1,Gender | Other | Unadjusted,ci_lower,-0.003,3
+supplementary_table_1,Gender | Other | Unadjusted,ci_upper,0.005,3
+supplementary_table_1,Gender | Other | Unadjusted,df,1021239,0
+supplementary_table_1,Gender | Other | Unadjusted,estimate,0.001,3
+supplementary_table_1,Gender | Other | Unadjusted,p_value,0.683,3
+supplementary_table_1,Gender | Other | Unadjusted,se,0.002,3
+supplementary_table_1,Gender | Other | Unadjusted,t,0.408,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Full adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Full adjustment set,ci_upper,0.002,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Full adjustment set,df,1337023,0
+supplementary_table_1,Margin | Vote margin less than 3pp | Full adjustment set,estimate,-0.001,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Full adjustment set,p_value,0.625,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Full adjustment set,se,0.002,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Full adjustment set,t,-0.488,3
+supplementary_table_1,Margin | Vote margin less than 3pp | PAP adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Margin | Vote margin less than 3pp | PAP adjustment set,ci_upper,0.002,3
+supplementary_table_1,Margin | Vote margin less than 3pp | PAP adjustment set,df,1337052,0
+supplementary_table_1,Margin | Vote margin less than 3pp | PAP adjustment set,estimate,-0.001,3
+supplementary_table_1,Margin | Vote margin less than 3pp | PAP adjustment set,p_value,0.587,3
+supplementary_table_1,Margin | Vote margin less than 3pp | PAP adjustment set,se,0.002,3
+supplementary_table_1,Margin | Vote margin less than 3pp | PAP adjustment set,t,-0.543,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Unadjusted,ci_lower,-0.004,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Unadjusted,ci_upper,0.003,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Unadjusted,df,1337055,0
+supplementary_table_1,Margin | Vote margin less than 3pp | Unadjusted,estimate,0.000,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Unadjusted,p_value,0.942,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Unadjusted,se,0.002,3
+supplementary_table_1,Margin | Vote margin less than 3pp | Unadjusted,t,-0.073,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Full adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Full adjustment set,ci_upper,0.004,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Full adjustment set,df,662191,0
+supplementary_table_1,Margin | Vote margin more than 3pp | Full adjustment set,estimate,0.000,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Full adjustment set,p_value,0.985,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Full adjustment set,se,0.002,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Full adjustment set,t,-0.019,3
+supplementary_table_1,Margin | Vote margin more than 3pp | PAP adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Margin | Vote margin more than 3pp | PAP adjustment set,ci_upper,0.004,3
+supplementary_table_1,Margin | Vote margin more than 3pp | PAP adjustment set,df,662220,0
+supplementary_table_1,Margin | Vote margin more than 3pp | PAP adjustment set,estimate,0.000,3
+supplementary_table_1,Margin | Vote margin more than 3pp | PAP adjustment set,p_value,0.924,3
+supplementary_table_1,Margin | Vote margin more than 3pp | PAP adjustment set,se,0.002,3
+supplementary_table_1,Margin | Vote margin more than 3pp | PAP adjustment set,t,-0.096,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Unadjusted,ci_lower,-0.005,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Unadjusted,ci_upper,0.004,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Unadjusted,df,662223,0
+supplementary_table_1,Margin | Vote margin more than 3pp | Unadjusted,estimate,-0.001,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Unadjusted,p_value,0.757,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Unadjusted,se,0.002,3
+supplementary_table_1,Margin | Vote margin more than 3pp | Unadjusted,t,-0.310,3
+supplementary_table_1,Partisanship | Democrat | Full adjustment set,ci_lower,-0.003,3
+supplementary_table_1,Partisanship | Democrat | Full adjustment set,ci_upper,0.016,3
+supplementary_table_1,Partisanship | Democrat | Full adjustment set,df,182914,0
+supplementary_table_1,Partisanship | Democrat | Full adjustment set,estimate,0.007,3
+supplementary_table_1,Partisanship | Democrat | Full adjustment set,p_value,0.157,3
+supplementary_table_1,Partisanship | Democrat | Full adjustment set,se,0.005,3
+supplementary_table_1,Partisanship | Democrat | Full adjustment set,t,1.416,3
+supplementary_table_1,Partisanship | Democrat | PAP adjustment set,ci_lower,-0.002,3
+supplementary_table_1,Partisanship | Democrat | PAP adjustment set,ci_upper,0.017,3
+supplementary_table_1,Partisanship | Democrat | PAP adjustment set,df,182940,0
+supplementary_table_1,Partisanship | Democrat | PAP adjustment set,estimate,0.008,3
+supplementary_table_1,Partisanship | Democrat | PAP adjustment set,p_value,0.113,3
+supplementary_table_1,Partisanship | Democrat | PAP adjustment set,se,0.005,3
+supplementary_table_1,Partisanship | Democrat | PAP adjustment set,t,1.585,3
+supplementary_table_1,Partisanship | Democrat | Unadjusted,ci_lower,-0.006,3
+supplementary_table_1,Partisanship | Democrat | Unadjusted,ci_upper,0.016,3
+supplementary_table_1,Partisanship | Democrat | Unadjusted,df,182943,0
+supplementary_table_1,Partisanship | Democrat | Unadjusted,estimate,0.005,3
+supplementary_table_1,Partisanship | Democrat | Unadjusted,p_value,0.348,3
+supplementary_table_1,Partisanship | Democrat | Unadjusted,se,0.006,3
+supplementary_table_1,Partisanship | Democrat | Unadjusted,t,0.939,3
+supplementary_table_1,Partisanship | Other | Full adjustment set,ci_lower,-0.006,3
+supplementary_table_1,Partisanship | Other | Full adjustment set,ci_upper,0.006,3
+supplementary_table_1,Partisanship | Other | Full adjustment set,df,302360,0
+supplementary_table_1,Partisanship | Other | Full adjustment set,estimate,0.000,3
+supplementary_table_1,Partisanship | Other | Full adjustment set,p_value,0.970,3
+supplementary_table_1,Partisanship | Other | Full adjustment set,se,0.003,3
+supplementary_table_1,Partisanship | Other | Full adjustment set,t,0.037,3
+supplementary_table_1,Partisanship | Other | PAP adjustment set,ci_lower,-0.006,3
+supplementary_table_1,Partisanship | Other | PAP adjustment set,ci_upper,0.006,3
+supplementary_table_1,Partisanship | Other | PAP adjustment set,df,302386,0
+supplementary_table_1,Partisanship | Other | PAP adjustment set,estimate,0.000,3
+supplementary_table_1,Partisanship | Other | PAP adjustment set,p_value,0.985,3
+supplementary_table_1,Partisanship | Other | PAP adjustment set,se,0.003,3
+supplementary_table_1,Partisanship | Other | PAP adjustment set,t,-0.019,3
+supplementary_table_1,Partisanship | Other | Unadjusted,ci_lower,-0.007,3
+supplementary_table_1,Partisanship | Other | Unadjusted,ci_upper,0.007,3
+supplementary_table_1,Partisanship | Other | Unadjusted,df,302389,0
+supplementary_table_1,Partisanship | Other | Unadjusted,estimate,0.000,3
+supplementary_table_1,Partisanship | Other | Unadjusted,p_value,0.990,3
+supplementary_table_1,Partisanship | Other | Unadjusted,se,0.003,3
+supplementary_table_1,Partisanship | Other | Unadjusted,t,-0.013,3
+supplementary_table_1,Partisanship | Republican | Full adjustment set,ci_lower,-0.020,3
+supplementary_table_1,Partisanship | Republican | Full adjustment set,ci_upper,-0.001,3
+supplementary_table_1,Partisanship | Republican | Full adjustment set,df,71844,0
+supplementary_table_1,Partisanship | Republican | Full adjustment set,estimate,-0.010,3
+supplementary_table_1,Partisanship | Republican | Full adjustment set,p_value,0.034,3
+supplementary_table_1,Partisanship | Republican | Full adjustment set,se,0.005,3
+supplementary_table_1,Partisanship | Republican | Full adjustment set,t,-2.123,3
+supplementary_table_1,Partisanship | Republican | PAP adjustment set,ci_lower,-0.019,3
+supplementary_table_1,Partisanship | Republican | PAP adjustment set,ci_upper,0.000,3
+supplementary_table_1,Partisanship | Republican | PAP adjustment set,df,71870,0
+supplementary_table_1,Partisanship | Republican | PAP adjustment set,estimate,-0.010,3
+supplementary_table_1,Partisanship | Republican | PAP adjustment set,p_value,0.045,3
+supplementary_table_1,Partisanship | Republican | PAP adjustment set,se,0.005,3
+supplementary_table_1,Partisanship | Republican | PAP adjustment set,t,-2.003,3
+supplementary_table_1,Partisanship | Republican | Unadjusted,ci_lower,-0.019,3
+supplementary_table_1,Partisanship | Republican | Unadjusted,ci_upper,0.001,3
+supplementary_table_1,Partisanship | Republican | Unadjusted,df,71873,0
+supplementary_table_1,Partisanship | Republican | Unadjusted,estimate,-0.009,3
+supplementary_table_1,Partisanship | Republican | Unadjusted,p_value,0.084,3
+supplementary_table_1,Partisanship | Republican | Unadjusted,se,0.005,3
+supplementary_table_1,Partisanship | Republican | Unadjusted,t,-1.729,3
+supplementary_table_1,Partisanship | Unknown | Full adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Partisanship | Unknown | Full adjustment set,ci_upper,0.002,3
+supplementary_table_1,Partisanship | Unknown | Full adjustment set,df,1442040,0
+supplementary_table_1,Partisanship | Unknown | Full adjustment set,estimate,-0.001,3
+supplementary_table_1,Partisanship | Unknown | Full adjustment set,p_value,0.434,3
+supplementary_table_1,Partisanship | Unknown | Full adjustment set,se,0.001,3
+supplementary_table_1,Partisanship | Unknown | Full adjustment set,t,-0.783,3
+supplementary_table_1,Partisanship | Unknown | PAP adjustment set,ci_lower,-0.004,3
+supplementary_table_1,Partisanship | Unknown | PAP adjustment set,ci_upper,0.001,3
+supplementary_table_1,Partisanship | Unknown | PAP adjustment set,df,1442066,0
+supplementary_table_1,Partisanship | Unknown | PAP adjustment set,estimate,-0.001,3
+supplementary_table_1,Partisanship | Unknown | PAP adjustment set,p_value,0.367,3
+supplementary_table_1,Partisanship | Unknown | PAP adjustment set,se,0.001,3
+supplementary_table_1,Partisanship | Unknown | PAP adjustment set,t,-0.901,3
+supplementary_table_1,Partisanship | Unknown | Unadjusted,ci_lower,-0.004,3
+supplementary_table_1,Partisanship | Unknown | Unadjusted,ci_upper,0.003,3
+supplementary_table_1,Partisanship | Unknown | Unadjusted,df,1442069,0
+supplementary_table_1,Partisanship | Unknown | Unadjusted,estimate,0.000,3
+supplementary_table_1,Partisanship | Unknown | Unadjusted,p_value,0.783,3
+supplementary_table_1,Partisanship | Unknown | Unadjusted,se,0.002,3
+supplementary_table_1,Partisanship | Unknown | Unadjusted,t,-0.276,3
+supplementary_table_1,Race | Black | Full adjustment set,ci_lower,-0.006,3
+supplementary_table_1,Race | Black | Full adjustment set,ci_upper,0.004,3
+supplementary_table_1,Race | Black | Full adjustment set,df,233524,0
+supplementary_table_1,Race | Black | Full adjustment set,estimate,-0.001,3
+supplementary_table_1,Race | Black | Full adjustment set,p_value,0.732,3
+supplementary_table_1,Race | Black | Full adjustment set,se,0.002,3
+supplementary_table_1,Race | Black | Full adjustment set,t,-0.342,3
+supplementary_table_1,Race | Black | PAP adjustment set,ci_lower,-0.006,3
+supplementary_table_1,Race | Black | PAP adjustment set,ci_upper,0.004,3
+supplementary_table_1,Race | Black | PAP adjustment set,df,233541,0
+supplementary_table_1,Race | Black | PAP adjustment set,estimate,-0.001,3
+supplementary_table_1,Race | Black | PAP adjustment set,p_value,0.608,3
+supplementary_table_1,Race | Black | PAP adjustment set,se,0.002,3
+supplementary_table_1,Race | Black | PAP adjustment set,t,-0.513,3
+supplementary_table_1,Race | Black | Unadjusted,ci_lower,-0.006,3
+supplementary_table_1,Race | Black | Unadjusted,ci_upper,0.005,3
+supplementary_table_1,Race | Black | Unadjusted,df,233544,0
+supplementary_table_1,Race | Black | Unadjusted,estimate,-0.001,3
+supplementary_table_1,Race | Black | Unadjusted,p_value,0.827,3
+supplementary_table_1,Race | Black | Unadjusted,se,0.003,3
+supplementary_table_1,Race | Black | Unadjusted,t,-0.218,3
+supplementary_table_1,Race | Latinx | Full adjustment set,ci_lower,-0.008,3
+supplementary_table_1,Race | Latinx | Full adjustment set,ci_upper,0.004,3
+supplementary_table_1,Race | Latinx | Full adjustment set,df,179014,0
+supplementary_table_1,Race | Latinx | Full adjustment set,estimate,-0.002,3
+supplementary_table_1,Race | Latinx | Full adjustment set,p_value,0.513,3
+supplementary_table_1,Race | Latinx | Full adjustment set,se,0.003,3
+supplementary_table_1,Race | Latinx | Full adjustment set,t,-0.655,3
+supplementary_table_1,Race | Latinx | PAP adjustment set,ci_lower,-0.009,3
+supplementary_table_1,Race | Latinx | PAP adjustment set,ci_upper,0.004,3
+supplementary_table_1,Race | Latinx | PAP adjustment set,df,179031,0
+supplementary_table_1,Race | Latinx | PAP adjustment set,estimate,-0.002,3
+supplementary_table_1,Race | Latinx | PAP adjustment set,p_value,0.493,3
+supplementary_table_1,Race | Latinx | PAP adjustment set,se,0.003,3
+supplementary_table_1,Race | Latinx | PAP adjustment set,t,-0.685,3
+supplementary_table_1,Race | Latinx | Unadjusted,ci_lower,-0.010,3
+supplementary_table_1,Race | Latinx | Unadjusted,ci_upper,0.004,3
+supplementary_table_1,Race | Latinx | Unadjusted,df,179034,0
+supplementary_table_1,Race | Latinx | Unadjusted,estimate,-0.003,3
+supplementary_table_1,Race | Latinx | Unadjusted,p_value,0.413,3
+supplementary_table_1,Race | Latinx | Unadjusted,se,0.004,3
+supplementary_table_1,Race | Latinx | Unadjusted,t,-0.818,3
+supplementary_table_1,Race | Other | Full adjustment set,ci_lower,-0.023,3
+supplementary_table_1,Race | Other | Full adjustment set,ci_upper,0.010,3
+supplementary_table_1,Race | Other | Full adjustment set,df,55549,0
+supplementary_table_1,Race | Other | Full adjustment set,estimate,-0.007,3
+supplementary_table_1,Race | Other | Full adjustment set,p_value,0.426,3
+supplementary_table_1,Race | Other | Full adjustment set,se,0.008,3
+supplementary_table_1,Race | Other | Full adjustment set,t,-0.797,3
+supplementary_table_1,Race | Other | PAP adjustment set,ci_lower,-0.023,3
+supplementary_table_1,Race | Other | PAP adjustment set,ci_upper,0.009,3
+supplementary_table_1,Race | Other | PAP adjustment set,df,55566,0
+supplementary_table_1,Race | Other | PAP adjustment set,estimate,-0.007,3
+supplementary_table_1,Race | Other | PAP adjustment set,p_value,0.411,3
+supplementary_table_1,Race | Other | PAP adjustment set,se,0.008,3
+supplementary_table_1,Race | Other | PAP adjustment set,t,-0.821,3
+supplementary_table_1,Race | Other | Unadjusted,ci_lower,-0.021,3
+supplementary_table_1,Race | Other | Unadjusted,ci_upper,0.014,3
+supplementary_table_1,Race | Other | Unadjusted,df,55569,0
+supplementary_table_1,Race | Other | Unadjusted,estimate,-0.003,3
+supplementary_table_1,Race | Other | Unadjusted,p_value,0.712,3
+supplementary_table_1,Race | Other | Unadjusted,se,0.009,3
+supplementary_table_1,Race | Other | Unadjusted,t,-0.369,3
+supplementary_table_1,Race | White | Full adjustment set,ci_lower,-0.003,3
+supplementary_table_1,Race | White | Full adjustment set,ci_upper,0.003,3
+supplementary_table_1,Race | White | Full adjustment set,df,1531107,0
+supplementary_table_1,Race | White | Full adjustment set,estimate,0.000,3
+supplementary_table_1,Race | White | Full adjustment set,p_value,0.945,3
+supplementary_table_1,Race | White | Full adjustment set,se,0.001,3
+supplementary_table_1,Race | White | Full adjustment set,t,-0.069,3
+supplementary_table_1,Race | White | PAP adjustment set,ci_lower,-0.003,3
+supplementary_table_1,Race | White | PAP adjustment set,ci_upper,0.003,3
+supplementary_table_1,Race | White | PAP adjustment set,df,1531124,0
+supplementary_table_1,Race | White | PAP adjustment set,estimate,0.000,3
+supplementary_table_1,Race | White | PAP adjustment set,p_value,0.908,3
+supplementary_table_1,Race | White | PAP adjustment set,se,0.001,3
+supplementary_table_1,Race | White | PAP adjustment set,t,-0.115,3
+supplementary_table_1,Race | White | Unadjusted,ci_lower,-0.003,3
+supplementary_table_1,Race | White | Unadjusted,ci_upper,0.003,3
+supplementary_table_1,Race | White | Unadjusted,df,1531127,0
+supplementary_table_1,Race | White | Unadjusted,estimate,0.000,3
+supplementary_table_1,Race | White | Unadjusted,p_value,0.932,3
+supplementary_table_1,Race | White | Unadjusted,se,0.002,3
+supplementary_table_1,Race | White | Unadjusted,t,0.085,3
+supplementary_table_1,Trump support | 30 to 40 | Full adjustment set,ci_lower,-0.001,3
+supplementary_table_1,Trump support | 30 to 40 | Full adjustment set,ci_upper,0.008,3
+supplementary_table_1,Trump support | 30 to 40 | Full adjustment set,df,522884,0
+supplementary_table_1,Trump support | 30 to 40 | Full adjustment set,estimate,0.004,3
+supplementary_table_1,Trump support | 30 to 40 | Full adjustment set,p_value,0.085,3
+supplementary_table_1,Trump support | 30 to 40 | Full adjustment set,se,0.002,3
+supplementary_table_1,Trump support | 30 to 40 | Full adjustment set,t,1.724,3
+supplementary_table_1,Trump support | 30 to 40 | PAP adjustment set,ci_lower,-0.001,3
+supplementary_table_1,Trump support | 30 to 40 | PAP adjustment set,ci_upper,0.008,3
+supplementary_table_1,Trump support | 30 to 40 | PAP adjustment set,df,522913,0
+supplementary_table_1,Trump support | 30 to 40 | PAP adjustment set,estimate,0.004,3
+supplementary_table_1,Trump support | 30 to 40 | PAP adjustment set,p_value,0.107,3
+supplementary_table_1,Trump support | 30 to 40 | PAP adjustment set,se,0.002,3
+supplementary_table_1,Trump support | 30 to 40 | PAP adjustment set,t,1.613,3
+supplementary_table_1,Trump support | 30 to 40 | Unadjusted,ci_lower,-0.002,3
+supplementary_table_1,Trump support | 30 to 40 | Unadjusted,ci_upper,0.008,3
+supplementary_table_1,Trump support | 30 to 40 | Unadjusted,df,522916,0
+supplementary_table_1,Trump support | 30 to 40 | Unadjusted,estimate,0.003,3
+supplementary_table_1,Trump support | 30 to 40 | Unadjusted,p_value,0.203,3
+supplementary_table_1,Trump support | 30 to 40 | Unadjusted,se,0.003,3
+supplementary_table_1,Trump support | 30 to 40 | Unadjusted,t,1.274,3
+supplementary_table_1,Trump support | 40 to 50 | Full adjustment set,ci_lower,-0.007,3
+supplementary_table_1,Trump support | 40 to 50 | Full adjustment set,ci_upper,0.003,3
+supplementary_table_1,Trump support | 40 to 50 | Full adjustment set,df,485337,0
+supplementary_table_1,Trump support | 40 to 50 | Full adjustment set,estimate,-0.002,3
+supplementary_table_1,Trump support | 40 to 50 | Full adjustment set,p_value,0.413,3
+supplementary_table_1,Trump support | 40 to 50 | Full adjustment set,se,0.002,3
+supplementary_table_1,Trump support | 40 to 50 | Full adjustment set,t,-0.818,3
+supplementary_table_1,Trump support | 40 to 50 | PAP adjustment set,ci_lower,-0.007,3
+supplementary_table_1,Trump support | 40 to 50 | PAP adjustment set,ci_upper,0.003,3
+supplementary_table_1,Trump support | 40 to 50 | PAP adjustment set,df,485366,0
+supplementary_table_1,Trump support | 40 to 50 | PAP adjustment set,estimate,-0.002,3
+supplementary_table_1,Trump support | 40 to 50 | PAP adjustment set,p_value,0.376,3
+supplementary_table_1,Trump support | 40 to 50 | PAP adjustment set,se,0.002,3
+supplementary_table_1,Trump support | 40 to 50 | PAP adjustment set,t,-0.885,3
+supplementary_table_1,Trump support | 40 to 50 | Unadjusted,ci_lower,-0.007,3
+supplementary_table_1,Trump support | 40 to 50 | Unadjusted,ci_upper,0.004,3
+supplementary_table_1,Trump support | 40 to 50 | Unadjusted,df,485369,0
+supplementary_table_1,Trump support | 40 to 50 | Unadjusted,estimate,-0.002,3
+supplementary_table_1,Trump support | 40 to 50 | Unadjusted,p_value,0.548,3
+supplementary_table_1,Trump support | 40 to 50 | Unadjusted,se,0.003,3
+supplementary_table_1,Trump support | 40 to 50 | Unadjusted,t,-0.601,3
+supplementary_table_1,Trump support | 50 to 60 | Full adjustment set,ci_lower,-0.005,3
+supplementary_table_1,Trump support | 50 to 60 | Full adjustment set,ci_upper,0.005,3
+supplementary_table_1,Trump support | 50 to 60 | Full adjustment set,df,478299,0
+supplementary_table_1,Trump support | 50 to 60 | Full adjustment set,estimate,0.000,3
+supplementary_table_1,Trump support | 50 to 60 | Full adjustment set,p_value,0.922,3
+supplementary_table_1,Trump support | 50 to 60 | Full adjustment set,se,0.002,3
+supplementary_table_1,Trump support | 50 to 60 | Full adjustment set,t,-0.098,3
+supplementary_table_1,Trump support | 50 to 60 | PAP adjustment set,ci_lower,-0.006,3
+supplementary_table_1,Trump support | 50 to 60 | PAP adjustment set,ci_upper,0.004,3
+supplementary_table_1,Trump support | 50 to 60 | PAP adjustment set,df,478328,0
+supplementary_table_1,Trump support | 50 to 60 | PAP adjustment set,estimate,-0.001,3
+supplementary_table_1,Trump support | 50 to 60 | PAP adjustment set,p_value,0.767,3
+supplementary_table_1,Trump support | 50 to 60 | PAP adjustment set,se,0.003,3
+supplementary_table_1,Trump support | 50 to 60 | PAP adjustment set,t,-0.296,3
+supplementary_table_1,Trump support | 50 to 60 | Unadjusted,ci_lower,-0.004,3
+supplementary_table_1,Trump support | 50 to 60 | Unadjusted,ci_upper,0.007,3
+supplementary_table_1,Trump support | 50 to 60 | Unadjusted,df,478331,0
+supplementary_table_1,Trump support | 50 to 60 | Unadjusted,estimate,0.002,3
+supplementary_table_1,Trump support | 50 to 60 | Unadjusted,p_value,0.522,3
+supplementary_table_1,Trump support | 50 to 60 | Unadjusted,se,0.003,3
+supplementary_table_1,Trump support | 50 to 60 | Unadjusted,t,0.640,3
+supplementary_table_1,Trump support | 60 to 70 | Full adjustment set,ci_lower,-0.009,3
+supplementary_table_1,Trump support | 60 to 70 | Full adjustment set,ci_upper,0.001,3
+supplementary_table_1,Trump support | 60 to 70 | Full adjustment set,df,512626,0
+supplementary_table_1,Trump support | 60 to 70 | Full adjustment set,estimate,-0.004,3
+supplementary_table_1,Trump support | 60 to 70 | Full adjustment set,p_value,0.140,3
+supplementary_table_1,Trump support | 60 to 70 | Full adjustment set,se,0.003,3
+supplementary_table_1,Trump support | 60 to 70 | Full adjustment set,t,-1.477,3
+supplementary_table_1,Trump support | 60 to 70 | PAP adjustment set,ci_lower,-0.008,3
+supplementary_table_1,Trump support | 60 to 70 | PAP adjustment set,ci_upper,0.001,3
+supplementary_table_1,Trump support | 60 to 70 | PAP adjustment set,df,512655,0
+supplementary_table_1,Trump support | 60 to 70 | PAP adjustment set,estimate,-0.003,3
+supplementary_table_1,Trump support | 60 to 70 | PAP adjustment set,p_value,0.170,3
+supplementary_table_1,Trump support | 60 to 70 | PAP adjustment set,se,0.003,3
+supplementary_table_1,Trump support | 60 to 70 | PAP adjustment set,t,-1.373,3
+supplementary_table_1,Trump support | 60 to 70 | Unadjusted,ci_lower,-0.010,3
+supplementary_table_1,Trump support | 60 to 70 | Unadjusted,ci_upper,0.001,3
+supplementary_table_1,Trump support | 60 to 70 | Unadjusted,df,512658,0
+supplementary_table_1,Trump support | 60 to 70 | Unadjusted,estimate,-0.004,3
+supplementary_table_1,Trump support | 60 to 70 | Unadjusted,p_value,0.146,3
+supplementary_table_1,Trump support | 60 to 70 | Unadjusted,se,0.003,3
+supplementary_table_1,Trump support | 60 to 70 | Unadjusted,t,-1.454,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Full adjustment set,ci_lower,-0.017,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Full adjustment set,ci_upper,-0.004,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Full adjustment set,df,1035542,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Full adjustment set,estimate,-0.011,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Full adjustment set,p_value,0.002,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Full adjustment set,se,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Full adjustment set,t,-3.151,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | PAP adjustment set,ci_lower,-0.017,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | PAP adjustment set,ci_upper,-0.004,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | PAP adjustment set,df,1035571,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | PAP adjustment set,estimate,-0.010,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | PAP adjustment set,p_value,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | PAP adjustment set,se,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | PAP adjustment set,t,-3.005,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Unadjusted,ci_lower,-0.017,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Unadjusted,ci_upper,-0.004,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Unadjusted,df,1035574,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Unadjusted,estimate,-0.010,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Unadjusted,p_value,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Unadjusted,se,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted early in 2020 | Unadjusted,t,-3.002,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Full adjustment set,ci_lower,-0.014,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Full adjustment set,ci_upper,-0.001,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Full adjustment set,df,1035542,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Full adjustment set,estimate,-0.008,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Full adjustment set,p_value,0.023,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Full adjustment set,se,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Full adjustment set,t,-2.268,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | PAP adjustment set,ci_lower,-0.014,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | PAP adjustment set,ci_upper,0.000,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | PAP adjustment set,df,1035571,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | PAP adjustment set,estimate,-0.007,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | PAP adjustment set,p_value,0.036,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | PAP adjustment set,se,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | PAP adjustment set,t,-2.093,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Unadjusted,ci_lower,-0.015,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Unadjusted,ci_upper,0.000,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Unadjusted,df,1035574,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Unadjusted,estimate,-0.007,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Unadjusted,p_value,0.053,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Unadjusted,se,0.004,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in 2020 | Unadjusted,t,-1.933,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Full adjustment set,ci_lower,-0.004,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Full adjustment set,ci_upper,0.009,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Full adjustment set,df,1035542,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Full adjustment set,estimate,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Full adjustment set,p_value,0.374,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Full adjustment set,se,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Full adjustment set,t,0.890,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | PAP adjustment set,ci_lower,-0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | PAP adjustment set,ci_upper,0.010,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | PAP adjustment set,df,1035571,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | PAP adjustment set,estimate,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | PAP adjustment set,p_value,0.356,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | PAP adjustment set,se,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | PAP adjustment set,t,0.922,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Unadjusted,ci_lower,-0.004,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Unadjusted,ci_upper,0.010,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Unadjusted,df,1035574,0
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Unadjusted,estimate,0.003,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Unadjusted,p_value,0.397,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Unadjusted,se,0.004,3
+supplementary_table_2,Difference-in-CATEs TSS 60-70 versus TSS 30-40 | Voted in person in 2020 | Unadjusted,t,0.847,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Full adjustment set,ci_lower,-0.049,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Full adjustment set,ci_upper,-0.009,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Full adjustment set,df,1999247,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Full adjustment set,estimate,-0.029,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Full adjustment set,p_value,0.005,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Full adjustment set,se,0.010,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Full adjustment set,t,-2.840,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | PAP adjustment set,ci_lower,-0.048,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | PAP adjustment set,ci_upper,-0.008,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | PAP adjustment set,df,1999276,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | PAP adjustment set,estimate,-0.028,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | PAP adjustment set,p_value,0.007,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | PAP adjustment set,se,0.010,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | PAP adjustment set,t,-2.712,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Unadjusted,ci_lower,-0.049,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Unadjusted,ci_upper,-0.007,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Unadjusted,df,1999278,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Unadjusted,estimate,-0.028,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Unadjusted,p_value,0.009,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Unadjusted,se,0.011,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted early in 2020 | Unadjusted,t,-2.624,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Full adjustment set,ci_lower,-0.040,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Full adjustment set,ci_upper,0.000,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Full adjustment set,df,1999247,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Full adjustment set,estimate,-0.020,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Full adjustment set,p_value,0.053,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Full adjustment set,se,0.010,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Full adjustment set,t,-1.935,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | PAP adjustment set,ci_lower,-0.039,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | PAP adjustment set,ci_upper,0.001,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | PAP adjustment set,df,1999276,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | PAP adjustment set,estimate,-0.019,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | PAP adjustment set,p_value,0.068,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | PAP adjustment set,se,0.010,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | PAP adjustment set,t,-1.826,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Unadjusted,ci_lower,-0.041,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Unadjusted,ci_upper,0.005,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Unadjusted,df,1999278,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Unadjusted,estimate,-0.018,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Unadjusted,p_value,0.123,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Unadjusted,se,0.012,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in 2020 | Unadjusted,t,-1.542,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Full adjustment set,ci_lower,-0.011,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Full adjustment set,ci_upper,0.029,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Full adjustment set,df,1999247,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Full adjustment set,estimate,0.009,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Full adjustment set,p_value,0.365,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Full adjustment set,se,0.010,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Full adjustment set,t,0.907,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | PAP adjustment set,ci_lower,-0.011,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | PAP adjustment set,ci_upper,0.029,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | PAP adjustment set,df,1999276,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | PAP adjustment set,estimate,0.009,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | PAP adjustment set,p_value,0.373,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | PAP adjustment set,se,0.010,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | PAP adjustment set,t,0.892,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Unadjusted,ci_lower,-0.012,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Unadjusted,ci_upper,0.031,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Unadjusted,df,1999278,0
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Unadjusted,estimate,0.010,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Unadjusted,p_value,0.370,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Unadjusted,se,0.011,3
+supplementary_table_2,Treatment*TSS interaction term from linear model | Voted in person in 2020 | Unadjusted,t,0.897,3
+supplementary_table_3,Ideology score / 100,ci_lower,-0.001,3
+supplementary_table_3,Ideology score / 100,ci_upper,0.001,3
+supplementary_table_3,Ideology score / 100,df,1999280,0
+supplementary_table_3,Ideology score / 100,estimate,0.000,3
+supplementary_table_3,Ideology score / 100,p_value,0.944,3
+supplementary_table_3,Ideology score / 100,p_value_bh,0.944,3
+supplementary_table_3,Ideology score / 100,se,0.000,3
+supplementary_table_3,Ideology score / 100,t,0.070,3
+supplementary_table_3,Partisanship score / 100,ci_lower,-0.001,3
+supplementary_table_3,Partisanship score / 100,ci_upper,0.002,3
+supplementary_table_3,Partisanship score / 100,df,1999280,0
+supplementary_table_3,Partisanship score / 100,estimate,0.000,3
+supplementary_table_3,Partisanship score / 100,p_value,0.625,3
+supplementary_table_3,Partisanship score / 100,p_value_bh,0.944,3
+supplementary_table_3,Partisanship score / 100,se,0.001,3
+supplementary_table_3,Partisanship score / 100,t,0.489,3
+supplementary_table_3,Party: Democrat,ci_lower,-0.003,3
+supplementary_table_3,Party: Democrat,ci_upper,0.001,3
+supplementary_table_3,Party: Democrat,df,1999280,0
+supplementary_table_3,Party: Democrat,estimate,-0.001,3
+supplementary_table_3,Party: Democrat,p_value,0.226,3
+supplementary_table_3,Party: Democrat,p_value_bh,0.810,3
+supplementary_table_3,Party: Democrat,se,0.001,3
+supplementary_table_3,Party: Democrat,t,-1.211,3
+supplementary_table_3,Party: Other,ci_lower,-0.001,3
+supplementary_table_3,Party: Other,ci_upper,0.003,3
+supplementary_table_3,Party: Other,df,1999280,0
+supplementary_table_3,Party: Other,estimate,0.001,3
+supplementary_table_3,Party: Other,p_value,0.209,3
+supplementary_table_3,Party: Other,p_value_bh,0.810,3
+supplementary_table_3,Party: Other,se,0.001,3
+supplementary_table_3,Party: Other,t,1.257,3
+supplementary_table_3,Party: Republican,ci_lower,-0.001,3
+supplementary_table_3,Party: Republican,ci_upper,0.001,3
+supplementary_table_3,Party: Republican,df,1999280,0
+supplementary_table_3,Party: Republican,estimate,0.000,3
+supplementary_table_3,Party: Republican,p_value,0.679,3
+supplementary_table_3,Party: Republican,p_value_bh,0.944,3
+supplementary_table_3,Party: Republican,se,0.000,3
+supplementary_table_3,Party: Republican,t,-0.414,3
+supplementary_table_3,Party: Unknown,ci_lower,-0.002,3
+supplementary_table_3,Party: Unknown,ci_upper,0.003,3
+supplementary_table_3,Party: Unknown,df,1999280,0
+supplementary_table_3,Party: Unknown,estimate,0.000,3
+supplementary_table_3,Party: Unknown,p_value,0.927,3
+supplementary_table_3,Party: Unknown,p_value_bh,0.944,3
+supplementary_table_3,Party: Unknown,se,0.001,3
+supplementary_table_3,Party: Unknown,t,0.091,3
+supplementary_table_3,Trump support score / 100,ci_lower,-0.001,3
+supplementary_table_3,Trump support score / 100,ci_upper,0.000,3
+supplementary_table_3,Trump support score / 100,df,1999280,0
+supplementary_table_3,Trump support score / 100,estimate,-0.001,3
+supplementary_table_3,Trump support score / 100,p_value,0.024,3
+supplementary_table_3,Trump support score / 100,p_value_bh,0.262,3
+supplementary_table_3,Trump support score / 100,se,0.000,3
+supplementary_table_3,Trump support score / 100,t,-2.260,3
+supplementary_table_3,TSS: 30-40,ci_lower,-0.001,3
+supplementary_table_3,TSS: 30-40,ci_upper,0.004,3
+supplementary_table_3,TSS: 30-40,df,1999280,0
+supplementary_table_3,TSS: 30-40,estimate,0.001,3
+supplementary_table_3,TSS: 30-40,p_value,0.223,3
+supplementary_table_3,TSS: 30-40,p_value_bh,0.810,3
+supplementary_table_3,TSS: 30-40,se,0.001,3
+supplementary_table_3,TSS: 30-40,t,1.219,3
+supplementary_table_3,TSS: 40-50,ci_lower,-0.001,3
+supplementary_table_3,TSS: 40-50,ci_upper,0.004,3
+supplementary_table_3,TSS: 40-50,df,1999280,0
+supplementary_table_3,TSS: 40-50,estimate,0.002,3
+supplementary_table_3,TSS: 40-50,p_value,0.166,3
+supplementary_table_3,TSS: 40-50,p_value_bh,0.810,3
+supplementary_table_3,TSS: 40-50,se,0.001,3
+supplementary_table_3,TSS: 40-50,t,1.385,3
+supplementary_table_3,TSS: 50-60,ci_lower,-0.002,3
+supplementary_table_3,TSS: 50-60,ci_upper,0.003,3
+supplementary_table_3,TSS: 50-60,df,1999280,0
+supplementary_table_3,TSS: 50-60,estimate,0.000,3
+supplementary_table_3,TSS: 50-60,p_value,0.819,3
+supplementary_table_3,TSS: 50-60,p_value_bh,0.944,3
+supplementary_table_3,TSS: 50-60,se,0.001,3
+supplementary_table_3,TSS: 50-60,t,0.229,3
+supplementary_table_3,TSS: 60-70,ci_lower,-0.006,3
+supplementary_table_3,TSS: 60-70,ci_upper,-0.001,3
+supplementary_table_3,TSS: 60-70,df,1999280,0
+supplementary_table_3,TSS: 60-70,estimate,-0.003,3
+supplementary_table_3,TSS: 60-70,p_value,0.009,3
+supplementary_table_3,TSS: 60-70,p_value_bh,0.200,3
+supplementary_table_3,TSS: 60-70,se,0.001,3
+supplementary_table_3,TSS: 60-70,t,-2.609,3
+supplementary_table_3,Turnout score / 100,ci_lower,-0.001,3
+supplementary_table_3,Turnout score / 100,ci_upper,0.002,3
+supplementary_table_3,Turnout score / 100,df,1999280,0
+supplementary_table_3,Turnout score / 100,estimate,0.000,3
+supplementary_table_3,Turnout score / 100,p_value,0.480,3
+supplementary_table_3,Turnout score / 100,p_value_bh,0.944,3
+supplementary_table_3,Turnout score / 100,se,0.001,3
+supplementary_table_3,Turnout score / 100,t,0.707,3
+supplementary_table_3,Voted in 2000,ci_lower,-0.002,3
+supplementary_table_3,Voted in 2000,ci_upper,0.002,3
+supplementary_table_3,Voted in 2000,df,1999280,0
+supplementary_table_3,Voted in 2000,estimate,0.000,3
+supplementary_table_3,Voted in 2000,p_value,0.943,3
+supplementary_table_3,Voted in 2000,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2000,se,0.001,3
+supplementary_table_3,Voted in 2000,t,-0.072,3
+supplementary_table_3,Voted in 2002,ci_lower,-0.001,3
+supplementary_table_3,Voted in 2002,ci_upper,0.002,3
+supplementary_table_3,Voted in 2002,df,1999280,0
+supplementary_table_3,Voted in 2002,estimate,0.000,3
+supplementary_table_3,Voted in 2002,p_value,0.767,3
+supplementary_table_3,Voted in 2002,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2002,se,0.001,3
+supplementary_table_3,Voted in 2002,t,0.296,3
+supplementary_table_3,Voted in 2004,ci_lower,-0.002,3
+supplementary_table_3,Voted in 2004,ci_upper,0.002,3
+supplementary_table_3,Voted in 2004,df,1999280,0
+supplementary_table_3,Voted in 2004,estimate,0.000,3
+supplementary_table_3,Voted in 2004,p_value,0.872,3
+supplementary_table_3,Voted in 2004,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2004,se,0.001,3
+supplementary_table_3,Voted in 2004,t,0.161,3
+supplementary_table_3,Voted in 2006,ci_lower,-0.002,3
+supplementary_table_3,Voted in 2006,ci_upper,0.001,3
+supplementary_table_3,Voted in 2006,df,1999280,0
+supplementary_table_3,Voted in 2006,estimate,0.000,3
+supplementary_table_3,Voted in 2006,p_value,0.829,3
+supplementary_table_3,Voted in 2006,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2006,se,0.001,3
+supplementary_table_3,Voted in 2006,t,-0.215,3
+supplementary_table_3,Voted in 2008,ci_lower,-0.003,3
+supplementary_table_3,Voted in 2008,ci_upper,0.001,3
+supplementary_table_3,Voted in 2008,df,1999280,0
+supplementary_table_3,Voted in 2008,estimate,-0.001,3
+supplementary_table_3,Voted in 2008,p_value,0.447,3
+supplementary_table_3,Voted in 2008,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2008,se,0.001,3
+supplementary_table_3,Voted in 2008,t,-0.761,3
+supplementary_table_3,Voted in 2010,ci_lower,-0.002,3
+supplementary_table_3,Voted in 2010,ci_upper,0.001,3
+supplementary_table_3,Voted in 2010,df,1999280,0
+supplementary_table_3,Voted in 2010,estimate,-0.001,3
+supplementary_table_3,Voted in 2010,p_value,0.490,3
+supplementary_table_3,Voted in 2010,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2010,se,0.001,3
+supplementary_table_3,Voted in 2010,t,-0.690,3
+supplementary_table_3,Voted in 2012,ci_lower,-0.002,3
+supplementary_table_3,Voted in 2012,ci_upper,0.003,3
+supplementary_table_3,Voted in 2012,df,1999280,0
+supplementary_table_3,Voted in 2012,estimate,0.000,3
+supplementary_table_3,Voted in 2012,p_value,0.801,3
+supplementary_table_3,Voted in 2012,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2012,se,0.001,3
+supplementary_table_3,Voted in 2012,t,0.252,3
+supplementary_table_3,Voted in 2014,ci_lower,-0.003,3
+supplementary_table_3,Voted in 2014,ci_upper,0.001,3
+supplementary_table_3,Voted in 2014,df,1999280,0
+supplementary_table_3,Voted in 2014,estimate,-0.001,3
+supplementary_table_3,Voted in 2014,p_value,0.258,3
+supplementary_table_3,Voted in 2014,p_value_bh,0.810,3
+supplementary_table_3,Voted in 2014,se,0.001,3
+supplementary_table_3,Voted in 2014,t,-1.132,3
+supplementary_table_3,Voted in 2016,ci_lower,-0.003,3
+supplementary_table_3,Voted in 2016,ci_upper,0.002,3
+supplementary_table_3,Voted in 2016,df,1999280,0
+supplementary_table_3,Voted in 2016,estimate,0.000,3
+supplementary_table_3,Voted in 2016,p_value,0.780,3
+supplementary_table_3,Voted in 2016,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2016,se,0.001,3
+supplementary_table_3,Voted in 2016,t,-0.279,3
+supplementary_table_3,Voted in 2018,ci_lower,-0.001,3
+supplementary_table_3,Voted in 2018,ci_upper,0.004,3
+supplementary_table_3,Voted in 2018,df,1999280,0
+supplementary_table_3,Voted in 2018,estimate,0.001,3
+supplementary_table_3,Voted in 2018,p_value,0.378,3
+supplementary_table_3,Voted in 2018,p_value_bh,0.944,3
+supplementary_table_3,Voted in 2018,se,0.001,3
+supplementary_table_3,Voted in 2018,t,0.881,3

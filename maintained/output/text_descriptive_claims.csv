@@ -1,0 +1,14 @@
+quantity,statement,evidence,holds
+n_balance_covariates,"Out of 21 covariates, only two exhibited statistically significant imbalance",Figure 5 and Supplementary Table 3 report 22 covariates,FALSE
+n_significant_imbalance,only two exhibited statistically significant imbalance,2 covariates have an unadjusted p below 0.05: TSS: 60-70; Trump support score / 100,TRUE
+imbalance_not_significant_after_bh,Neither of these estimates remained significant after a Benjamini-Hochberg correction,smallest adjusted p among the two is 0.200,TRUE
+omnibus_not_significant,An F-test ... was non-significant,omnibus p is 0.425,TRUE
+biden_leaners_increase,the campaign increased voting among Biden leaners,CATE for Trump support 30 to 40 is 0.00363,TRUE
+trump_leaners_decrease,and decreased voting among Trump leaners,CATE for Trump support 60 to 70 is -0.00349,TRUE
+cates_by_age_gender_race_margin_null,"We also observed small conditional average effect estimates by age, gender, race and vote margin in 2016 that were not statistically significant",largest absolute PAP estimate across those 10 subgroups is 0.0068; smallest p is 0.411,TRUE
+equivalent_to_zero,we can affirm that our overall estimate is effectively equivalent to zero using the two one-sided tests procedure,larger of the two one-sided p-values is 0.01321,TRUE
+early_stronger_than_in_person,differential effects of the programme were stronger in our early voting data than in the in-person voting data,difference in CATEs is -0.0102 for early voting and 0.0031 for in-person voting,TRUE
+early_favours_biden_in_person_favours_trump,1.0 percentage points favouring Biden ... 0.3 percentage points favouring Trump,early difference in CATEs is negative (-0.0102) and in-person is positive (0.0031),TRUE
+party_registration_missing_share,party registration was not available for a large proportion of the participant pool (72%),share of the analysis sample with unknown party registration is 72.1 per cent,TRUE
+uncoded_race_share,we are missing race data for 4% of the sample where race was uncoded,"the deposit holds only the analysis subset, whose other-race share is 2.8 per cent; the sentence describes the 31.1 million voters eligible at assignment, which the deposit does not carry",NA
+july_highest_persuasion_spend,Acronym spent more on persuasion in July than in any other month,"the largest monthly lower-bound persuasion spend is 577,000 in February 2020; July 2020 is 566,600",FALSE

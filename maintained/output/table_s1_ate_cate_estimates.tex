@@ -1,0 +1,69 @@
+\begin{table}
+\centering
+\caption{Average and conditional average treatment effects.}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{lllrrrrrrr}
+\toprule
+Covariate & Level & Adjustment & Estimate & SE & df & t & p-value & 95\%CI lower & 95\%CI upper\\
+\midrule
+\cellcolor{gray!10}{ATE} & \cellcolor{gray!10}{ATE} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{-0.000} & \cellcolor{gray!10}{0.001} & \cellcolor{gray!10}{1999280} & \cellcolor{gray!10}{-0.200} & \cellcolor{gray!10}{0.842} & \cellcolor{gray!10}{-0.003} & \cellcolor{gray!10}{0.002}\\
+ATE & ATE & PAP adjustment set & -0.001 & 0.001 & 1999277 & -0.525 & 0.600 & -0.003 & 0.002\\
+\cellcolor{gray!10}{ATE} & \cellcolor{gray!10}{ATE} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.001} & \cellcolor{gray!10}{1999248} & \cellcolor{gray!10}{-0.436} & \cellcolor{gray!10}{0.663} & \cellcolor{gray!10}{-0.003} & \cellcolor{gray!10}{0.002}\\
+Age & 18-39 & Unadjusted & -0.000 & 0.001 & 1379015 & -0.304 & 0.761 & -0.003 & 0.002\\
+\cellcolor{gray!10}{Age} & \cellcolor{gray!10}{18-39} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.001} & \cellcolor{gray!10}{1379012} & \cellcolor{gray!10}{-0.682} & \cellcolor{gray!10}{0.495} & \cellcolor{gray!10}{-0.003} & \cellcolor{gray!10}{0.002}\\
+Age & 18-39 & Full adjustment set & -0.001 & 0.001 & 1378983 & -0.493 & 0.622 & -0.003 & 0.002\\
+\cellcolor{gray!10}{Age} & \cellcolor{gray!10}{40+} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{0.000} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{620263} & \cellcolor{gray!10}{0.150} & \cellcolor{gray!10}{0.881} & \cellcolor{gray!10}{-0.006} & \cellcolor{gray!10}{0.007}\\
+Age & 40+ & PAP adjustment set & -0.000 & 0.003 & 620260 & -0.162 & 0.871 & -0.006 & 0.005\\
+\cellcolor{gray!10}{Age} & \cellcolor{gray!10}{40+} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.000} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{620243} & \cellcolor{gray!10}{-0.059} & \cellcolor{gray!10}{0.953} & \cellcolor{gray!10}{-0.006} & \cellcolor{gray!10}{0.005}\\
+Gender & Female & Unadjusted & -0.001 & 0.002 & 978039 & -0.821 & 0.411 & -0.005 & 0.002\\
+\cellcolor{gray!10}{Gender} & \cellcolor{gray!10}{Female} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{978036} & \cellcolor{gray!10}{-0.812} & \cellcolor{gray!10}{0.417} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.002}\\
+Gender & Female & Full adjustment set & -0.001 & 0.002 & 978016 & -0.775 & 0.438 & -0.004 & 0.002\\
+\cellcolor{gray!10}{Gender} & \cellcolor{gray!10}{Other} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{0.001} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{1021239} & \cellcolor{gray!10}{0.408} & \cellcolor{gray!10}{0.683} & \cellcolor{gray!10}{-0.003} & \cellcolor{gray!10}{0.005}\\
+Gender & Other & PAP adjustment set & -0.000 & 0.002 & 1021236 & -0.005 & 0.996 & -0.004 & 0.004\\
+\cellcolor{gray!10}{Gender} & \cellcolor{gray!10}{Other} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{0.000} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{1021216} & \cellcolor{gray!10}{0.025} & \cellcolor{gray!10}{0.980} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.004}\\
+Race & Black & Unadjusted & -0.001 & 0.003 & 233544 & -0.218 & 0.827 & -0.006 & 0.005\\
+\cellcolor{gray!10}{Race} & \cellcolor{gray!10}{Black} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{233541} & \cellcolor{gray!10}{-0.513} & \cellcolor{gray!10}{0.608} & \cellcolor{gray!10}{-0.006} & \cellcolor{gray!10}{0.004}\\
+Race & Black & Full adjustment set & -0.001 & 0.002 & 233524 & -0.342 & 0.732 & -0.006 & 0.004\\
+\cellcolor{gray!10}{Race} & \cellcolor{gray!10}{Latinx} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{-0.003} & \cellcolor{gray!10}{0.004} & \cellcolor{gray!10}{179034} & \cellcolor{gray!10}{-0.818} & \cellcolor{gray!10}{0.413} & \cellcolor{gray!10}{-0.010} & \cellcolor{gray!10}{0.004}\\
+Race & Latinx & PAP adjustment set & -0.002 & 0.003 & 179031 & -0.685 & 0.493 & -0.009 & 0.004\\
+\cellcolor{gray!10}{Race} & \cellcolor{gray!10}{Latinx} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.002} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{179014} & \cellcolor{gray!10}{-0.655} & \cellcolor{gray!10}{0.513} & \cellcolor{gray!10}{-0.008} & \cellcolor{gray!10}{0.004}\\
+Race & Other & Unadjusted & -0.003 & 0.009 & 55569 & -0.369 & 0.712 & -0.021 & 0.014\\
+\cellcolor{gray!10}{Race} & \cellcolor{gray!10}{Other} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{-0.007} & \cellcolor{gray!10}{0.008} & \cellcolor{gray!10}{55566} & \cellcolor{gray!10}{-0.821} & \cellcolor{gray!10}{0.411} & \cellcolor{gray!10}{-0.023} & \cellcolor{gray!10}{0.009}\\
+Race & Other & Full adjustment set & -0.007 & 0.008 & 55549 & -0.797 & 0.426 & -0.023 & 0.010\\
+\cellcolor{gray!10}{Race} & \cellcolor{gray!10}{White} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{0.000} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{1531127} & \cellcolor{gray!10}{0.085} & \cellcolor{gray!10}{0.932} & \cellcolor{gray!10}{-0.003} & \cellcolor{gray!10}{0.003}\\
+Race & White & PAP adjustment set & -0.000 & 0.001 & 1531124 & -0.115 & 0.908 & -0.003 & 0.003\\
+\cellcolor{gray!10}{Race} & \cellcolor{gray!10}{White} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.000} & \cellcolor{gray!10}{0.001} & \cellcolor{gray!10}{1531107} & \cellcolor{gray!10}{-0.069} & \cellcolor{gray!10}{0.945} & \cellcolor{gray!10}{-0.003} & \cellcolor{gray!10}{0.003}\\
+Margin & Vote margin less than 3pp & Unadjusted & -0.000 & 0.002 & 1337055 & -0.073 & 0.942 & -0.004 & 0.003\\
+\cellcolor{gray!10}{Margin} & \cellcolor{gray!10}{Vote margin less than 3pp} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{1337052} & \cellcolor{gray!10}{-0.543} & \cellcolor{gray!10}{0.587} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.002}\\
+Margin & Vote margin less than 3pp & Full adjustment set & -0.001 & 0.002 & 1337023 & -0.488 & 0.625 & -0.004 & 0.002\\
+\cellcolor{gray!10}{Margin} & \cellcolor{gray!10}{Vote margin more than 3pp} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{662223} & \cellcolor{gray!10}{-0.310} & \cellcolor{gray!10}{0.757} & \cellcolor{gray!10}{-0.005} & \cellcolor{gray!10}{0.004}\\
+Margin & Vote margin more than 3pp & PAP adjustment set & -0.000 & 0.002 & 662220 & -0.096 & 0.924 & -0.004 & 0.004\\
+\cellcolor{gray!10}{Margin} & \cellcolor{gray!10}{Vote margin more than 3pp} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.000} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{662191} & \cellcolor{gray!10}{-0.019} & \cellcolor{gray!10}{0.985} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.004}\\
+Partisanship & Democrat & Unadjusted & 0.005 & 0.006 & 182943 & 0.939 & 0.348 & -0.006 & 0.016\\
+\cellcolor{gray!10}{Partisanship} & \cellcolor{gray!10}{Democrat} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{0.008} & \cellcolor{gray!10}{0.005} & \cellcolor{gray!10}{182940} & \cellcolor{gray!10}{1.585} & \cellcolor{gray!10}{0.113} & \cellcolor{gray!10}{-0.002} & \cellcolor{gray!10}{0.017}\\
+Partisanship & Democrat & Full adjustment set & 0.007 & 0.005 & 182914 & 1.416 & 0.157 & -0.003 & 0.016\\
+\cellcolor{gray!10}{Partisanship} & \cellcolor{gray!10}{Other} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{-0.000} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{302389} & \cellcolor{gray!10}{-0.013} & \cellcolor{gray!10}{0.990} & \cellcolor{gray!10}{-0.007} & \cellcolor{gray!10}{0.007}\\
+Partisanship & Other & PAP adjustment set & -0.000 & 0.003 & 302386 & -0.019 & 0.985 & -0.006 & 0.006\\
+\cellcolor{gray!10}{Partisanship} & \cellcolor{gray!10}{Other} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{0.000} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{302360} & \cellcolor{gray!10}{0.037} & \cellcolor{gray!10}{0.970} & \cellcolor{gray!10}{-0.006} & \cellcolor{gray!10}{0.006}\\
+Partisanship & Republican & Unadjusted & -0.009 & 0.005 & 71873 & -1.729 & 0.084 & -0.019 & 0.001\\
+\cellcolor{gray!10}{Partisanship} & \cellcolor{gray!10}{Republican} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{-0.010} & \cellcolor{gray!10}{0.005} & \cellcolor{gray!10}{71870} & \cellcolor{gray!10}{-2.003} & \cellcolor{gray!10}{0.045} & \cellcolor{gray!10}{-0.019} & \cellcolor{gray!10}{-0.000}\\
+Partisanship & Republican & Full adjustment set & -0.010 & 0.005 & 71844 & -2.123 & 0.034 & -0.020 & -0.001\\
+\cellcolor{gray!10}{Partisanship} & \cellcolor{gray!10}{Unknown} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{-0.000} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{1442069} & \cellcolor{gray!10}{-0.276} & \cellcolor{gray!10}{0.783} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.003}\\
+Partisanship & Unknown & PAP adjustment set & -0.001 & 0.001 & 1442066 & -0.901 & 0.367 & -0.004 & 0.001\\
+\cellcolor{gray!10}{Partisanship} & \cellcolor{gray!10}{Unknown} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.001} & \cellcolor{gray!10}{1442040} & \cellcolor{gray!10}{-0.783} & \cellcolor{gray!10}{0.434} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.002}\\
+Trump support & 30 to 40 & Unadjusted & 0.003 & 0.003 & 522916 & 1.274 & 0.203 & -0.002 & 0.008\\
+\cellcolor{gray!10}{Trump support} & \cellcolor{gray!10}{30 to 40} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{0.004} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{522913} & \cellcolor{gray!10}{1.613} & \cellcolor{gray!10}{0.107} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.008}\\
+Trump support & 30 to 40 & Full adjustment set & 0.004 & 0.002 & 522884 & 1.724 & 0.085 & -0.001 & 0.008\\
+\cellcolor{gray!10}{Trump support} & \cellcolor{gray!10}{40 to 50} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{-0.002} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{485369} & \cellcolor{gray!10}{-0.601} & \cellcolor{gray!10}{0.548} & \cellcolor{gray!10}{-0.007} & \cellcolor{gray!10}{0.004}\\
+Trump support & 40 to 50 & PAP adjustment set & -0.002 & 0.002 & 485366 & -0.885 & 0.376 & -0.007 & 0.003\\
+\cellcolor{gray!10}{Trump support} & \cellcolor{gray!10}{40 to 50} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.002} & \cellcolor{gray!10}{0.002} & \cellcolor{gray!10}{485337} & \cellcolor{gray!10}{-0.818} & \cellcolor{gray!10}{0.413} & \cellcolor{gray!10}{-0.007} & \cellcolor{gray!10}{0.003}\\
+Trump support & 50 to 60 & Unadjusted & 0.002 & 0.003 & 478331 & 0.640 & 0.522 & -0.004 & 0.007\\
+\cellcolor{gray!10}{Trump support} & \cellcolor{gray!10}{50 to 60} & \cellcolor{gray!10}{PAP adjustment set} & \cellcolor{gray!10}{-0.001} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{478328} & \cellcolor{gray!10}{-0.296} & \cellcolor{gray!10}{0.767} & \cellcolor{gray!10}{-0.006} & \cellcolor{gray!10}{0.004}\\
+Trump support & 50 to 60 & Full adjustment set & -0.000 & 0.002 & 478299 & -0.098 & 0.922 & -0.005 & 0.005\\
+\cellcolor{gray!10}{Trump support} & \cellcolor{gray!10}{60 to 70} & \cellcolor{gray!10}{Unadjusted} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{512658} & \cellcolor{gray!10}{-1.454} & \cellcolor{gray!10}{0.146} & \cellcolor{gray!10}{-0.010} & \cellcolor{gray!10}{0.001}\\
+Trump support & 60 to 70 & PAP adjustment set & -0.003 & 0.003 & 512655 & -1.373 & 0.170 & -0.008 & 0.001\\
+\cellcolor{gray!10}{Trump support} & \cellcolor{gray!10}{60 to 70} & \cellcolor{gray!10}{Full adjustment set} & \cellcolor{gray!10}{-0.004} & \cellcolor{gray!10}{0.003} & \cellcolor{gray!10}{512626} & \cellcolor{gray!10}{-1.477} & \cellcolor{gray!10}{0.140} & \cellcolor{gray!10}{-0.009} & \cellcolor{gray!10}{0.001}\\
+\bottomrule
+\end{tabular}
+\end{table}

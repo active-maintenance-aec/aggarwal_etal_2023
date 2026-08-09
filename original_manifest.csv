@@ -1,0 +1,17 @@
+file,dataverse_file_id,file_persistent_id,bytes,md5_served,md5_published,unf,served_as
+README.txt,6392753,,1321,b4ade19862a30d4607b7c86f2c8f147f,b4ade19862a30d4607b7c86f2c8f147f,,README.txt
+ad_library_2020.csv,6392746,,432630864,a747fed10c9ddf35484e4c7131fdc032,a747fed10c9ddf35484e4c7131fdc032,,ad_library_2020.csv
+ad_library_2020_acronym.csv,6392754,,12580942,26d0c19289e60223c8761607ff2d5e66,26d0c19289e60223c8761607ff2d5e66,UNF:6:YOzFlHF84Nfk/1ExRmxNUQ==,ad_library_2020_acronym.tab
+aggregated_analysis_set.rds,6392743,,49030564,1d141aa9b563e7d1ad48bd832232cbcd,1d141aa9b563e7d1ad48bd832232cbcd,,aggregated_analysis_set.rds
+figure_1.R,6392751,,8305,9ef9d17ef9f23bc221811f204dc232c6,9ef9d17ef9f23bc221811f204dc232c6,,figure_1.R
+figure_2.R,6392747,,5446,29b9ed88abf863399b8fe8ab58f2c361,29b9ed88abf863399b8fe8ab58f2c361,,figure_2.R
+figure_3.R,6392752,,5769,812d4c0df42574c14b0d4bfa2bfeed19,812d4c0df42574c14b0d4bfa2bfeed19,,figure_3.R
+figure_5.R,6392750,,3039,129c932a55112e00fe91fe14481cfce0,129c932a55112e00fe91fe14481cfce0,,figure_5.R
+figure_B1.R,6392745,,3202,e9fb4c4fc464893237caa445c9eaa5aa,e9fb4c4fc464893237caa445c9eaa5aa,,figure_B1.R
+figure_B2.R,6392749,,3533,f4ebfa6bb62684c804fc5423d1a6ddf2,f4ebfa6bb62684c804fc5423d1a6ddf2,,figure_B2.R
+figure_C3.R,6392742,,1753,5c2949e470ea7a6e47b84217484451e6,5c2949e470ea7a6e47b84217484451e6,,figure_C3.R
+figure_C4.R,6392755,,2372,d4384f0835e558d60b29f0966a129ed4,d4384f0835e558d60b29f0966a129ed4,,figure_C4.R
+helper_file.R,6392740,,999,9e489a010fb025b7fd3b1ddd5c8e6e6c,9e489a010fb025b7fd3b1ddd5c8e6e6c,,helper_file.R
+in_text_calculations.R,6392748,,8169,e9ea6778f34acd55b5147a43b630786a,e9ea6778f34acd55b5147a43b630786a,,in_text_calculations.R
+table_1.R,6392744,,2362,1ec3f114508338d4ceb3be349667553a,1ec3f114508338d4ceb3be349667553a,,table_1.R
+treatment_descriptives.csv,6392741,,23794,ff15d142116ff1037c8b51213d317760,ff15d142116ff1037c8b51213d317760,UNF:6:/pc3yiyQVOqtIqZSTFoXuQ==,treatment_descriptives.tab

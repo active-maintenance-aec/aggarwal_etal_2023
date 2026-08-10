@@ -414,7 +414,7 @@ written to a file for `xtable` printed through a connection, and
 `rm(list = ls())` is dropped, packages are loaded once in `helpers.R`,
 and every path goes through `here::here()`.
 
-**One deposited behaviour had to be preserved deliberately.**
+**One property of the deposited data has to be handled explicitly.**
 `aggregated_analysis_set.rds` is a grouped tibble, grouped by all 41 of
 its covariate columns, which is what a `count()` leaves behind. A bare
 `summarize()` over it returns two million rows rather than one, which is

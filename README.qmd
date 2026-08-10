@@ -48,6 +48,13 @@ maintext_cells <- read_csv(here::here("ground_truth", "published_maintext_tables
 descriptive <- read_csv(here::here("maintained", "output", "text_descriptive_claims.csv"),
                         show_col_types = FALSE)
 
+# The errata spine, defined once in errata.qmd and written out by it. This section reads it
+# rather than keeping its own count, so the two cannot disagree about how many entries there
+# are.
+spine <- read_csv(here::here("errata_entries.csv"), show_col_types = FALSE)
+n_errata_word <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+                   "ten", "eleven", "twelve")[nrow(spine)]
+
 # claim_id is never missing in this ground truth, but indexing it with a bare
 # logical would return extra NA elements the moment one were, so every lookup
 # goes through an accessor that asserts a single row.
@@ -207,7 +214,8 @@ with an archive counterpart disagrees with the page.
 
 ## Errata
 
-Five sentences in the published article are wrong, and they are corrected in
+`r str_to_title(n_errata_word)` sentences in the published article are wrong, and they
+are corrected in
 [`aggarwal_etal_2023_errata.pdf`](aggarwal_etal_2023_errata.pdf), whose values are computed at
 render time from this repository's output. None of them changes a conclusion. In summary: the
 Supplementary Information names July as the month of heaviest persuasion spending where the
@@ -405,7 +413,7 @@ the string check before the value comparison can absorb it.
 ### What the second instrument found that a float-shaped ground truth would not
 
 Every number in the article's six large floats reproduces, so a ground truth built around floats
-would have returned a clean sweep. All five errata, and every finding above, are prose,
+would have returned a clean sweep. All `r n_errata_word` errata, and every finding above, are prose,
 captions or the document's own structure.
 
 ```{r}

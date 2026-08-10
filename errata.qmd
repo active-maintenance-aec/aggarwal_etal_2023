@@ -79,85 +79,117 @@ wesleyan_total <- with_commas(published("si_c_wesleyan_total"))
 wesleyan_acronym <- with_commas(published("si_c_wesleyan_acronym"))
 ```
 
-Five corrections to *Nature Human Behaviour* article `r "10.1038/s41562-022-01487-4"`. None of
+```{r}
+#| label: entries
+#| include: false
+
+# THE ERRATA SPINE. Every entry is defined once, here, and rendered from this tibble into
+# this document and into the machine-readable errata_entries.csv written at the bottom of
+# the file, which is what any other document carrying these corrections reads. Before the
+# spine existed an entry was written out in prose wherever it was needed, and the copies
+# had already diverged.
+#
+# [[...]] marks the span that changes. Each renderer supplies its own markup for it: bold
+# here. Nothing else in a field is markup, so the same string can be set by any of them.
+#
+# Numbering is the published note's and is APPEND-ONLY: entry 3 can already have been cited,
+# so a later finding is added at the end and never interleaved.
+#
+# A published or corrected value that the pipeline computes stays computed: the field is
+# built with str_glue() so the number is produced when this document renders, not typed.
+entries <- tribble(
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note,
+
+  1, "label", "pipeline", "full",
+  "The month of heaviest persuasion spending",
+  "published SI section C, p. 8",
+  "In fact, we observe significant early spending (Acronym spent more on persuasion in [[July]] than in any other month, see main Figure [[??]]), and we find much stronger effects on early voting than day of voting (see Figure 3 in the main text).",
+  str_glue("In fact, we observe significant early spending (Acronym spent more on persuasion in [[{top_month}]] than in any other month, see [[Supplementary Figure 2]]), and we find much stronger effects on early voting than day of voting (see Figure 3 in the main text)."),
+  str_glue(
+    "The figure the sentence points at is Supplementary Figure 2, whose two panels split ",
+    "Acronym's monthly lower-bound spending on persuasion advertisements by format and by ",
+    "keyword. Summed over either panel's series, the largest month is {top_month} 2020 at ",
+    "US\\${top_spend}, against US\\${july_spend} in July. The cross-reference did not resolve ",
+    "when the document was typeset. The sentence's argument, that Acronym spent heavily ",
+    "earlier in the campaign than other left-leaning advertisers did, is unaffected: ",
+    "{top_month} is earlier than July."),
+
+  2, "quantity", "pipeline", "full",
+  "The number of pre-treatment covariates tested for balance",
+  "published Methods, p. 6",
+  "As shown in Fig. 5, the random assignment procedure generated treatment and control groups that were balanced on pre-treatment characteristics in this subset. Out of [[21]] covariates, only two exhibited statistically significant imbalance.",
+  str_glue("As shown in Fig. 5, the random assignment procedure generated treatment and control groups that were balanced on pre-treatment characteristics in this subset. Out of [[{n_covariates}]] covariates, only two exhibited statistically significant imbalance."),
+  str_glue(
+    "Figure 5 plots {n_covariates_word} covariates and Supplementary Table 3 prints ",
+    "{n_covariates_word} rows. The count of two significant imbalances is right, and so is ",
+    "everything the paragraph goes on to say about them."),
+
+  3, "quantity", "pipeline", "full",
+  "The size of the treatment audience",
+  "published Methods, p. 7",
+  str_glue("The full cost of the advertising campaign was US\\$8.9 million, spread out over a treatment audience of [[{audience} million]] ({eligible} programme-eligible voters × our 60% match rate), amounting to US\\$4.46 of advertising expenditure per voter."),
+  str_glue("The full cost of the advertising campaign was US\\$8.9 million, spread out over a treatment audience of [[{audience}]] ({eligible} programme-eligible voters × our 60% match rate), amounting to US\\$4.46 of advertising expenditure per voter."),
+  str_glue(
+    "The parenthetical states the arithmetic: {eligible} times a 60 per cent match rate is ",
+    "{audience} people. The word \"million\" makes the figure a million times too large."),
+
+  4, "quantity", "pipeline", "full",
+  "The degrees of freedom of the balance F test",
+  "published Methods, p. 6",
+  str_glue("An F-test comparing a regression of treatment status on covariates with strata fixed effects versus a restricted model predicting treatment status from strata fixed effects was non-significant (F~[[{published('methods_omnibus_df_first_subscript')},−18]]~ = {omnibus_f}; P = {omnibus_p})."),
+  str_glue("An F-test comparing a regression of treatment status on covariates with strata fixed effects versus a restricted model predicting treatment status from strata fixed effects was non-significant (F~[[{omnibus_num_df},{omnibus_den_df}]]~ = {omnibus_f}; P = {omnibus_p})."),
+  str_glue(
+    "An F statistic carries its numerator degrees of freedom first. The unrestricted model ",
+    "has {omnibus_num_df} more parameters than the restricted one and leaves ",
+    "{omnibus_den_df_commas} residual degrees of freedom. The published subscripts are the ",
+    "second row of the Wald test's printed output, where the first figure is that model's ",
+    "residual degrees of freedom and the second is the difference in parameters, printed as ",
+    "a negative number. The statistic and the p-value are right."),
+
+  5, "quantity", "pipeline", "full",
+  "Acronym's share of federal advertising spending on Facebook",
+  "published SI section C, p. 5",
+  str_glue("According to this data, there was a total of approximately US\\${wesleyan_total} spent on federal races on Facebook from 2/1/2020 to 11/3/2020, US\\${wesleyan_acronym} ([[0.67%]]) of which was from Acronym."),
+  str_glue("According to this data, there was a total of approximately US\\${wesleyan_total} spent on federal races on Facebook from 2/1/2020 to 11/3/2020, US\\${wesleyan_acronym} ([[{wesleyan_share}%]]) of which was from Acronym."),
+  str_glue(
+    "A rounding artifact rather than a substantive error: the quotient of the sentence's own ",
+    "two figures is {sprintf('%.4f', value('si_c_wesleyan_share'))} per cent, which rounds ",
+    "up. The share is kept at two decimal places because at one decimal the published and ",
+    "corrected figures are the same.")
+) |>
+  mutate(across(c(title, published, corrected, note), as.character))
+
+stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# The spine's markup, resolved for this document.
+bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")
+```
+
+`r str_to_title(number_word(nrow(entries)))` corrections to *Nature Human Behaviour* article
+`r "10.1038/s41562-022-01487-4"`. None of
 them changes a conclusion of the article. Every corrected value below is computed at render time
 from a full reproduction of the published analysis, held in the repository
 `active-maintenance-aec/aggarwal_etal_2023`. Bold marks the tokens that changed; everything else
 in each corrected sentence is the published wording.
 
-## 1. The month of heaviest persuasion spending
+```{r}
+#| label: render-entries
+#| echo: false
+#| results: asis
 
-> In fact, we observe significant early spending (Acronym spent more on persuasion in
-> **July** than in any other month, see main Figure **??**), and we find much stronger effects on
-> early voting than day of voting (see Figure 3 in the main text).
+# A heading is only a heading when a blank line precedes it, so every entry opens with one.
+walk(seq_len(nrow(entries)), function(i) {
+  e <- entries[i, ]
+  cat("\n\n## ", e$entry, ". ", e$title, "\n\n> ", bold(e$published),
+      "\n\n**Corrected:** ", bold(e$corrected), "\n\n", e$note, "\n", sep = "")
+})
+```
 
-**Corrected:** In fact, we observe significant early spending (Acronym spent more on persuasion
-in **`r top_month`** than in any other month, see **Supplementary Figure 2**), and we find much
-stronger effects on early voting than day of voting (see Figure 3 in the main text).
+```{r}
+#| label: emit-spine
+#| include: false
 
-The figure the sentence points at is Supplementary Figure 2, whose two panels split Acronym's
-monthly lower-bound spending on persuasion advertisements by format and by keyword. Summed over
-either panel's series, the largest month is `r top_month` 2020 at US\$`r top_spend`,
-against US\$`r july_spend` in July. The cross-reference did not resolve when the document was
-typeset. The sentence's argument, that Acronym spent heavily earlier in the campaign than other
-left-leaning advertisers did, is unaffected: `r top_month` is earlier than July.
-
-## 2. The number of pre-treatment covariates tested for balance
-
-> As shown in Fig. 5, the random assignment procedure generated treatment and control groups that
-> were balanced on pre-treatment characteristics in this subset. Out of **21** covariates, only two
-> exhibited statistically significant imbalance.
-
-**Corrected:** As shown in Fig. 5, the random assignment procedure generated treatment and control
-groups that were balanced on pre-treatment characteristics in this subset. Out of
-**`r n_covariates`** covariates, only two exhibited statistically significant imbalance.
-
-Figure 5 plots `r n_covariates_word` covariates and Supplementary Table 3 prints
-`r n_covariates_word` rows. The count of two significant imbalances is right, and so is
-everything the paragraph goes on to say about them.
-
-## 3. The size of the treatment audience
-
-> The full cost of the advertising campaign was US\$8.9 million, spread out over a treatment
-> audience of **`r audience` million** (`r eligible` programme-eligible voters × our 60% match
-> rate), amounting to US\$4.46 of advertising expenditure per voter.
-
-**Corrected:** The full cost of the advertising campaign was US\$8.9 million, spread out over a
-treatment audience of **`r audience`** (`r eligible` programme-eligible voters × our 60% match
-rate), amounting to US\$4.46 of advertising expenditure per voter.
-
-The parenthetical states the arithmetic: `r eligible` times a 60 per cent match rate is
-`r audience` people. The word "million" makes the figure a million times too large.
-
-## 4. The degrees of freedom of the balance F test
-
-> An F-test comparing a regression of treatment status on covariates with strata fixed effects
-> versus a restricted model predicting treatment status from strata fixed effects was
-> non-significant (F~**`r published("methods_omnibus_df_first_subscript")`,−18**~ =
-> `r omnibus_f`; P = `r omnibus_p`).
-
-**Corrected:** An F-test comparing a regression of treatment status on covariates with strata
-fixed effects versus a restricted model predicting treatment status from strata fixed effects was
-non-significant (F~**`r omnibus_num_df`,`r omnibus_den_df`**~ = `r omnibus_f`;
-P = `r omnibus_p`).
-
-An F statistic carries its numerator degrees of freedom first. The unrestricted model has
-`r omnibus_num_df` more parameters than the restricted one and leaves `r omnibus_den_df_commas` residual
-degrees of freedom. The published subscripts are the second row of the Wald test's printed
-output, where the first figure is that model's residual degrees of freedom and the second is the
-difference in parameters, printed as a negative number. The statistic and the p-value are right.
-
-## 5. Acronym's share of federal advertising spending on Facebook
-
-> According to this data, there was a total of approximately US\$`r wesleyan_total` spent on
-> federal races on Facebook from 2/1/2020 to 11/3/2020, US\$`r wesleyan_acronym` (**0.67%**) of
-> which was from Acronym.
-
-**Corrected:** According to this data, there was a total of approximately US\$`r wesleyan_total`
-spent on federal races on Facebook from 2/1/2020 to 11/3/2020, US\$`r wesleyan_acronym`
-(**`r wesleyan_share`%**) of which was from Acronym.
-
-A rounding artifact rather than a substantive error: the quotient of the sentence's own two
-figures is `r sprintf("%.4f", value("si_c_wesleyan_share"))` per cent, which rounds up. The share
-is kept at two decimal places because at one decimal the published and corrected figures are the
-same.
+# The machine-readable spine, written wherever this document is rendered. Anything else that
+# carries these corrections reads it rather than keeping its own copy, so the two cannot drift.
+write_csv(entries, here("errata_entries.csv"))
+```

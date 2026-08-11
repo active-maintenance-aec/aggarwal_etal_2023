@@ -97,8 +97,14 @@ wesleyan_acronym <- with_commas(published("si_c_wesleyan_acronym"))
 #
 # A published or corrected value that the pipeline computes stays computed: the field is
 # built with str_glue() so the number is produced when this document renders, not typed.
+#
+# claim_ids is the semicolon-separated list of ground-truth claim_id values the entry
+# corrects, and it is what makes "is this finding published?" a query rather than a reading
+# of every note. It is empty where an entry has no ground-truth row, which is normal for a
+# bibliographic or structural entry. ground_truth/build_ground_truth.R refuses to build if
+# any id here is absent from the ground truth.
 entries <- tribble(
-  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note,
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids,
 
   1, "label", "pipeline", "full",
   "The month of heaviest persuasion spending",
@@ -113,6 +119,7 @@ entries <- tribble(
     "when the document was typeset. The sentence's argument, that Acronym spent heavily ",
     "earlier in the campaign than other left-leaning advertisers did, is unaffected: ",
     "{top_month} is earlier than July."),
+  "si_c_july_highest_spend;si_c_broken_cross_reference",
 
   2, "quantity", "pipeline", "full",
   "The number of pre-treatment covariates tested for balance",
@@ -123,6 +130,7 @@ entries <- tribble(
     "Figure 5 plots {n_covariates_word} covariates and Supplementary Table 3 prints ",
     "{n_covariates_word} rows. The count of two significant imbalances is right, and so is ",
     "everything the paragraph goes on to say about them."),
+  "methods_n_covariates",
 
   3, "quantity", "pipeline", "full",
   "The size of the treatment audience",
@@ -132,6 +140,7 @@ entries <- tribble(
   str_glue(
     "The parenthetical states the arithmetic: {eligible} times a 60 per cent match rate is ",
     "{audience} people. The word \"million\" makes the figure a million times too large."),
+  "methods_treatment_audience_scale",
 
   4, "quantity", "pipeline", "full",
   "The degrees of freedom of the balance F test",
@@ -145,6 +154,7 @@ entries <- tribble(
     "second row of the Wald test's printed output, where the first figure is that model's ",
     "residual degrees of freedom and the second is the difference in parameters, printed as ",
     "a negative number. The statistic and the p-value are right."),
+  "methods_omnibus_df_first_subscript;methods_omnibus_df_second_subscript",
 
   5, "quantity", "pipeline", "full",
   "Acronym's share of federal advertising spending on Facebook",
@@ -155,11 +165,22 @@ entries <- tribble(
     "A rounding artifact rather than a substantive error: the quotient of the sentence's own ",
     "two figures is {sprintf('%.4f', value('si_c_wesleyan_share'))} per cent, which rounds ",
     "up. The share is kept at two decimal places because at one decimal the published and ",
-    "corrected figures are the same.")
+    "corrected figures are the same."),
+  "si_c_wesleyan_share"
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# Every id an entry claims to correct must be a real ground-truth claim. The build gate in
+# ground_truth/build_ground_truth.R checks the same property from the other side; checking it
+# here too means a dangling id cannot survive a render.
+cited_ids <- entries$claim_ids |>
+  str_split(";") |>
+  unlist() |>
+  str_trim() |>
+  discard(\(x) is.na(x) | x == "")
+stopifnot(all(cited_ids %in% gt$claim_id))
 
 # The spine's markup, resolved for this document.
 bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")

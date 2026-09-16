@@ -124,8 +124,23 @@ entries <- tribble(
   2, "quantity", "pipeline", "full",
   "The number of pre-treatment covariates tested for balance",
   "published Methods, p. 6",
-  "As shown in Fig. 5, the random assignment procedure generated treatment and control groups that were balanced on pre-treatment characteristics in this subset. Out of [[21]] covariates, only two exhibited statistically significant imbalance.",
-  str_glue("As shown in Fig. 5, the random assignment procedure generated treatment and control groups that were balanced on pre-treatment characteristics in this subset. Out of [[{n_covariates}]] covariates, only two exhibited statistically significant imbalance."),
+  # THE QUOTATION ENDS WHERE THE PAGE'S SENTENCE DOES NOT. Published Methods
+  # p. 6 reads "... only two exhibited statistically significant imbalance:
+  # Trump support score (t ...", with a colon and the two named. Quoting it
+  # with a full stop made the passage a string that occurs nowhere in the
+  # article, so the remastered edition's matcher found nothing and skipped the
+  # correction in silence while this note went on advertising it.
+  #
+  # It stops at "covariates" rather than at "imbalance" because of what comes
+  # next. The sentence runs straight into two inline statistics whose estimator
+  # hats the published text layer sorts out of their own clauses, so the
+  # remastered edition exempts that whole run from its comparison, and the
+  # exemption has to be anchored on the last clean prose before the damage,
+  # which is this sentence's own tail. A quotation reaching into it cannot be
+  # found on either side. The explanation below is what carries the rest of the
+  # sentence to a reader.
+  "As shown in Fig. 5, the random assignment procedure generated treatment and control groups that were balanced on pre-treatment characteristics in this subset. Out of [[21]] covariates",
+  str_glue("As shown in Fig. 5, the random assignment procedure generated treatment and control groups that were balanced on pre-treatment characteristics in this subset. Out of [[{n_covariates}]] covariates"),
   str_glue(
     "Figure 5 plots {n_covariates_word} covariates and Supplementary Table 3 prints ",
     "{n_covariates_word} rows. The count of two significant imbalances is right, and so is ",

@@ -207,6 +207,8 @@ si_e_sql_limit_4,"SI section E, pp. 15-17",transcribed,327230,0,count,,FALSE,"LI
 si_e_sql_limit_5,"SI section E, pp. 15-17",transcribed,68842,0,count,,FALSE,"LIMIT 68842, the Hispanic oversample"
 si_e_sql_limit_6,"SI section E, pp. 15-17",transcribed,448812,0,count,,FALSE,"LIMIT 448812, the women oversample"
 si_e_sql_limits_match_figure_4,"SI section E, pp. 15-17",structural,6,0,count,,TRUE,The six SQL sampling limits must equal the six sample sizes Figure 4 lists
+si_e_sql_black_definition,"SI section E, p. 15",structural,,,,,TRUE,"The listing defines the black variable; the published line is cut off at the page edge after civis_race"
+si_e_sql_hispanic_definition,"SI section E, p. 15",structural,,,,,TRUE,"The listing defines the hispanic variable; the published line is cut off mid-token after civis_race = HISPA"
 si_figure_1_coverage,"SI Figure 1, p. 3",structural,,,,,FALSE,"Zero coverage. Its script figure_B1.R reads fielding_dates.rds and fielding_dates_survey.rds, neither of which is in the deposit; the third input, treatment_descriptives.csv, is. The figure prints only axis breaks at 0, 5, 10 and 15."
 si_figure_1_axis_breaks,"SI Figure 1, p. 3",definitional,4,0,count,,FALSE,"The only numbers Supplementary Figure 1 prints: axis breaks at 0, 5, 10 and 15, counted off the published page"
 si_figure_4_coverage,"SI Figure 4, p. 7",structural,,,,,FALSE,"Zero coverage. Its script figure_C4.R reads weekly_adds_for_page_id_disclaimer_041322.csv, which is not in the deposit. Its axis labels print dollar and percentage breaks only."

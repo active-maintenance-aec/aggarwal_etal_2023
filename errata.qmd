@@ -174,14 +174,48 @@ entries <- tribble(
   5, "quantity", "pipeline", "full",
   "Acronym's share of federal advertising spending on Facebook",
   "published SI section C, p. 5",
-  str_glue("According to this data, there was a total of approximately US\\${wesleyan_total} spent on federal races on Facebook from 2/1/2020 to 11/3/2020, US\\${wesleyan_acronym} ([[0.67%]]) of which was from Acronym."),
-  str_glue("According to this data, there was a total of approximately US\\${wesleyan_total} spent on federal races on Facebook from 2/1/2020 to 11/3/2020, US\\${wesleyan_acronym} ([[{wesleyan_share}%]]) of which was from Acronym."),
+  str_glue("According to this data, there was a total of approximately \\${wesleyan_total} spent on federal races on Facebook from 2/1/2020 to 11/3/2020, \\${wesleyan_acronym} ([[0.67%]]) of which was from Acronym."),
+  str_glue("According to this data, there was a total of approximately \\${wesleyan_total} spent on federal races on Facebook from 2/1/2020 to 11/3/2020, \\${wesleyan_acronym} ([[{wesleyan_share}%]]) of which was from Acronym."),
   str_glue(
     "A rounding artifact rather than a substantive error: the quotient of the sentence's own ",
     "two figures is {sprintf('%.4f', value('si_c_wesleyan_share'))} per cent, which rounds ",
     "up. The share is kept at two decimal places because at one decimal the published and ",
     "corrected figures are the same."),
-  "si_c_wesleyan_share"
+  "si_c_wesleyan_share",
+
+  # Entries 6 and 7 are the same defect twice and are kept apart because they
+  # lose two different variables. The randomisation listing in section E is set
+  # at a measure wider than the page, and two of its lines are drawn past the
+  # right edge: the text layer ends where the drawing does, so nothing is
+  # recoverable from the published page. Each loses the whole of its
+  # `then ... end as ...` clause, which is the definition of the variable.
+  # Found by measuring every line's extent against the page width while the
+  # remastered edition's section E was being set, not by reading.
+  6, "definition", "remaster", "full",
+  "The definition of the black variable in the randomisation code",
+  "published SI section E, p. 15",
+  ", case when vb_voterbase_race = ’African-American’ or (vb_voterbase_race = ’Uncoded’ and [[civis_race]]",
+  ", case when vb_voterbase_race = ’African-American’ or (vb_voterbase_race = ’Uncoded’ and [[civis_race = ’AFAM’) then ’black’ else null end as black]]",
+  paste(
+    "The line is drawn to x 610.6 on a page 612 points wide and the text layer",
+    "ends with `civis_race`. The complete line is in the authors' own",
+    "`Acronym/notes/gh_randomization_sql.mssql`, line 17, which agrees with every",
+    "other line of the published listing except for the capitalisation of the",
+    "schema name. `black` is one of the two race categories the Methods report as",
+    "no longer available, and the code as printed cannot be run."),
+  "si_e_sql_black_definition",
+
+  7, "definition", "remaster", "full",
+  "The definition of the hispanic variable in the randomisation code",
+  "published SI section E, p. 15",
+  ", case when vb_voterbase_race = ’Hispanic’ or (vb_voterbase_race = ’Uncoded’ and [[civis_race = ’HISPA]]",
+  ", case when vb_voterbase_race = ’Hispanic’ or (vb_voterbase_race = ’Uncoded’ and [[civis_race = ’HISPANIC’) then ’hispanic’ else null end as hispanic]]",
+  paste(
+    "The line is drawn to x 615.8 on a page 612 points wide, so it ends beyond the",
+    "page edge and mid-token, at `’HISPA`. The complete line is in the authors' own",
+    "`Acronym/notes/gh_randomization_sql.mssql`, line 18. `hispanic` is the other",
+    "race category the Methods report as no longer available."),
+  "si_e_sql_hispanic_definition"
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 

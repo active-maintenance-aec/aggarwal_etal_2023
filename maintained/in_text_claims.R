@@ -592,6 +592,22 @@ claim("si_e_sql_limits_match_figure_4",
             map_dbl(str_c("si_e_sql_limit_", 1:6), paper_value)),
       "SQL sampling limits equal to the Figure 4 sample sizes")
 
+# The listing's two race recodes, as published p. 15 prints them:
+#   ", case when vb_voterbase_race = 'African-American' or (vb_voterbase_race =
+#    'Uncoded' and civis_race"
+#   ", case when vb_voterbase_race = 'Hispanic' or (vb_voterbase_race =
+#    'Uncoded' and civis_race = 'HISPA"
+# Both lines are drawn past the right edge of a 612-point page, to x 610.6 and
+# x 615.8, and the text layer ends where the drawing does. Each loses the whole
+# of its "then ... end as ..." clause, which is the definition of the variable,
+# so neither can be checked against the deposited code and the listing as
+# printed cannot be run. FALSE is read off the published page, not computed:
+# there is no pipeline quantity for a line that is missing.
+claim("si_e_sql_black_definition", FALSE,
+      "The listing's black recode reaches its 'end as black'")
+claim("si_e_sql_hispanic_definition", FALSE,
+      "The listing's hispanic recode reaches its 'end as hispanic'")
+
 # "Supplementary Figure 2: Lower bound of spending by Acronym on ads containing
 #  the words 'Biden' or 'Trump' on Facebook, over time, by format and keyword"
 claim("si_figure_2_series_per_panel",

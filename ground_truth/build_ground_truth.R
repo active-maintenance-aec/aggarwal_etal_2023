@@ -998,6 +998,29 @@ claim("si_e_sql_limits_match_figure_4", "supplementary_information_e",
       ),
       note = "Two places in the published document, compared against each other.")
 
+# The listing is CLIPPED AT THE PAGE EDGE on published p. 15, and the text layer
+# stops where the drawing does, so nothing is recoverable from the page itself.
+# Both lines lose the whole of their `then ... end as ...` clause, which is the
+# definition of the variable, and both variables are race categories the Methods
+# separately report as no longer available. The complete lines are in the
+# authors' own Acronym/notes/gh_randomization_sql.mssql, lines 17 and 18, which
+# agrees with every other line of the published listing except for the schema's
+# capitalisation.
+claim("si_e_sql_black_definition", "supplementary_information_e",
+      "The listing defines the black variable",
+      holds = FALSE,
+      defect_locus = "paper_internal",
+      note = paste("The published line runs past the right edge of the page and the text",
+                   "layer ends with 'civis_race', losing \"= 'AFAM') then 'black' else null",
+                   "end as black\". The code as printed cannot be run."))
+claim("si_e_sql_hispanic_definition", "supplementary_information_e",
+      "The listing defines the hispanic variable",
+      holds = FALSE,
+      defect_locus = "paper_internal",
+      note = paste("The published line runs past the right edge of the page and the text",
+                   "layer ends mid-token at \"'HISPA\", losing \"NIC') then 'hispanic' else",
+                   "null end as hispanic\". The code as printed cannot be run."))
+
 not_deposited("si_figure_1_coverage", "supplementary_figure_1",
               "Supplementary Figure 1 has no coverage",
               paste("figure_B1.R reads fielding_dates.rds and fielding_dates_survey.rds.",

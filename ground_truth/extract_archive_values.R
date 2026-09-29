@@ -33,7 +33,7 @@ run_deposited <- function(script) {
   # A printed tibble wraps at the console width, which splits a row across
   # lines and makes the last token on the row line something other than the
   # last column. Widening it is what makes the stdout readable by position.
-  old_width <- options(width = 300)
+  old_width <- options(width = 300, pillar.sigfig = 7)
   on.exit(options(old_width), add = TRUE)
   printed <- capture.output(
     outcome <- try(source(script, local = env, echo = FALSE, print.eval = TRUE),

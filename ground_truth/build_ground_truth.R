@@ -1198,7 +1198,7 @@ if (file.exists(errata_spine)) {
     str_split(";") |>
     unlist() |>
     str_trim() |>
-    discard(\(x) is.na(x) | x == "")
+    purrr::discard(\(x) is.na(x) | x == "")
   dangling <- setdiff(cited_ids, ground_truth$claim_id)
   if (length(dangling) > 0) print(dangling)
   stopifnot(length(dangling) == 0)

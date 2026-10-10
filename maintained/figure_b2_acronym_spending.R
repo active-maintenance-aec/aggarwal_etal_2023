@@ -3,7 +3,9 @@
 # Depends on: original/ad_library_2020_acronym.csv, helpers.R
 # Description: Supplementary Figure 2. Lower bound of Acronym's Facebook
 #   spending on advertisements naming Biden or Trump, by month, split by
-#   advertisement format and by keyword. Turnout advertisements are excluded.
+#   advertisement format and by keyword. Turnout advertisements are excluded. The
+#   CSV also carries the upper bound, which the figure does not plot, because the
+#   SI's claim about the largest month holds only on the lower bound.
 
 source(here::here("maintained", "helpers.R"))
 
@@ -12,12 +14,14 @@ acronym_ads <- load_acronym_ads() |> filter(!is_turnout)
 by_format <-
   acronym_ads |>
   group_by(ad_format, month) |>
-  summarize(spend_lb = sum(spend_lb), n_ads = n(), .groups = "drop")
+  summarize(spend_lb = sum(spend_lb), spend_ub = sum(spend_ub), n_ads = n(),
+            .groups = "drop")
 
 by_keyword <-
   acronym_ads |>
   group_by(ad_type, month) |>
-  summarize(spend_lb = sum(spend_lb), n_ads = n(), .groups = "drop")
+  summarize(spend_lb = sum(spend_lb), spend_ub = sum(spend_ub), n_ads = n(),
+            .groups = "drop")
 
 g_format <-
   ggplot(by_format, aes(x = month, y = spend_lb, color = ad_format,
@@ -67,6 +71,6 @@ bind_rows(
   by_keyword |> rename(group = ad_type) |> mutate(panel = "Keyword")
 ) |>
   mutate(group = str_replace_all(group, "\\n", " ")) |>
-  select(panel, group, month, spend_lb, n_ads) |>
+  select(panel, group, month, spend_lb, spend_ub, n_ads) |>
   arrange(panel, group, month, .locale = "en") |>
   write_csv(here::here("maintained", "output", "figure_b2_acronym_spending.csv"))

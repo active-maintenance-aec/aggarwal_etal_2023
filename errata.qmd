@@ -55,24 +55,62 @@ monthly_spend <-
            show_col_types = FALSE) |>
   filter(panel == "Keyword") |>
   group_by(month) |>
-  summarize(spend_lb = sum(spend_lb), .groups = "drop") |>
+  summarize(spend_lb = sum(spend_lb), spend_ub = sum(spend_ub), .groups = "drop") |>
+  mutate(spend_mid = (spend_lb + spend_ub) / 2) |>
   arrange(desc(spend_lb))
 
 top_month <- format(monthly_spend$month[1], "%B")
 top_spend <- with_commas(monthly_spend$spend_lb[1])
 july_spend <- with_commas(monthly_spend$spend_lb[monthly_spend$month == as.Date("2020-07-01")])
 
+# The ranking the sentence states holds only at the lower end of the Ad Library's ranges.
+ordinal_word <- function(x) c("first", "second", "third", "fourth", "fifth", "sixth")[x]
+top_rank_ub <- rank(-monthly_spend$spend_ub)[1]
+top_rank_mid <- rank(-monthly_spend$spend_mid)[1]
+stopifnot(top_rank_ub == top_rank_mid, top_rank_ub >= 3)
+top_spend_ub <- with_commas(monthly_spend$spend_ub[1])
+ahead_ub <-
+  monthly_spend |>
+  filter(spend_ub > spend_ub[1]) |>
+  arrange(desc(spend_ub)) |>
+  mutate(label = str_glue("{format(month, '%B')} (US\\${with_commas(spend_ub)})")) |>
+  pull(label)
+ahead_ub_list <- str_c(str_c(head(ahead_ub, -1), collapse = ", "), ", and ", tail(ahead_ub, 1))
+
 n_covariates <- value("methods_n_covariates")
 n_covariates_word <- number_word(n_covariates)
 
+# Benjamini-Hochberg values scale with the number of tests, so the published values say
+# how many tests they were computed over.
+bh_tss100 <- value("methods_bh_p_tss100")
+bh_tss6070 <- value("methods_bh_p_tss6070")
+bh_one_fewer <- function(x) sprintf("%.3f", x * (n_covariates - 1) / n_covariates)
+chance_imbalances <- sprintf("%.1f", n_covariates * 0.05)
+
 audience <- with_commas(published("methods_treatment_audience"))
 eligible <- with_commas(published("methods_programme_eligible"))
+audience_n <- as.numeric(published("methods_treatment_audience"))
+cost_low <- with_commas(4.455 * audience_n)
+cost_high <- with_commas(4.465 * audience_n)
 
 omnibus_num_df <- value("methods_omnibus_df_first_subscript")
 omnibus_den_df <- format(round(value("methods_omnibus_df_second_subscript")), scientific = FALSE)
 omnibus_den_df_commas <- with_commas(value("methods_omnibus_df_second_subscript"))
 omnibus_f <- sprintf("%.4f", value("methods_omnibus_f"))
 omnibus_p <- sprintf("%.3f", value("methods_omnibus_p"))
+
+main_claims <- read_csv(here::here("maintained", "output", "text_main_claims.csv"),
+                        show_col_types = FALSE)
+main_quantity <- function(name) {
+  row <- main_claims[main_claims$quantity == name, ]
+  stopifnot(nrow(row) == 1)
+  row$value
+}
+omnibus_all_num_df <- main_quantity("omnibus_all_num_df")
+omnibus_all_den_df <- with_commas(main_quantity("omnibus_all_den_df"))
+omnibus_all_f <- sprintf("%.4f", main_quantity("omnibus_all_f"))
+omnibus_all_p <- sprintf("%.3f", main_quantity("omnibus_all_p"))
+stopifnot(omnibus_all_num_df == omnibus_num_df + 2)
 
 wesleyan_share <- sprintf("%.2f", value("si_c_wesleyan_share"))
 wesleyan_total <- with_commas(published("si_c_wesleyan_total"))
@@ -116,9 +154,15 @@ entries <- tribble(
     "Acronym's monthly lower-bound spending on persuasion advertisements by format and by ",
     "keyword. Summed over either panel's series, the largest month is {top_month} 2020 at ",
     "US\\${top_spend}, against US\\${july_spend} in July. The cross-reference did not resolve ",
-    "when the document was typeset. The sentence's argument, that Acronym spent heavily ",
-    "earlier in the campaign than other left-leaning advertisers did, is unaffected: ",
-    "{top_month} is earlier than July."),
+    "when the document was typeset. The Ad Library reports each advertisement's spend as a ",
+    "range, dated to the month its delivery began, and the ranking holds only at the lower ",
+    "end the figure plots: at the upper end {top_month} is {ordinal_word(top_rank_ub)}, at ",
+    "US\\${top_spend_ub}, behind {ahead_ub_list}, and it is ",
+    "{ordinal_word(top_rank_mid)} on the midpoints too. The corrected sentence is therefore ",
+    "true of the figure it cites, and the data support no more than that Acronym spent ",
+    "heavily from {top_month} onward. That is what the sentence's argument needs: its claim ",
+    "is that Acronym spent earlier in the campaign than other left-leaning advertisers did, ",
+    "and {top_month} is earlier than July."),
   "si_c_july_highest_spend;si_c_broken_cross_reference",
 
   2, "quantity", "pipeline", "full",
@@ -143,8 +187,14 @@ entries <- tribble(
   str_glue("As shown in Fig. 5, the random assignment procedure generated treatment and control groups that were balanced on pre-treatment characteristics in this subset. Out of [[{n_covariates}]] covariates"),
   str_glue(
     "Figure 5 plots {n_covariates_word} covariates and Supplementary Table 3 prints ",
-    "{n_covariates_word} rows. The count of two significant imbalances is right, and so is ",
-    "everything the paragraph goes on to say about them."),
+    "{n_covariates_word} rows. The slip is in the count the sentence states and not in the ",
+    "analysis: the Benjamini-Hochberg values the paragraph goes on to print, ",
+    "{sprintf('%.3f', bh_tss100)} and {sprintf('%.3f', bh_tss6070)}, are what ",
+    "{n_covariates_word} tests give, where the same p-values over ",
+    "{number_word(n_covariates - 1)} would give {bh_one_fewer(bh_tss100)} and ",
+    "{bh_one_fewer(bh_tss6070)}. The count of two significant imbalances is right, two of ",
+    "{n_covariates_word} at the 0.05 level is about what chance gives ({chance_imbalances} ",
+    "expected), and everything the paragraph goes on to say about them stands."),
   "methods_n_covariates",
 
   3, "quantity", "pipeline", "full",
@@ -154,7 +204,10 @@ entries <- tribble(
   str_glue("The full cost of the advertising campaign was US\\$8.9 million, spread out over a treatment audience of [[{audience}]] ({eligible} programme-eligible voters × our 60% match rate), amounting to US\\$4.46 of advertising expenditure per voter."),
   str_glue(
     "The parenthetical states the arithmetic: {eligible} times a 60 per cent match rate is ",
-    "{audience} people. The word \"million\" makes the figure a million times too large."),
+    "{audience} people. The word \"million\" makes the figure a million times too large, ",
+    "and with it the sentence's own US\\$4.46 per voter could not be right. With the ",
+    "corrected audience it is: US\\$4.46 follows from any total between US\\${cost_low} and ",
+    "US\\${cost_high}, all of which round to US\\$8.9 million."),
   "methods_treatment_audience_scale",
 
   4, "quantity", "pipeline", "full",
@@ -168,7 +221,14 @@ entries <- tribble(
     "{omnibus_den_df_commas} residual degrees of freedom. The published subscripts are the ",
     "second row of the Wald test's printed output, where the first figure is that model's ",
     "residual degrees of freedom and the second is the difference in parameters, printed as ",
-    "a negative number. The statistic and the p-value are right."),
+    "a negative number. The statistic and the p-value are right. The {omnibus_num_df} is ",
+    "not the {n_covariates} of entry 2 less anything a correction touches. Party and Trump ",
+    "support score band are each exhaustive sets of indicators, so one of each is the ",
+    "reference category, and the authors' model also leaves out the ideology and ",
+    "partisanship scores. With those two included the F statistic is {omnibus_all_f} on ",
+    "{omnibus_all_num_df} and {omnibus_all_den_df} degrees of freedom (P = {omnibus_all_p}), ",
+    "so \"we could not predict treatment assignment from the covariates\" holds over every ",
+    "covariate Figure 5 reports."),
   "methods_omnibus_df_first_subscript;methods_omnibus_df_second_subscript",
 
   5, "quantity", "pipeline", "full",
@@ -180,7 +240,8 @@ entries <- tribble(
     "A rounding artifact rather than a substantive error: the quotient of the sentence's own ",
     "two figures is {sprintf('%.4f', value('si_c_wesleyan_share'))} per cent, which rounds ",
     "up. The share is kept at two decimal places because at one decimal the published and ",
-    "corrected figures are the same."),
+    "corrected figures are the same. What the share supports is the next paragraph's ",
+    "\"relatively low percentage of total spending\", which either figure does."),
   "si_c_wesleyan_share",
 
   # Entries 6 and 7 are the same defect twice and are kept apart because they
@@ -202,7 +263,13 @@ entries <- tribble(
     "`Acronym/notes/gh_randomization_sql.mssql`, line 17, which agrees with every",
     "other line of the published listing except for the capitalisation of the",
     "schema name. `black` is one of the two race categories the Methods report as",
-    "no longer available, and the code as printed cannot be run."),
+    "no longer available, and the code as printed cannot be run. No quantity in the",
+    "article rests on the line, but it defines a stratum. Step 4 of the assignment",
+    "procedure in Fig. 4 samples 327,230 \"of (3,252,002 + ?) Black voters\", the",
+    "listing draws them `where black = ’black’`, and the clause the published page cut",
+    "off is what the `+ ?` counts: uncoded voters whom a third-party imputation",
+    "classified as Black. That imputation is the lost data that leaves the denominators",
+    "of steps 4 and 5 uncomputable, and the restored line shows exactly where it entered."),
   "si_e_sql_black_definition",
 
   7, "definition", "remaster", "full",
@@ -214,7 +281,9 @@ entries <- tribble(
     "The line is drawn to x 615.8 on a page 612 points wide, so it ends beyond the",
     "page edge and mid-token, at `’HISPA`. The complete line is in the authors' own",
     "`Acronym/notes/gh_randomization_sql.mssql`, line 18. `hispanic` is the other",
-    "race category the Methods report as no longer available."),
+    "race category the Methods report as no longer available. Like entry 6, it defines",
+    "a stratum rather than a quantity: step 5 of Fig. 4 samples 68,842 \"of (1,267,156",
+    "+ ?) Latinx voters\", and the restored clause is what the `+ ?` counts."),
   "si_e_sql_hispanic_definition"
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))

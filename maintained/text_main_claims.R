@@ -103,6 +103,13 @@ omnibus_full <-
 omnibus_restricted <- lm_robust(treat_num ~ strata, data = main_analysis_set)
 omnibus <- waldtest(omnibus_full, omnibus_restricted, test = "F")
 
+# The authors' omnibus leaves out two of Figure 5's covariates beyond the two
+# reference categories (Party: Other and TSS: 30-40, whose indicator sets are
+# exhaustive): the ideology and partisanship scores. The same test with them in
+# says whether "we could not predict treatment assignment" holds over all of them.
+omnibus_all_full <- update(omnibus_full, . ~ . + ideology_score_100 + partisan_score_100)
+omnibus_all <- waldtest(omnibus_all_full, omnibus_restricted, test = "F")
+
 # Design parameters the article states and the deposited data can be checked
 # against: the score ranges the targeting criteria name, the vote history count,
 # and the interval level every reported interval uses.
@@ -128,7 +135,8 @@ claims <- tibble(
     "cate_republican_estimate", "cate_republican_se",
     "cate_democrat_estimate", "cate_democrat_se",
     "equality_f", "equality_num_df", "equality_den_df", "equality_p",
-    "omnibus_f", "omnibus_num_df", "omnibus_den_df", "omnibus_p"
+    "omnibus_f", "omnibus_num_df", "omnibus_den_df", "omnibus_p",
+    "omnibus_all_f", "omnibus_all_num_df", "omnibus_all_den_df", "omnibus_all_p"
   ),
   value = c(
     nrow(main_analysis_set),
@@ -152,7 +160,9 @@ claims <- tibble(
     cate_republican$estimate, cate_republican$std.error,
     cate_democrat$estimate, cate_democrat$std.error,
     equality_f, equality_num_df, equality_den_df, equality_p,
-    omnibus$F[2], abs(omnibus$Df[2]), omnibus$Res.Df[1], omnibus$`Pr(>F)`[2]
+    omnibus$F[2], abs(omnibus$Df[2]), omnibus$Res.Df[1], omnibus$`Pr(>F)`[2],
+    omnibus_all$F[2], abs(omnibus_all$Df[2]), omnibus_all$Res.Df[1],
+    omnibus_all$`Pr(>F)`[2]
   )
 )
 

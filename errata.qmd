@@ -180,7 +180,7 @@ entries <- tribble(
 
   2, "quantity", "pipeline", "full",
   "The number of pre-treatment covariates tested for balance",
-  "published Methods, p. 6",
+  "published Methods, p. 339",
   # THE QUOTATION ENDS WHERE THE PAGE'S SENTENCE DOES NOT. Published Methods
   # p. 6 reads "... only two exhibited statistically significant imbalance:
   # Trump support score (t ...", with a colon and the two named. Quoting it
@@ -213,7 +213,7 @@ entries <- tribble(
 
   3, "quantity", "pipeline", "full",
   "The size of the treatment audience",
-  "published Methods, p. 7",
+  "published Methods, p. 340",
   str_glue("The full cost of the advertising campaign was US\\$8.9 million, spread out over a treatment audience of [[{audience} million]] ({eligible} programme-eligible voters × our 60% match rate), amounting to US\\$4.46 of advertising expenditure per voter."),
   str_glue("The full cost of the advertising campaign was US\\$8.9 million, spread out over a treatment audience of [[{cv_audience}]] ({eligible} programme-eligible voters × our 60% match rate), amounting to US\\$4.46 of advertising expenditure per voter."),
   str_glue(
@@ -227,7 +227,7 @@ entries <- tribble(
 
   4, "quantity", "pipeline", "full",
   "The degrees of freedom of the balance F test",
-  "published Methods, p. 6",
+  "published Methods, p. 339",
   str_glue("An F-test comparing a regression of treatment status on covariates with strata fixed effects versus a restricted model predicting treatment status from strata fixed effects was non-significant (F~[[{published('methods_omnibus_df_first_subscript')},−18]]~ = {omnibus_f}; P = {omnibus_p})."),
   str_glue("An F-test comparing a regression of treatment status on covariates with strata fixed effects versus a restricted model predicting treatment status from strata fixed effects was non-significant (F~[[{omnibus_num_df},{omnibus_den_df}]]~ = {omnibus_f}; P = {omnibus_p})."),
   str_glue(

@@ -17,6 +17,12 @@
   ],
   "related_identifiers": [
     {
+      "identifier": "https://github.com/active-maintenance-aec/aggarwal_etal_2023",
+      "relation": "isSupplementTo",
+      "scheme": "url",
+      "resource_type": "software"
+    },
+    {
       "identifier": "10.1038/s41562-022-01487-4",
       "relation": "isSupplementTo",
       "scheme": "doi"

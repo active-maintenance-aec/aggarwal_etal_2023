@@ -8,6 +8,8 @@ format:
     geometry: margin=1in
 ---
 
+The maintained replication code behind these errata is at <https://github.com/active-maintenance-aec/aggarwal_etal_2023> and is archived at Zenodo at <https://doi.org/10.5281/zenodo.24168257>, a DOI that always resolves to the latest version.
+
 ```{r}
 #| label: setup
 #| include: false

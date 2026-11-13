@@ -52,7 +52,9 @@ walk(
 # Rebuilds the comparison table from the outputs above, so it cannot go stale.
 # The build also runs in_text_claims.R under capture.output for the coverage
 # gate; the call below is the human-readable pass.
-source(here::here("ground_truth", "build_ground_truth.R"))
+# The build defines a claim() of its own, so it runs in its own environment and
+# leaves excheckr's claim() unmasked for the second instrument.
+source(here::here("ground_truth", "build_ground_truth.R"), local = new.env())
 source(here::here("maintained", "in_text_claims.R"))
 
 # Deposited archive, again ----

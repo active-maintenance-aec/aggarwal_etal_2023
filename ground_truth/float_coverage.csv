@@ -1,15 +1,15 @@
-float,published_numbers,covered,reproduced_by_rewrite,reproduced_by_archive
-figure_1,114,114,114,114
-figure_2,36,36,36,36
-figure_3,3,2,2,NA
-figure_4,27,9,7,NA
-figure_5,3,2,2,NA
-figure_6,0,0,NA,NA
-supplementary_figure_1,1,0,0,NA
-supplementary_figure_2,2,1,1,NA
-supplementary_figure_3,2,1,1,NA
-supplementary_figure_4,1,0,0,NA
-supplementary_table_1,399,399,399,399
-supplementary_table_2,126,126,126,126
-supplementary_table_3,176,176,176,176
-table_1,95,95,95,95
+float,published_numbers,covered,reproduced_by_rewrite,reproduced_by_archive,plotted,plotted_reproduced,note
+Fig. 1,114,114,114,114,57,57,Prints an estimate and a standard error above every point; plotted counts the estimates.
+Fig. 2,36,36,36,36,18,18,Prints an estimate and a standard error above every point; plotted counts the estimates.
+Fig. 3,0,0,0,NA,246,246,Prints no numbers on its face; plotted counts 41 one-point bins by two conditions by three outcomes.
+Fig. 4,27,8,7,NA,NA,NA,A flow chart; its counts and criteria are printed on its face and it plots nothing.
+Fig. 5,0,0,0,NA,22,22,Prints no numbers on its face other than axis breaks; plotted counts one estimate per covariate.
+Fig. 6,0,0,0,0,NA,NA,Two photographs of advertisements; carries no data.
+Table 1,95,95,95,95,NA,NA,NA
+Supplementary Figure 1,0,0,0,0,NA,NA,"Prints no numbers other than axis breaks. Its script reads two files the deposit does not contain, so nothing it plots can be reproduced."
+Supplementary Figure 2,0,0,0,NA,NA,NA,"Prints no numbers other than axis breaks, and the number of plotted points is not readable from the page. The three series per panel its legend prints reproduce, and figure_b2_acronym_spending.csv carries every plotted point."
+Supplementary Figure 3,0,0,0,NA,NA,NA,"Prints no numbers other than axis breaks, and the number of plotted weeks is not readable from the page. Its three month labels reproduce, and figure_c3_facebook_spending.csv carries every plotted week."
+Supplementary Figure 4,0,0,0,0,NA,NA,"Prints no numbers other than axis breaks. Its script reads a file the deposit does not contain, so nothing it plots can be reproduced."
+Supplementary Table 1,399,399,399,399,NA,NA,NA
+Supplementary Table 2,126,126,126,126,NA,NA,NA
+Supplementary Table 3,176,176,176,176,NA,NA,NA

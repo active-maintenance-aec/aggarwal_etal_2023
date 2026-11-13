@@ -151,7 +151,8 @@ difference in conditional average treatment effects by modelled Trump support of
 
 The deposit is `r nrow(manifest)` files: eleven analysis scripts, four data files and a README.
 Every script was run in a scratch copy, twice, once as the archive ships and once stripped to
-data plus code.
+data plus code. `helper_file.R` is only ever sourced by the other scripts, so it runs inside them
+and is not counted on its own.
 
 ```{r}
 #| label: archive-run
@@ -205,9 +206,11 @@ columns; they are built in `figure_B2.R`. So the script that is named for the in
 calculations cannot produce the in-text spending figures even after the `lmtest` line is
 restored. All six reproduce from `figure_B2.R`'s classification, which is what this rewrite uses.
 
-Running the deposit in place would add `r nrow(overwrites |> filter(effect == "added"))` file to
-the archive directory, an `Rplots.pdf` from the scripts that print a plot to the active device,
-and would overwrite `r nrow(overwrites |> filter(effect == "overwritten"))` deposited files.
+Running the deposit in place would add
+`r nrow(overwrites |> filter(pass == "as_shipped", effect == "added"))` file to the archive
+directory, an `Rplots.pdf` from the scripts that print a plot to the active device, and would
+overwrite `r nrow(overwrites |> filter(pass == "as_shipped", effect == "overwritten"))` deposited
+files.
 
 **The archive reproduces the article.** Every one of the
 `r sum(coverage$reproduced_by_archive, na.rm = TRUE)` numbers the article's six large floats print
@@ -281,7 +284,6 @@ gives the same digits.
 #| label: gt-summary
 #| echo: false
 gt |>
-  left_join(extraction |> select(claim_id, claim_type), by = "claim_id") |>
   mutate(verdict = case_when(
     !is.na(match_rewrite) & match_rewrite == 1 ~ "reproduces",
     !is.na(match_rewrite) & match_rewrite == 0 ~ "does not reproduce",
@@ -323,8 +325,9 @@ coverage |>
                             NA_character_)) |>
   select(float, `published numbers` = published_numbers, covered, fraction,
          `reproduced by rewrite` = reproduced_by_rewrite,
-         `reproduced by archive` = reproduced_by_archive) |>
-  show_table(caption = "Coverage per published float. Published numbers are what the float puts on its own face, or the countable quantities it asserts where it prints none.")
+         `reproduced by archive` = reproduced_by_archive,
+         plotted, `plotted, reproduced` = plotted_reproduced) |>
+  show_table(caption = "Coverage per published float. Published numbers are what the float prints on its own face, not counting axis breaks; plotted counts what a figure plots, where the page makes it countable.")
 ```
 
 Six floats carry the bulk of the published record. Supplementary Tables 1, 2 and 3 print

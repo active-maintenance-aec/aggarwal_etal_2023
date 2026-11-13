@@ -3,7 +3,7 @@
 #   ground_truth/float_coverage.csv
 # Depends on: ground_truth/published_claims.csv, ground_truth/published_appendix_values.csv,
 #   ground_truth/published_maintext_tables.csv, ground_truth/archive_values.csv,
-#   maintained/output/*, maintained/in_text_claims.R
+#   errata_entries.csv, maintained/output/*, maintained/in_text_claims.R
 # Description: Build the comparison between what the article prints, what the
 #   deposited code produces and what the maintained rewrite produces, then run
 #   the coverage gate over the second instrument. Every number here other than
@@ -55,11 +55,28 @@ render_at <- function(x, digits) {
   str_replace(out, "^-(0(\\.0+)?)$", "\\1")
 }
 
-# The article's units, applied to a pipeline value at the comparison point.
-convert_units <- function(x, units) {
+# The article's scale, applied to a pipeline value at the comparison point. The
+# extraction states each claim's unit in its claim text; these two lists are the
+# claims whose printed scale differs from the pipeline's, a share printed in per
+# cent or percentage points and a count printed in millions.
+per_cent_claims <- c(
+  "abstract_biden_effect", "abstract_biden_se", "abstract_trump_effect", "abstract_trump_se",
+  "abstract_dic", "results_ate_pp", "results_ate_se_pp", "results_equivalence_bound",
+  "results_early_dic_pp", "results_in_person_dic_pp", "figure_3_caption_panel_range_pp",
+  "methods_margin_threshold", "intro_party_registration_missing", "methods_missing_race_share",
+  "methods_click_through_rate", "methods_video_view_rate", "methods_match_rate",
+  "methods_fb_q3_revenue_share", "methods_ci_level", "si_a_match_rate",
+  "si_a_precise_scheme_rate", "si_a_name_address_rate", "si_a_young_precise_rate",
+  "si_a_young_name_rate", "si_a_consistency_low", "si_a_consistency_high",
+  "si_a_compliance_shift", "si_c_acronym_share", "si_c_wesleyan_share",
+  "si_c_fb_q3_revenue_share"
+)
+million_claims <- c("abstract_sample_millions", "abstract_campaign_cost", "si_c_largest_bucket")
+
+convert_units <- function(x, claim_id) {
   case_when(
-    units %in% c("percentage_points", "percent") ~ x * 100,
-    units %in% c("million", "million_dollars") ~ x / 1e6,
+    claim_id %in% per_cent_claims ~ x * 100,
+    claim_id %in% million_claims ~ x / 1e6,
     .default = x
   )
 }
@@ -89,11 +106,29 @@ agrees_loosely <- function(value, value_paper, digits) {
 stopifnot(
   !any(duplicated(published_claims$claim_id)),
   all(nzchar(published_claims$claim_id)),
+  !anyNA(published_claims$claim),
   all(published_claims$claim_type %in%
         c("pipeline", "descriptive", "definitional", "structural", "transcribed")),
   all(published_claims$needs_block %in% c(TRUE, FALSE)),
   all(is.na(published_claims$comparison) |
-        published_claims$comparison %in% c("==", "<", ">", "<=", ">=", "approx"))
+        published_claims$comparison %in% c("==", "<", ">", "<=", ">=", "approx")),
+  # A comparison exists exactly where the article prints a value to compare against.
+  all(is.na(published_claims$comparison) == is.na(published_claims$value_paper)),
+  all(is.na(published_claims$expect) |
+        published_claims$expect %in% c("range", "derived", "absent", "shape")),
+  all(c(per_cent_claims, million_claims) %in% published_claims$claim_id)
+)
+
+# digits is the precision the article prints, read off the string it prints. A
+# version number such as 4.1.1 has no precision and carries none.
+is_version <- str_detect(replace_na(published_claims$value_paper, ""),
+                         "^[0-9]+\\.[0-9]+\\.[0-9]+$")
+stopifnot(
+  all(is.na(published_claims$digits[is_version])),
+  all(published_claims$digits[!is_version] ==
+        excheckr::claim_digits(published_claims$value_paper[!is_version]), na.rm = TRUE),
+  all(is.na(published_claims$digits[!is_version]) ==
+        is.na(published_claims$value_paper[!is_version]))
 )
 
 # Every pipeline and descriptive row must require a block. The other three
@@ -110,7 +145,7 @@ stopifnot(all(
 # right about the value, which numeric equality would pass. This is the check a
 # wrong digits has to trip, so it runs before any comparison uses digits.
 numeric_claims <- published_claims |>
-  filter(!is.na(value_paper), !is.na(digits), units != "version")
+  filter(!is.na(value_paper), !is.na(digits))
 stopifnot(
   all(!str_detect(numeric_claims$value_paper, ",")),
   all(numeric_claims$value_paper == normalise_printed(numeric_claims$value_paper)),
@@ -240,21 +275,22 @@ dic_pap_archive <- function(outcome_label) {
 
 rows <- list()
 
-claim <- function(claim_id, table_figure, claim, value_rewrite = NA_real_,
+# section is where the builder files a row while it assembles the table and
+# derives float coverage. The committed location is the extraction's.
+claim <- function(claim_id, section, claim, value_rewrite = NA_real_,
                   value_script = NA_real_, holds = NA, defect_locus = NA_character_,
                   note = NA_character_) {
   spec <- published_claims |> filter(.data$claim_id == .env$claim_id)
   stopifnot(nrow(spec) == 1)
 
   digits <- spec$digits
-  units <- spec$units
   comparison <- if (is.na(spec$comparison)) "==" else spec$comparison
 
   paper_string <- spec$value_paper
   paper_numeric <- suppressWarnings(as.numeric(normalise_printed(paper_string)))
 
-  converted_rewrite <- convert_units(value_rewrite, units)
-  converted_script <- convert_units(value_script, units)
+  converted_rewrite <- convert_units(value_rewrite, claim_id)
+  converted_script <- convert_units(value_script, claim_id)
 
   verdict <- function(value, exact) {
     if (is.na(paper_numeric) || is.na(value)) return(NA_integer_)
@@ -293,7 +329,7 @@ claim <- function(claim_id, table_figure, claim, value_rewrite = NA_real_,
   rows[[length(rows) + 1]] <<- tibble(
     paper_id = paper_id,
     claim_id = claim_id,
-    table_figure = table_figure,
+    section = section,
     claim = claim,
     value_script = converted_script,
     value_paper = paper_string,
@@ -480,8 +516,8 @@ claim("figure_2_agrees_with_supplementary_table_2", "figure_2",
 
 # Abstract ----------------------------------------------------------------------
 
-not_deposited <- function(claim_id, table_figure, claim, what) {
-  claim(claim_id, table_figure, claim, note = what, defect_locus = "archive")
+not_deposited <- function(claim_id, section, claim, what) {
+  claim(claim_id, section, claim, note = what, defect_locus = "archive")
 }
 
 not_deposited("abstract_campaign_cost", "abstract",
@@ -662,9 +698,9 @@ claim("figure_5_points_plotted", "figure_5",
 # Figure 4, the assignment flow chart -------------------------------------------------
 
 pwalk(published_claims |> filter(str_starts(claim_id, "figure_4_"), !needs_block) |>
-        select(claim_id, note),
-      function(claim_id, note) {
-        not_deposited(claim_id, "figure_4", note,
+        select(claim_id, note = notes, claim_text = claim),
+      function(claim_id, note, claim_text) {
+        not_deposited(claim_id, "figure_4", coalesce(note, claim_text),
                       "The deposit holds only the analysis subset, so this has no counterpart in it.")
       })
 
@@ -819,9 +855,10 @@ pwalk(spending_rows, function(claim_id, quantity_name, description) {
 
 pwalk(published_claims |> filter(claim_id %in% c(
   "methods_click_through_rate", "methods_video_view_seconds", "methods_video_view_rate",
-  "methods_match_rate", "methods_programme_eligible")) |> select(claim_id, note),
-  function(claim_id, note) {
-    not_deposited(claim_id, "methods", note,
+  "methods_match_rate", "methods_programme_eligible")) |>
+    select(claim_id, note = notes, claim_text = claim),
+  function(claim_id, note, claim_text) {
+    not_deposited(claim_id, "methods", coalesce(note, claim_text),
                   "Facebook delivery data; nothing of the kind is deposited.")
   })
 
@@ -863,10 +900,10 @@ pwalk(published_claims |> filter(claim_id %in% c(
   "methods_fb_q3_revenue_share", "methods_russia_spend", "methods_fox_news_month",
   "methods_ad_ban_weeks", "methods_501c4", "methods_margin_threshold",
   "methods_r_version", "methods_tidyverse_version", "methods_estimatr_version",
-  "methods_car_version", "methods_hc2")) |> select(claim_id, note, claim_type),
-  function(claim_id, note, claim_type) {
+  "methods_car_version", "methods_hc2")) |> select(claim_id, note = notes, claim_text = claim, claim_type),
+  function(claim_id, note, claim_text, claim_type) {
     claim(claim_id, "methods",
-          if (is.na(note)) claim_id else note,
+          coalesce(note, claim_text),
           note = if (claim_type == "transcribed")
             "Taken from another source by the article; checked once against that source."
           else "A stated study or software parameter with no counterpart in the deposit.")
@@ -875,7 +912,7 @@ pwalk(published_claims |> filter(claim_id %in% c(
 # Reporting summary ---------------------------------------------------------------------
 
 pwalk(published_claims |> filter(str_starts(claim_id, "reporting_summary_")) |>
-        select(claim_id, note),
+        select(claim_id, note = notes),
       function(claim_id, note) {
         claim(claim_id, "reporting_summary", note,
               note = "Restated from the article's own Methods; checked against it, not against the deposit.")
@@ -894,7 +931,7 @@ claim("si_n_supplementary_tables", "supplementary_information",
       value_rewrite = n_distinct(published_appendix$float),
       note = "Counted from the parsed transcription of the published tables.")
 
-pwalk(published_claims |> filter(str_starts(claim_id, "si_a_")) |> select(claim_id, note),
+pwalk(published_claims |> filter(str_starts(claim_id, "si_a_")) |> select(claim_id, note = notes),
       function(claim_id, note) {
         not_deposited(claim_id, "supplementary_information_a", note,
                       "Survey and match-quality data; none of it is deposited.")
@@ -975,14 +1012,14 @@ claim("si_d_pap_registration_date", "supplementary_information_d",
 
 pwalk(published_claims |> filter(str_starts(claim_id, "si_d_"),
                                  claim_id != "si_d_pap_registration_date") |>
-        select(claim_id, note),
+        select(claim_id, note = notes),
       function(claim_id, note) {
         claim(claim_id, "supplementary_information_d", note,
               note = "Reproduced verbatim from the pre-analysis plan; checked once against it.")
       })
 
 pwalk(published_claims |> filter(str_starts(claim_id, "si_e_sql_limit_")) |>
-        select(claim_id, note),
+        select(claim_id, note = notes),
       function(claim_id, note) {
         claim(claim_id, "supplementary_information_e", note,
               note = "Reproduced verbatim from the deposited randomisation code.")
@@ -1046,7 +1083,7 @@ claim("si_figure_3_axis_breaks", "supplementary_figure_3",
       note = "Set by the default scale in figure_c3_facebook_spending.R at the point of use.")
 pwalk(published_claims |> filter(claim_id %in% c("si_figure_1_axis_breaks",
                                                 "si_figure_4_axis_breaks")) |>
-        select(claim_id, note),
+        select(claim_id, note = notes),
       function(claim_id, note) {
         float <- if (str_detect(claim_id, "figure_1")) "supplementary_figure_1" else
           "supplementary_figure_4"
@@ -1092,27 +1129,97 @@ if (any(clean & !is.na(ground_truth$defect_locus))) {
 }
 stopifnot(all(is.na(ground_truth$defect_locus) |
                 ground_truth$defect_locus %in%
-                c("paper_internal", "archive", "environment", "rewrite", "unresolved")))
+                c("paper_internal", "archive", "environment", "rewrite", "unresolved",
+                  "upstream")))
+
+# The errata spine's claim_ids ----
+# errata_entries.csv names, for every published entry, the ground-truth claims it corrects.
+# Every one of those ids has to exist here: a missing one is a typo or a claim that has since
+# been renamed, and a dangling reference inside a document whose whole purpose is correcting
+# the record is worse than a failed build.
+errata_spine <- read_csv(here::here("errata_entries.csv"),
+                         col_types = cols(.default = col_character()))
+cited_ids <- errata_spine$claim_ids |>
+  str_split(";") |>
+  unlist() |>
+  str_trim() |>
+  purrr::discard(\(x) is.na(x) | x == "")
+dangling <- setdiff(cited_ids, ground_truth$claim_id)
+if (length(dangling) > 0) print(dangling)
+stopifnot(length(dangling) == 0)
+
+# The claims a quantity erratum corrects, which the second instrument scores [corrected].
+quantity_corrected_ids <- errata_spine |>
+  filter(class == "quantity") |>
+  pull(claim_ids) |>
+  str_split(";") |>
+  unlist() |>
+  str_trim()
+
+# Disposition: what became of each defect ----
+# corrected_here is computed from the errata spine and never typed. Every other judgment
+# is one the README already states; a defect nobody has judged stays NA.
+disposition_judgments <- tribble(
+  ~claim_id, ~judgment, ~disposition_reason,
+  "si_c_state_lists_agree", "not_corrected",
+  "The README lists it among the findings that are not errata: the deposited extract carries no state field, so which list describes the query cannot be settled from the deposit.",
+  "figure_4_pts_target_max", "not_corrected",
+  "The README records it as unresolved rather than corrected: which of Figure 4's two descriptions of the turnout criterion is right cannot be settled from the deposit, and no published estimate depends on it.",
+  "methods_pts_range_holds", "not_corrected",
+  "The README records it as unresolved rather than corrected: which of Figure 4's two descriptions of the turnout criterion is right cannot be settled from the deposit, and no published estimate depends on it.",
+  "si_d_pap_registration_date", "not_corrected",
+  "The README notes that a registration can postdate the document it registers, so the two dates are not necessarily an error, and leaves them uncorrected."
+)
+stopifnot(all(disposition_judgments$claim_id %in% ground_truth$claim_id),
+          !any(disposition_judgments$claim_id %in% cited_ids))
+
+ground_truth <- ground_truth |>
+  left_join(disposition_judgments, by = "claim_id") |>
+  mutate(
+    disposition = case_when(
+      is.na(defect_locus) ~ NA_character_,
+      claim_id %in% cited_ids ~ "corrected_here",
+      .default = judgment
+    ),
+    disposition_reason = if_else(disposition %in% "corrected_here", NA_character_,
+                                 disposition_reason)
+  ) |>
+  select(-judgment)
+
+# A cited claim with no defect would be a correction of something that is right.
+stopifnot(all(!is.na(ground_truth$defect_locus[ground_truth$claim_id %in% cited_ids])))
+
+undisposed <- ground_truth |> filter(defect_locus == "paper_internal", is.na(disposition))
+if (nrow(undisposed) > 0) {
+  print(undisposed |> select(claim_id, section, claim), n = Inf)
+  stop(nrow(undisposed), " paper_internal rows carry no disposition.")
+}
+print(ground_truth |> filter(!is.na(defect_locus)) |> count(defect_locus, disposition))
 
 # The coverage gate ------------------------------------------------------------------------
 
 # The second instrument is read as a program, not as text: it is run, its output
 # is captured, and the printed claim lines are counted. A block that errors, or
 # that prints nothing, satisfies a textual gate completely and fails this one.
-# Its own environment, because both files necessarily read the same outputs and
-# name objects for what they hold.
-claims_output <- capture.output(
-  source(here::here("maintained", "in_text_claims.R"), local = new.env(), echo = FALSE)
-)
+# It runs in its own R session, because both files necessarily read the same
+# outputs and name objects for what they hold, and because excheckr's claim()
+# would otherwise be masked by the one this file defines.
+claims_output <- system2("Rscript", shQuote(here::here("maintained", "in_text_claims.R")),
+                         stdout = TRUE, stderr = FALSE)
+stopifnot(is.null(attr(claims_output, "status")))
 
+# excheckr prints CLAIM <id> = <value> || [verdict] <label>, followed by a
+# CLAIM SUMMARY line that is not a claim.
 printed <- claims_output |>
-  str_subset("^CLAIM ") |>
-  str_match("^CLAIM ([^ ]+) = (.*?) \\|\\| (.*)$")
+  str_match("^CLAIM ([^ ]+) = (.*?) \\|\\| \\[([A-Za-z]+)\\] (.*)$")
+printed <- printed[!is.na(printed[, 1]), , drop = FALSE]
 printed_claims <- tibble(
   claim_id = printed[, 2],
   printed_value = printed[, 3],
-  label = printed[, 4]
+  verdict = printed[, 4],
+  label = printed[, 5]
 )
+stopifnot(any(str_starts(claims_output, "CLAIM SUMMARY")))
 
 required <- published_claims |> filter(needs_block)
 
@@ -1130,16 +1237,19 @@ if (nrow(printed_claims) != nrow(required)) {
 
 # Cross-instrument comparison. The two files reach the same claimed number by
 # separate paths from the same pipeline outputs; where they disagree, one of
-# them is wrong.
+# them is wrong. A truth value prints as 1 or 0. A [corrected] line is checked
+# by excheckr against the value the erratum publishes, so it is not compared
+# here.
 cross <- printed_claims |>
-  left_join(ground_truth |> select(claim_id, value_rewrite, holds), by = "claim_id") |>
-  left_join(published_claims |> select(claim_id, digits, comparison, claim_type),
+  left_join(ground_truth |> select(claim_id, value_rewrite, match_rewrite, holds),
             by = "claim_id") |>
+  left_join(published_claims |> select(claim_id, digits, claim_type), by = "claim_id") |>
   mutate(
     expected = pmap_chr(
-      list(claim_type, holds, value_rewrite, digits),
-      function(type, holds, value, digits) {
-        if (type == "descriptive") return(as.character(holds))
+      list(claim_type, holds, value_rewrite, digits, verdict),
+      function(type, holds, value, digits, verdict) {
+        if (verdict == "corrected") return(NA_character_)
+        if (type == "descriptive") return(as.character(as.integer(holds)))
         if (is.na(value) || is.na(digits)) return(NA_character_)
         render_at(value, digits)
       }
@@ -1152,60 +1262,160 @@ if (!all(cross$agrees)) {
   stop("The two instruments disagree about a claimed value.")
 }
 
-# Output ---------------------------------------------------------------------------------
+# The verdicts have to agree too. A row the ground truth scores as reproducing is a
+# [match], or [derived] where the block tests a stated bound; a row it scores as not
+# reproducing is [corrected] by a quantity erratum or [derived]; [corrected] is reserved
+# for the claims such an erratum names.
+verdict_check <- cross |>
+  mutate(
+    consistent = case_when(
+      verdict == "corrected" ~ claim_id %in% quantity_corrected_ids,
+      match_rewrite %in% 1 ~ verdict %in% c("match", "derived"),
+      match_rewrite %in% 0 ~ verdict == "derived",
+      .default = verdict %in% c("match", "shape", "absent", "hedged", "derived")
+    )
+  )
+if (!all(verdict_check$consistent) ||
+    !setequal(quantity_corrected_ids,
+              verdict_check$claim_id[verdict_check$verdict == "corrected"])) {
+  print(verdict_check |> filter(!consistent) |>
+          select(claim_id, printed_value, verdict, match_rewrite, holds), n = Inf)
+  stop("A verdict in_text_claims.R prints disagrees with the ground truth.")
+}
+print(count(printed_claims, verdict))
 
-# Coverage is stated per float and is derived rather than typed. For the six
-# floats that print cells it is the cell count; for the rest it is the number of
-# extraction rows the float carries, how many of those the pipeline can reach,
-# and how many reproduce.
+# Float coverage ---------------------------------------------------------------------------
+
+# One row per published float, labelled as the article prints it. A table's
+# published_numbers is the cell count it prints and plotted is NA. A figure's
+# published_numbers counts only numbers printed on its face, which Figures 1 and 2 do
+# above every point and the Figure 4 flow chart does throughout; axis tick labels are
+# scale, not data, and are not counted. plotted counts the quantities a figure plots
+# where the page makes them countable, and plotted_reproduced how many of them the
+# rewrite reproduces.
+float_labels <- c(
+  figure_1 = "Fig. 1", figure_2 = "Fig. 2", figure_3 = "Fig. 3", figure_4 = "Fig. 4",
+  figure_5 = "Fig. 5", figure_6 = "Fig. 6", table_1 = "Table 1",
+  supplementary_figure_1 = "Supplementary Figure 1",
+  supplementary_figure_2 = "Supplementary Figure 2",
+  supplementary_figure_3 = "Supplementary Figure 3",
+  supplementary_figure_4 = "Supplementary Figure 4",
+  supplementary_table_1 = "Supplementary Table 1",
+  supplementary_table_2 = "Supplementary Table 2",
+  supplementary_table_3 = "Supplementary Table 3"
+)
+
 cell_floats <-
   float_summary |>
   transmute(float, published_numbers, covered = published_numbers,
             reproduced_by_rewrite = reproduced, reproduced_by_archive = from_archive)
 
-other_floats <-
+# The Figure 4 flow chart prints its counts and criteria on its face, so its published
+# numbers are the extraction rows filed under it that carry a printed value, and its
+# coverage is how many of those the pipeline can reach.
+flow_chart <-
   ground_truth |>
-  filter(str_starts(table_figure, "figure_") | str_starts(table_figure, "supplementary_figure_"),
-         !table_figure %in% cell_floats$float) |>
+  filter(section == "figure_4") |>
   left_join(published_claims |> select(claim_id, needs_block), by = "claim_id") |>
-  group_by(float = table_figure) |>
   summarize(
+    float = "figure_4",
     published_numbers = sum(!is.na(value_paper)),
-    covered = sum(needs_block),
-    reproduced_by_rewrite = sum(!is.na(match_rewrite) & match_rewrite == 1),
-    reproduced_by_archive = NA_integer_,
-    .groups = "drop"
-  ) |>
-  bind_rows(tibble(float = "figure_6", published_numbers = 0L, covered = 0L,
-                   reproduced_by_rewrite = NA_integer_, reproduced_by_archive = NA_integer_))
+    covered = sum(needs_block & !is.na(value_paper)),
+    reproduced_by_rewrite = sum(match_rewrite %in% 1),
+    reproduced_by_archive = NA_integer_
+  )
+
+points_reproduced <- function(compared) {
+  estimates <- compared |> filter(quantity == "estimate")
+  c(nrow(estimates), sum(estimates$agrees))
+}
+count_row <- function(id) {
+  row <- ground_truth |> filter(claim_id == id)
+  stopifnot(nrow(row) == 1)
+  c(as.integer(row$value_paper), if_else(row$match_rewrite %in% 1, as.integer(row$value_paper), 0L))
+}
+plotted <- tribble(
+  ~float, ~plotted, ~plotted_reproduced,
+  "figure_1", points_reproduced(f1_compared)[1], points_reproduced(f1_compared)[2],
+  "figure_2", points_reproduced(f2_compared)[1], points_reproduced(f2_compared)[2],
+  "figure_3", count_row("figure_3_points_plotted")[1], count_row("figure_3_points_plotted")[2],
+  "figure_5", count_row("figure_5_points_plotted")[1], count_row("figure_5_points_plotted")[2]
+)
+
+float_notes <- c(
+  figure_1 = "Prints an estimate and a standard error above every point; plotted counts the estimates.",
+  figure_2 = "Prints an estimate and a standard error above every point; plotted counts the estimates.",
+  figure_3 = "Prints no numbers on its face; plotted counts 41 one-point bins by two conditions by three outcomes.",
+  figure_4 = "A flow chart; its counts and criteria are printed on its face and it plots nothing.",
+  figure_5 = "Prints no numbers on its face other than axis breaks; plotted counts one estimate per covariate.",
+  figure_6 = "Two photographs of advertisements; carries no data.",
+  supplementary_figure_1 = "Prints no numbers other than axis breaks. Its script reads two files the deposit does not contain, so nothing it plots can be reproduced.",
+  supplementary_figure_2 = "Prints no numbers other than axis breaks, and the number of plotted points is not readable from the page. The three series per panel its legend prints reproduce, and figure_b2_acronym_spending.csv carries every plotted point.",
+  supplementary_figure_3 = "Prints no numbers other than axis breaks, and the number of plotted weeks is not readable from the page. Its three month labels reproduce, and figure_c3_facebook_spending.csv carries every plotted week.",
+  supplementary_figure_4 = "Prints no numbers other than axis breaks. Its script reads a file the deposit does not contain, so nothing it plots can be reproduced."
+)
+
+no_numbers <- tibble(
+  float = c("figure_3", "figure_5", "figure_6", "supplementary_figure_1",
+            "supplementary_figure_2", "supplementary_figure_3", "supplementary_figure_4"),
+  published_numbers = 0L, covered = 0L, reproduced_by_rewrite = 0L,
+  # The archive is compared on the floats whose deposited script runs and on none of
+  # these; a float carrying no data, or whose deposited script cannot run, reproduces
+  # nothing from it.
+  reproduced_by_archive = if_else(
+    float %in% c("figure_6", "supplementary_figure_1", "supplementary_figure_4"), 0L, NA_integer_
+  )
+)
 
 float_coverage <-
-  bind_rows(cell_floats, other_floats) |>
-  arrange(float, .locale = "en")
+  bind_rows(cell_floats, flow_chart, no_numbers) |>
+  left_join(plotted, by = "float") |>
+  mutate(
+    across(c(published_numbers, covered, reproduced_by_rewrite, reproduced_by_archive,
+             plotted, plotted_reproduced), as.integer),
+    note = unname(float_notes[float]),
+    float = factor(float, levels = names(float_labels))
+  ) |>
+  arrange(float) |>
+  mutate(float = unname(float_labels[as.character(float)])) |>
+  select(float, published_numbers, covered, reproduced_by_rewrite, reproduced_by_archive,
+         plotted, plotted_reproduced, note)
+
+# Every float appears once, every table is covered cell for cell, and a figure the
+# page makes countable has every plotted quantity accounted for.
+stopifnot(
+  nrow(float_coverage) == length(float_labels),
+  setequal(float_coverage$float, float_labels),
+  with(filter(float_coverage, str_detect(float, "Table")),
+       all(covered == published_numbers) & all(is.na(plotted))),
+  with(filter(float_coverage, !str_detect(float, "Table")), all(!is.na(note))),
+  with(filter(float_coverage, !is.na(plotted)), all(plotted_reproduced <= plotted))
+)
+
+# Output ---------------------------------------------------------------------------------
+
+# The ground truth, in the canonical column order. Every row carries a claim_id the
+# extraction names, so location, claim_type and digits are the extraction's.
+ground_truth <- ground_truth |>
+  left_join(published_claims |> select(claim_id, location, claim_type, digits),
+            by = "claim_id") |>
+  mutate(
+    digits = as.integer(digits),
+    across(c(match, match_rewrite, holds), as.logical)
+  ) |>
+  select(paper_id, claim_id, location, claim_type, claim, value_paper, digits, value_script,
+         match, value_rewrite, match_rewrite, holds, defect_locus, disposition,
+         disposition_reason, notes)
+
+stopifnot(!anyNA(ground_truth$location), !anyNA(ground_truth$claim_type))
 
 write_csv(float_coverage, here::here("ground_truth", "float_coverage.csv"))
 write_csv(ground_truth,
           here::here("ground_truth", str_glue("{paper_id}_ground_truth.csv")))
 
-# The errata spine's claim_ids ----
-# errata_entries.csv names, for every published entry, the ground-truth claims it corrects.
-# Every one of those ids has to exist here: a missing one is a typo or a claim that has since
-# been renamed, and a dangling reference inside a document whose whole purpose is correcting
-# the record is worse than a failed build.
-errata_spine <- here::here("errata_entries.csv")
-if (file.exists(errata_spine)) {
-  cited_ids <- read_csv(errata_spine, show_col_types = FALSE)$claim_ids |>
-    str_split(";") |>
-    unlist() |>
-    str_trim() |>
-    purrr::discard(\(x) is.na(x) | x == "")
-  dangling <- setdiff(cited_ids, ground_truth$claim_id)
-  if (length(dangling) > 0) print(dangling)
-  stopifnot(length(dangling) == 0)
-}
-
+print(float_coverage, n = Inf, width = 200)
 print(ground_truth |> count(match_rewrite, holds))
-print(ground_truth |> filter(!is.na(defect_locus)) |> count(defect_locus))
+print(ground_truth |> filter(!is.na(defect_locus)) |> count(defect_locus, disposition))
 print(float_summary)
 print(str_glue("{nrow(ground_truth)} ground truth rows; ",
                "{nrow(printed_claims)} claims printed by the second instrument."))

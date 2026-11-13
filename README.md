@@ -20,7 +20,10 @@
 - [Rewrite verification](#rewrite-verification)
 - [R environment](#r-environment)
 
-**Archived at Zenodo:** [doi:10.5281/zenodo.24168257](https://doi.org/10.5281/zenodo.24168257). This DOI always resolves to the latest release of the maintained version.
+**Archived at Zenodo:**
+[doi:10.5281/zenodo.24168257](https://doi.org/10.5281/zenodo.24168257).
+This DOI always resolves to the latest release of the maintained
+version.
 
 *Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
 
@@ -85,12 +88,14 @@ among Biden leaners and fell 0.3 points among Trump leaners.
 
 The deposit is 16 files: eleven analysis scripts, four data files and a
 README. Every script was run in a scratch copy, twice, once as the
-archive ships and once stripped to data plus code.
+archive ships and once stripped to data plus code. `helper_file.R` is
+only ever sourced by the other scripts, so it runs inside them and is
+not counted on its own.
 
 | pass       | clean | error |
 |:-----------|------:|------:|
-| as_shipped |     5 |     6 |
-| stripped   |     5 |     6 |
+| as_shipped |     4 |     6 |
+| stripped   |     4 |     6 |
 
 Deposited scripts by pass and outcome.
 
@@ -102,7 +107,7 @@ target an `output/` subdirectory that is not part of the deposit. The
 archive ships no derived objects, so the stripped-copy test is vacuous
 here and is reported as such rather than as a pass.
 
-6 of 11 scripts stop on an error, for four distinct reasons.
+6 of 10 scripts stop on an error, for four distinct reasons.
 
 | script | stopped_at |
 |:---|:---|
@@ -159,7 +164,7 @@ disagrees with the page.
 
 ## Errata
 
-Five sentences in the published article are wrong, and they are
+Seven sentences in the published article are wrong, and they are
 corrected in
 [`aggarwal_etal_2023_errata.pdf`](aggarwal_etal_2023_errata.pdf), whose
 values are computed at render time from this repository’s output. None
@@ -220,7 +225,7 @@ necessarily an error.
 ## The ground truth
 
 `ground_truth/aggarwal_etal_2023_ground_truth.csv` carries one row per
-published claim, 216 of them. `value_paper` is the string the article
+published claim, 218 of them. `value_paper` is the string the article
 prints and is the only column anyone typed; `value_script` is read out
 of the deposited code and `value_rewrite` out of `maintained/output/`,
 both by script. A value agrees when the computed number, printed to the
@@ -231,7 +236,7 @@ page’s own precision, gives the same digits.
 | definitional |                  2 |         56 |         13 |             0 |     0 |
 | descriptive  |                  0 |          1 |          0 |             4 |     2 |
 | pipeline     |                  3 |          1 |         88 |             0 |     0 |
-| structural   |                  0 |          7 |          6 |             1 |     0 |
+| structural   |                  0 |          7 |          6 |             3 |     0 |
 | transcribed  |                  0 |         32 |          0 |             0 |     0 |
 
 Published claims by type and verdict.
@@ -239,7 +244,7 @@ Published claims by type and verdict.
 | defect_locus   | rows |
 |:---------------|-----:|
 | archive        |   47 |
-| paper_internal |    8 |
+| paper_internal |   10 |
 | unresolved     |    3 |
 
 Where the fault lies, on every row that is not a clean match.
@@ -257,26 +262,26 @@ deposit was ever going to carry.
 
 ### Coverage, float by float
 
-| float | published numbers | covered | fraction | reproduced by rewrite | reproduced by archive |
-|:---|---:|---:|:---|---:|---:|
-| figure_1 | 114 | 114 | 100% | 114 | 114 |
-| figure_2 | 36 | 36 | 100% | 36 | 36 |
-| figure_3 | 3 | 2 | 67% | 2 | NA |
-| figure_4 | 27 | 9 | 33% | 7 | NA |
-| figure_5 | 3 | 2 | 67% | 2 | NA |
-| figure_6 | 0 | 0 | NA | NA | NA |
-| supplementary_figure_1 | 1 | 0 | 0% | 0 | NA |
-| supplementary_figure_2 | 2 | 1 | 50% | 1 | NA |
-| supplementary_figure_3 | 2 | 1 | 50% | 1 | NA |
-| supplementary_figure_4 | 1 | 0 | 0% | 0 | NA |
-| supplementary_table_1 | 399 | 399 | 100% | 399 | 399 |
-| supplementary_table_2 | 126 | 126 | 100% | 126 | 126 |
-| supplementary_table_3 | 176 | 176 | 100% | 176 | 176 |
-| table_1 | 95 | 95 | 100% | 95 | 95 |
+| float | published numbers | covered | fraction | reproduced by rewrite | reproduced by archive | plotted | plotted, reproduced |
+|:---|---:|---:|:---|---:|---:|---:|---:|
+| Fig. 1 | 114 | 114 | 100% | 114 | 114 | 57 | 57 |
+| Fig. 2 | 36 | 36 | 100% | 36 | 36 | 18 | 18 |
+| Fig. 3 | 0 | 0 | NA | 0 | NA | 246 | 246 |
+| Fig. 4 | 27 | 8 | 30% | 7 | NA | NA | NA |
+| Fig. 5 | 0 | 0 | NA | 0 | NA | 22 | 22 |
+| Fig. 6 | 0 | 0 | NA | 0 | 0 | NA | NA |
+| Table 1 | 95 | 95 | 100% | 95 | 95 | NA | NA |
+| Supplementary Figure 1 | 0 | 0 | NA | 0 | 0 | NA | NA |
+| Supplementary Figure 2 | 0 | 0 | NA | 0 | NA | NA | NA |
+| Supplementary Figure 3 | 0 | 0 | NA | 0 | NA | NA | NA |
+| Supplementary Figure 4 | 0 | 0 | NA | 0 | 0 | NA | NA |
+| Supplementary Table 1 | 399 | 399 | 100% | 399 | 399 | NA | NA |
+| Supplementary Table 2 | 126 | 126 | 100% | 126 | 126 | NA | NA |
+| Supplementary Table 3 | 176 | 176 | 100% | 176 | 176 | NA | NA |
 
-Coverage per published float. Published numbers are what the float puts
-on its own face, or the countable quantities it asserts where it prints
-none.
+Coverage per published float. Published numbers are what the float
+prints on its own face, not counting axis breaks; plotted counts what a
+figure plots, where the page makes it countable.
 
 Six floats carry the bulk of the published record. Supplementary Tables
 1, 2 and 3 print 701 numbers between them, main-text Table 1 prints 95,
@@ -311,7 +316,7 @@ no quantity at all.
 
 ## The extraction and the two instruments
 
-`ground_truth/published_claims.csv` is the extraction: 216 rows, one per
+`ground_truth/published_claims.csv` is the extraction: 218 rows, one per
 quantitative claim in the article, its figure captions, its Methods, its
 Reporting Summary and its Supplementary Information, each classified by
 hand as `pipeline`, `descriptive`, `definitional`, `structural` or
@@ -323,7 +328,7 @@ precision it prints it at.
 | definitional |                   55 |                  16 |
 | descriptive  |                    0 |                   7 |
 | pipeline     |                    0 |                  92 |
-| structural   |                    7 |                   7 |
+| structural   |                    7 |                   9 |
 | transcribed  |                   32 |                   0 |
 
 The extraction by claim type and whether the pipeline can reach the
@@ -343,7 +348,7 @@ three points” all entered the extraction that way.
 Two instruments read the same pipeline output by separate paths.
 `ground_truth/build_ground_truth.R` builds the comparison table.
 `maintained/in_text_claims.R` carries the article’s own sentence in a
-block comment beside code that recomputes the number, and prints 122
+block comment beside code that recomputes the number, and prints 124
 claims in the form `CLAIM <id> = <value> || <label>`. It reads
 `maintained/output/` and the extraction, never the ground truth, so the
 two derivations are independent and a disagreement between them is a
@@ -377,7 +382,7 @@ check before the value comparison can absorb it.
 ### What the second instrument found that a float-shaped ground truth would not
 
 Every number in the article’s six large floats reproduces, so a ground
-truth built around floats would have returned a clean sweep. All five
+truth built around floats would have returned a clean sweep. All seven
 errata, and every finding above, are prose, captions or the document’s
 own structure.
 
@@ -482,9 +487,9 @@ so its hash changes on every run.
 
 | component | version |
 |:----------|:--------|
-| R         | 4.6.0   |
+| R         | 4.6.2   |
 | tidyverse | 2.0.0   |
-| estimatr  | 1.0.6   |
+| estimatr  | 2.0.1   |
 | car       | 3.1.5   |
 | lmtest    | 0.9.40  |
 | ggplot2   | 4.0.3   |

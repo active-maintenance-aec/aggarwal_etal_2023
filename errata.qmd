@@ -414,5 +414,8 @@ stopifnot(
   all(entries$form %in% c("full", "brief", "note")),
   all(entries$source %in% c("pipeline", "reading", "reference_audit", "publisher_record", "authors_archive", "proof"))
 )
-write_csv(select(entries, -any_of("values_in_spans")), here("errata_entries.csv"))
+# values_in_spans is the last column: TRUE where every corrected value is the token its
+# sentence prints (the gate above has checked each one), FALSE where it is stored on the
+# claim's scale instead, NA for an entry with no values.
+write_csv(relocate(entries, values_in_spans, .after = last_col()), here("errata_entries.csv"))
 ```

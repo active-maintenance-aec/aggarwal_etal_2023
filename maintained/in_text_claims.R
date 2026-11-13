@@ -1,7 +1,8 @@
 # aggarwal_etal_2023/maintained/in_text_claims.R
-# Output: console only
+# Output: console only: one CLAIM line per block and a CLAIM SUMMARY line
 # Depends on: maintained/output/*, ground_truth/published_claims.csv,
-#   ground_truth/published_appendix_values.csv, ground_truth/published_maintext_tables.csv
+#   ground_truth/published_appendix_values.csv, ground_truth/published_maintext_tables.csv,
+#   errata_entries.csv, excheckr
 # Description: The second instrument. Every number in the article, its figure
 #   captions, its Methods and its Supplementary Information is recomputed here
 #   from the pipeline's committed output, by a path of its own, and printed
@@ -12,10 +13,28 @@
 #   It reads the extraction and the two published transcriptions, which are
 #   readings of the article rather than the comparison against it. A block
 #   cannot print "the article states 0.036" without the article's own string.
+#   It also reads the errata spine, which says which published numbers a
+#   quantity erratum corrects and to what.
+#
+#   Scoring comes from excheckr. Every block prints a line of the form
+#
+#       CLAIM <claim_id> = <value> || [verdict] <label>
+#
+#   at the precision the article prints, on the article's own scale: a share
+#   the article prints in per cent is multiplied by 100 at the call site, and a
+#   count it prints in millions is divided by a million there. The verdict is
+#   derived from the extraction and the spine, never typed here. [match] means
+#   the article's number and this one agree; [corrected] means a quantity
+#   erratum names the claim and this value equals the corrected value it
+#   publishes; [shape] means the article prints no number and the line records
+#   a truth value (1 or 0) or a count; [hedged] means a descriptive claim that
+#   does not agree, scored as holds in build_ground_truth.R; [derived] is
+#   declared at the call site where the block computes something other than the
+#   article's own token in order to test it, such as the observed maximum of a
+#   stated bound. MISMATCH, STALE, DRIFT and MISSING fail the run.
 #
 #   It loads its own packages rather than sourcing helpers.R, so that nothing
-#   the analysis scripts define can reach it. cat() is used here and nowhere
-#   else in this repository.
+#   the analysis scripts define can reach it.
 #
 #   The quoted sentences are transcribed from the published pages, with the
 #   article's Unicode minus and en dash written as ASCII hyphens and its
@@ -23,15 +42,20 @@
 
 library(here)
 library(tidyverse)
+library(excheckr)
 
 here::i_am("maintained/in_text_claims.R")
 
 options(width = 200)
 
+# Every column is read as character: value_paper carries "0.60" and a reader left
+# to guess returns 0.6, destroying the precision the comparison depends on.
 published_claims <- read_csv(
   here::here("ground_truth", "published_claims.csv"),
-  col_types = cols(value_paper = col_character(), .default = col_guess())
+  col_types = cols(.default = col_character())
 )
+errata <- read_csv(here::here("errata_entries.csv"),
+                   col_types = cols(.default = col_character()))
 published_appendix <- read_csv(
   here::here("ground_truth", "published_appendix_values.csv"),
   col_types = cols(value_paper = col_character(), .default = col_guess())
@@ -58,30 +82,13 @@ spend <- read_out("text_spending_claims.csv")
 ad_library <- read_out("text_ad_library_totals.csv")
 descriptive <- read_out("text_descriptive_claims.csv")
 
-# The printed line is the load-bearing link to the extraction. The precision and
-# the units come from the extraction, so neither file can name a different one.
-tidy_number <- function(x) str_replace(x, "^-(0(\\.0+)?)$", "\\1")
+# The expectation of every claim comes from these two frames: the extraction
+# says what the article prints, the spine says which of those a quantity
+# erratum corrects and to what. format = "id" is the line build_ground_truth.R
+# parses.
+claim_start(published = published_claims, errata = errata, format = "id")
 
-claim <- function(id, value, label) {
-  spec <- published_claims |> filter(.data$claim_id == .env$id)
-  stopifnot(nrow(spec) == 1)
-  rendered <- if (is.logical(value)) {
-    as.character(value)
-  } else if (is.na(value) || is.na(spec$digits)) {
-    "NA"
-  } else {
-    scaled <- switch(
-      spec$units,
-      percentage_points = value * 100,
-      percent = value * 100,
-      million = value / 1e6,
-      million_dollars = value / 1e6,
-      value
-    )
-    tidy_number(sprintf(paste0("%.", spec$digits, "f"), scaled))
-  }
-  cat("CLAIM ", id, " = ", rendered, " || ", label, "\n", sep = "")
-}
+tidy_number <- function(x) str_replace(x, "^-(0(\\.0+)?)$", "\\1")
 
 paper_value <- function(id) {
   spec <- published_claims |> filter(.data$claim_id == .env$id)
@@ -107,8 +114,8 @@ holds_for <- function(name) {
 #  experiment, conducted among 2 million moderate- and low-information
 #  persuadable voters in five battleground states during the 2020 US
 #  presidential election."
-claim("abstract_sample_millions", sum(t1$control_n[t1$row_label != "Total"]) +
-        sum(t1$treatment_n[t1$row_label != "Total"]),
+claim("abstract_sample_millions", (sum(t1$control_n[t1$row_label != "Total"]) +
+        sum(t1$treatment_n[t1$row_label != "Total"])) / 1e6,
       "Analysis sample, in millions, summed over the 18 strata")
 
 # "Treatment group participants were exposed to an 8-month-long advertising
@@ -123,15 +130,15 @@ claim("abstract_sample_millions", sum(t1$control_n[t1$row_label != "Total"]) +
 #  percentage points (s.e. = 0.3 pp) for a difference in conditional average
 #  treatment effects of 0.7 points (t1,035,571 = -2.09; P = 0.036; DIC = 0.7
 #  points; 95% confidence interval = -0.014 to 0)."
-claim("abstract_biden_effect", quantity(main, "cate_biden_estimate"),
+claim("abstract_biden_effect", 100 * quantity(main, "cate_biden_estimate"),
       "CATE, Trump support score 30 to 40, PAP specification")
-claim("abstract_biden_se", quantity(main, "cate_biden_se"),
+claim("abstract_biden_se", 100 * quantity(main, "cate_biden_se"),
       "Standard error of that CATE")
-claim("abstract_trump_effect", abs(quantity(main, "cate_trump_estimate")),
+claim("abstract_trump_effect", 100 * abs(quantity(main, "cate_trump_estimate")),
       "CATE magnitude, Trump support score 60 to 70, PAP specification")
-claim("abstract_trump_se", quantity(main, "cate_trump_se"),
+claim("abstract_trump_se", 100 * quantity(main, "cate_trump_se"),
       "Standard error of that CATE")
-claim("abstract_dic", abs(quantity(main, "dic_estimate")),
+claim("abstract_dic", 100 * abs(quantity(main, "dic_estimate")),
       "Difference in CATEs, magnitude")
 claim("abstract_dic_t", quantity(main, "dic_t"), "t statistic")
 claim("abstract_dic_df", quantity(main, "dic_df"), "Degrees of freedom")
@@ -145,7 +152,7 @@ claim("abstract_dic_ci_high", quantity(main, "dic_ci_high"), "Interval, upper bo
 #  the participant pool (72%), so we estimated heterogeneous effects by Trump
 #  support score as well."
 claim("intro_party_registration_missing",
-      sizes$n[sizes$level == "Unknown"] / sizes$n[sizes$level == "Total"],
+      100 * sizes$n[sizes$level == "Unknown"] / sizes$n[sizes$level == "Total"],
       "Share of the analysis sample with unknown party registration")
 
 # "According to our pre-registered regression specification to estimate
@@ -169,8 +176,8 @@ claim("intro_tss_high_bucket_max", max(tss_high), "Highest Trump support score i
 #  ATE = -0.0006; 95% CI = -0.0030 to 0.0017)."
 ate_row <- f1 |> filter(covariate == "ATE", estimator == "PAP adjustment set")
 stopifnot(nrow(ate_row) == 1)
-claim("results_ate_pp", ate_row$estimate, "Average treatment effect, percentage points")
-claim("results_ate_se_pp", ate_row$std.error, "Standard error, percentage points")
+claim("results_ate_pp", 100 * ate_row$estimate, "Average treatment effect, percentage points")
+claim("results_ate_se_pp", 100 * ate_row$std.error, "Standard error, percentage points")
 claim("results_ate_t", ate_row$statistic, "t statistic")
 claim("results_ate_df", ate_row$df, "Degrees of freedom")
 claim("results_ate_p", ate_row$p.value, "p-value")
@@ -181,7 +188,7 @@ claim("results_ate_ci_high", ate_row$conf.high, "Interval, upper bound")
 # "Using a very narrow equivalence range (plus or minus one-third of a
 #  percentage point), we can affirm that our overall estimate is effectively
 #  equivalent to zero using the two one-sided tests procedure (P = 0.013)."
-claim("results_equivalence_bound", quantity(main, "equivalence_bound"),
+claim("results_equivalence_bound", 100 * quantity(main, "equivalence_bound"),
       "Equivalence bound, percentage points")
 claim("results_tost_p", quantity(main, "tost_p_lower"),
       "Larger of the two one-sided p-values")
@@ -194,17 +201,19 @@ claim("results_tost_p", quantity(main, "tost_p_lower"),
 dic <- f2 |> filter(str_starts(inquiry, "Difference-in-CATEs"),
                     estimator == "PAP adjustment set")
 claim("results_early_dic_pp",
-      abs(dic$estimate[dic$outcome == "Voted early in 2020"]),
+      100 * abs(dic$estimate[dic$outcome == "Voted early in 2020"]),
       "Difference in CATEs for early voting, magnitude")
 claim("results_in_person_dic_pp",
-      abs(dic$estimate[dic$outcome == "Voted in person in 2020"]),
+      100 * abs(dic$estimate[dic$outcome == "Voted in person in 2020"]),
       "Difference in CATEs for in-person voting, magnitude")
 claim("results_equality_f", quantity(main, "equality_f"), "F statistic")
 claim("results_equality_num_df", quantity(main, "equality_num_df"),
       "Numerator degrees of freedom")
 claim("results_equality_den_df", quantity(main, "equality_den_df"),
       "Denominator degrees of freedom")
-claim("results_equality_p", quantity(main, "equality_p"), "p-value of that test")
+# The sentence states a bound, P < 0.0001, so the line records the p-value against it.
+claim("results_equality_p", quantity(main, "equality_p"),
+      "p-value of that test, against a stated bound of 0.0001", expect = "derived")
 
 # Figure 1 and Supplementary Table 1 ----
 
@@ -357,10 +366,10 @@ f2_pairs <- figure_versus_table(figure_2_published, "supplementary_table_2")
 stopifnot(nrow(f1_pairs) == 114, nrow(f2_pairs) == 36)
 claim("figure_1_agrees_with_supplementary_table_1",
       all(f1_pairs$figure == f1_pairs$cell),
-      "Figure 1's printed cells equal Supplementary Table 1's")
+      "Figure 1's printed cells equal Supplementary Table 1's", digits = 0)
 claim("figure_2_agrees_with_supplementary_table_2",
       all(f2_pairs$figure == f2_pairs$cell),
-      "Figure 2's printed cells equal Supplementary Table 2's")
+      "Figure 2's printed cells equal Supplementary Table 2's", digits = 0)
 
 # "Fig. 2 ... The numbers were as follows: 1,035,578 (difference in CATEs
 #  estimates) and 1,999,282 (interaction estimates)."
@@ -400,10 +409,13 @@ claim("figure_4_tss_target_max", quantity(main, "tss_max"),
       "Highest Trump support score in the analysis set")
 claim("figure_4_pts_target_min", quantity(main, "pts_min"),
       "Lowest presidential turnout score in the analysis set")
+# The criterion is a bound and the line records the observed maximum against it.
+# The analysis set exceeds it; build_ground_truth.R records that as unresolved.
 claim("figure_4_pts_target_max", quantity(main, "pts_max"),
-      "Highest presidential turnout score in the analysis set")
+      "Highest presidential turnout score in the analysis set, against a stated bound of 80",
+      expect = "derived")
 claim("methods_pts_range_holds", quantity(main, "pts_max") <= 80,
-      "Presidential turnout scores lie inside the stated targeting range")
+      "Presidential turnout scores lie inside the stated targeting range", digits = 0)
 
 # "All 31,146,729 voters registered as of February 2020 in five states ... were
 #  initially eligible", against "2,486,157 voters were assigned to the control
@@ -473,8 +485,11 @@ claim("methods_omnibus_df_second_subscript", quantity(main, "omnibus_den_df"),
 
 # "Moreover, we are missing race data for 4% of the sample where race was
 #  uncoded."
+# The share describes the assignment population, which the deposit does not
+# carry, so the block has no value to print.
 claim("methods_missing_race_share", holds_for("uncoded_race_share"),
-      "The deposit reaches the population the sentence describes")
+      "The deposit reaches the population the sentence describes", digits = 0,
+      expect = "absent")
 
 # "Over the experimental period, Acronym spent a minimum of US$368,800 on
 #  advertisements containing the word Biden, US$3,254,600 on advertisements
@@ -508,11 +523,22 @@ claim("methods_spend_other_formats", group_spend(by_format, "Other"),
 claim("methods_treatment_audience",
       paper_value("methods_programme_eligible") * paper_value("methods_match_rate") / 100,
       "Programme-eligible voters times the match rate")
-claim("methods_treatment_audience_scale", FALSE,
-      "The audience is stated on the scale the parenthetical implies")
+# The printed figure carries "million" and the parenthetical's product does not,
+# so the sentence as printed fails this test and the corrected sentence, which
+# prints the audience as a count, passes it. Entry 2 of the errata publishes that
+# correction as 1. The extraction stores no value for a truth-value claim, so the
+# sentence's own result, 0, is read off the page and passed here; without it the
+# line could only score [shape] and the erratum would go unchecked.
+claim("methods_treatment_audience_scale",
+      round(paper_value("methods_programme_eligible") * paper_value("methods_match_rate") / 100) ==
+        paper_value("methods_treatment_audience"),
+      "The parenthetical's product equals the audience read as a count",
+      published = "0", digits = 0)
+# The campaign cost is printed to two significant figures, so the quotient is
+# determined only to about half a cent and the line records it without a verdict.
 claim("methods_cost_per_voter",
       1e6 * paper_value("abstract_campaign_cost") / paper_value("methods_treatment_audience"),
-      "Campaign cost divided by the treatment audience")
+      "Campaign cost divided by the treatment audience", expect = "derived")
 
 # "The second specification (pre-analysis plan (PAP) adjustment set) includes
 #  control variables described in the PAP: the Trump support score, the
@@ -527,7 +553,7 @@ claim("methods_tss_data_min", quantity(main, "tss_min"), "Lowest Trump support s
 claim("methods_tss_data_max", quantity(main, "tss_max"), "Highest Trump support score")
 
 # "The error bars represent 95% CIs", stated in every figure caption.
-claim("methods_ci_level", quantity(main, "interval_level") / 100,
+claim("methods_ci_level", quantity(main, "interval_level"),
       "Interval level implied by the reported half widths")
 
 # Supplementary Information ----
@@ -558,7 +584,7 @@ claim("si_c_acronym_spend_high", quantity(spend, "spend_ub_persuasion_total"),
 #  approximately 1% of spending on Facebook on the presidential campaign in our
 #  target states."
 claim("si_c_acronym_share",
-      quantity(spend, "spend_lb_all_acronym_ads") /
+      100 * quantity(spend, "spend_lb_all_acronym_ads") /
         quantity(ad_library, "ad_library_total_spend_lb"),
       "Acronym's share of the extract's total spend")
 
@@ -566,16 +592,16 @@ claim("si_c_acronym_share",
 #  on federal races on Facebook from 2/1/2020 to 11/3/2020, $6,603,488 (0.67%) of
 #  which was from Acronym."
 claim("si_c_wesleyan_share",
-      paper_value("si_c_wesleyan_acronym") / paper_value("si_c_wesleyan_total"),
+      100 * paper_value("si_c_wesleyan_acronym") / paper_value("si_c_wesleyan_total"),
       "Acronym's share, computed from the two figures the sentence prints")
 
 # "In fact, we observe significant early spending (Acronym spent more on
 #  persuasion in July than in any other month, see main Figure ??), and we find
 #  much stronger effects on early voting than day of voting."
 claim("si_c_july_highest_spend", holds_for("july_highest_persuasion_spend"),
-      "July carries the largest monthly lower-bound persuasion spend")
+      "July carries the largest monthly lower-bound persuasion spend", digits = 0)
 claim("si_c_broken_cross_reference", FALSE,
-      "The cross-reference 'main Figure ??' resolves to a figure")
+      "The cross-reference 'main Figure ??' resolves to a figure", digits = 0)
 
 # "We queried the Facebook Ad API for all ads containing 'Biden' or 'Trump' that
 #  ran from 2/1/2020 - 11/3/2020 on Facebook, where the ads were targeted to at
@@ -583,7 +609,7 @@ claim("si_c_broken_cross_reference", FALSE,
 # "Supplementary Figure 3: ... targeted to at least one of AZ, GA, MI, NC, PA, or
 #  WI."
 claim("si_c_state_lists_agree", FALSE,
-      "The query description and the figure caption name the same states")
+      "The query description and the figure caption name the same states", digits = 0)
 
 # "Here we report the SQL code used to randomly sample units from the voter file
 #  in to the holdout control group."
@@ -604,9 +630,9 @@ claim("si_e_sql_limits_match_figure_4",
 # printed cannot be run. FALSE is read off the published page, not computed:
 # there is no pipeline quantity for a line that is missing.
 claim("si_e_sql_black_definition", FALSE,
-      "The listing's black recode reaches its 'end as black'")
+      "The listing's black recode reaches its 'end as black'", digits = 0)
 claim("si_e_sql_hispanic_definition", FALSE,
-      "The listing's hispanic recode reaches its 'end as hispanic'")
+      "The listing's hispanic recode reaches its 'end as hispanic'", digits = 0)
 
 # "Supplementary Figure 2: Lower bound of spending by Acronym on ads containing
 #  the words 'Biden' or 'Trump' on Facebook, over time, by format and keyword"
@@ -621,3 +647,12 @@ claim("si_figure_3_month_labels", 3, "Month labels on the horizontal axis")
 print(str_glue("Weeks plotted in Supplementary Figure 3: {nrow(c3)}"))
 print(str_glue("Points plotted in Supplementary Figure 2: {nrow(b2)}"))
 print(descriptive |> select(quantity, holds, evidence), n = Inf)
+
+# Gates ----
+# assert_claims() stops on any MISMATCH, STALE, DRIFT or MISSING, on a claim a
+# quantity erratum names that did not score [corrected], and on any difference
+# between the claims printed here and the claims the extraction says need a
+# block. claim_summary() then prints the verdict counts, so an exemption cannot
+# grow in silence.
+assert_claims()
+invisible(claim_summary())

@@ -9,6 +9,10 @@
 #   scratch copy also answers a question the checksum gate cannot: which
 #   deposited files the deposit's own code writes over when it is run in place.
 #   Nothing is ever run inside original/.
+#
+#   Both tables are long, one row per script or file per pass. helper_file.R is
+#   only ever sourced by the other scripts, so it is run by them and gets no row
+#   of its own.
 
 library(tidyverse)
 library(here)
@@ -27,12 +31,15 @@ stopifnot(dir.exists(original_dir))
 manifest <- read_csv(here::here("original_manifest.csv"), show_col_types = FALSE)
 
 # The eleven deposited analysis scripts, in the order README.txt introduces
-# them: the seven main-analysis scripts, then the four appendix ones.
+# them: the seven main-analysis scripts, then the four appendix ones. The
+# helper is scanned for writes but not run on its own.
+helper_scripts <- "helper_file.R"
 analysis_scripts <- c(
   "helper_file.R", "in_text_calculations.R", "figure_1.R", "figure_2.R",
   "figure_3.R", "figure_5.R", "table_1.R",
   "figure_B1.R", "figure_B2.R", "figure_C3.R", "figure_C4.R"
 )
+run_scripts <- setdiff(analysis_scripts, helper_scripts)
 stopifnot(all(analysis_scripts %in% manifest$file))
 
 # What the deposit writes ----
@@ -94,6 +101,7 @@ run_script <- function(script, pass, timeout = 3600) {
   tibble(
     pass = pass,
     script = script,
+    role = "analysis",
     exit_status = status,
     outcome = case_when(
       timed_out ~ "timeout",
@@ -111,34 +119,50 @@ run_pass <- function(dir, scripts, pass) {
   map(scripts, function(s) run_script(s, pass)) |> list_rbind()
 }
 
+# What a pass does to the copy it runs in: every deposited file it writes over,
+# with whether the contents still match the deposit, every file it adds, and
+# under the stripped pass every withheld file it does not rebuild.
+run_and_compare <- function(dir, pass, strip) {
+  make_copy(dir, strip = strip)
+  present <- manifest$file[file.exists(file.path(dir, manifest$file))]
+  mtime_before <- file.mtime(file.path(dir, present))
+
+  status <- run_pass(dir, run_scripts, pass)
+
+  mtime_after <- file.mtime(file.path(dir, present))
+  overwritten <- present[!is.na(mtime_after) & mtime_after > mtime_before]
+  withheld <- setdiff(manifest$file, present)
+  rebuilt <- withheld[file.exists(file.path(dir, withheld))]
+  added <- setdiff(
+    list.files(dir, recursive = TRUE, all.files = TRUE, no.. = TRUE),
+    list.files(original_dir, recursive = TRUE, all.files = TRUE, no.. = TRUE)
+  )
+  matches <- function(files) {
+    unname(tools::md5sum(file.path(dir, files)) ==
+             tools::md5sum(file.path(original_dir, files)))
+  }
+
+  effects <- bind_rows(
+    tibble(file = overwritten, effect = "overwritten", matches_deposit = matches(overwritten)),
+    tibble(file = rebuilt, effect = "rebuilt", matches_deposit = matches(rebuilt)),
+    tibble(file = setdiff(withheld, rebuilt), effect = "withheld", matches_deposit = NA),
+    tibble(file = added, effect = "added", matches_deposit = NA)
+  ) |>
+    mutate(pass = pass, .before = 1) |>
+    arrange(effect, file, .locale = "en")
+
+  list(status = status, effects = effects)
+}
+
 # As shipped ----
-shipped_dir <- file.path(archive_run_dir, "shipped")
-make_copy(shipped_dir, strip = FALSE)
-
-deposited <- manifest$file
-mtime_before <- file.mtime(file.path(shipped_dir, deposited))
-
-shipped <- run_pass(shipped_dir, analysis_scripts, "as_shipped")
-
-mtime_after <- file.mtime(file.path(shipped_dir, deposited))
-overwritten <- deposited[!is.na(mtime_after) & mtime_after > mtime_before]
-added <- setdiff(
-  list.files(shipped_dir, recursive = TRUE, all.files = TRUE, no.. = TRUE),
-  list.files(original_dir, recursive = TRUE, all.files = TRUE, no.. = TRUE)
-)
-
-overwrites <- bind_rows(
-  tibble(file = overwritten, effect = "overwritten"),
-  tibble(file = added, effect = "added")
-) |>
-  arrange(effect, file, .locale = "en")
+shipped <- run_and_compare(file.path(archive_run_dir, "shipped"), "as_shipped", strip = FALSE)
 
 # Stripped to data plus code ----
-stripped_dir <- file.path(archive_run_dir, "stripped")
-make_copy(stripped_dir, strip = TRUE)
-stripped <- run_pass(stripped_dir, analysis_scripts, "stripped")
+stripped <- run_and_compare(file.path(archive_run_dir, "stripped"), "stripped", strip = TRUE)
 
-status <- bind_rows(shipped, stripped)
+status <- bind_rows(shipped$status, stripped$status)
+overwrites <- bind_rows(shipped$effects, stripped$effects)
+stopifnot(nrow(status) == 2 * length(run_scripts))
 
 walk(which(status$outcome != "clean"), function(i) {
   print(str_glue("[{status$pass[i]}] {status$script[i]}: {status$outcome[i]}"))
@@ -148,7 +172,7 @@ walk(which(status$outcome != "clean"), function(i) {
 # The log carries scratch paths and is a property of the run, so it is printed
 # and never committed.
 status |>
-  select(pass, script, exit_status, outcome, stopped_at) |>
+  select(pass, script, role, exit_status, outcome, stopped_at) |>
   write_csv(here::here("ground_truth", "archive_run_status.csv"))
 
 write_csv(overwrites, here::here("ground_truth", "archive_overwrites.csv"))

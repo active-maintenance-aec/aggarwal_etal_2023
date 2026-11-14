@@ -17,3 +17,4 @@ jobs:
     uses: active-maintenance-aec/maintenance/.github/workflows/check.yml@main
     with:
       phase: 0
+      archive_skip_slow: true

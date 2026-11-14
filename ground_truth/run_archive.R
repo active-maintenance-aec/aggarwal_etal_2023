@@ -13,6 +13,13 @@
 #   Both tables are long, one row per script or file per pass. helper_file.R is
 #   only ever sourced by the other scripts, so it is run by them and gets no row
 #   of its own.
+#
+#   The deposited scripts fit their regressions on two million rows, and three
+#   of them peak at 10 GB or more run alone (figure_2.R 13.6, in_text_calculations.R
+#   11.0, figure_3.R 10.0; measured on the Mac, 2026-11-13). Beside the 3 GB
+#   this session already holds, that is past the 16 GB of a CI runner. Set
+#   ARCHIVE_RUN_SKIP_SLOW=1 to skip those three; the skipped rows are recorded
+#   as "skipped" rather than silently dropped.
 
 library(tidyverse)
 library(here)
@@ -24,6 +31,8 @@ here::i_am("ground_truth/run_archive.R")
 archive_run_dir <- Sys.getenv("ARCHIVE_RUN_DIR",
                               unset = file.path(tempdir(), "aggarwal_etal_2023_archive"))
 stopifnot(nzchar(archive_run_dir))
+
+skip_slow <- Sys.getenv("ARCHIVE_RUN_SKIP_SLOW", unset = "0") == "1"
 
 original_dir <- here::here("original")
 stopifnot(dir.exists(original_dir))
@@ -41,6 +50,11 @@ analysis_scripts <- c(
 )
 run_scripts <- setdiff(analysis_scripts, helper_scripts)
 stopifnot(all(analysis_scripts %in% manifest$file))
+
+# Peak memory measured above, used only to decide what ARCHIVE_RUN_SKIP_SLOW
+# skips.
+slow_scripts <- c("figure_2.R", "figure_3.R", "in_text_calculations.R")
+stopifnot(all(slow_scripts %in% run_scripts))
 
 # What the deposit writes ----
 # Read before running: an archive that writes nothing cannot produce an artifact
@@ -90,6 +104,11 @@ make_copy <- function(dest, strip) {
 # message is not the reason it stopped, and filing it as one turns a resource
 # limit into a code defect.
 run_script <- function(script, pass, timeout = 3600) {
+  if (skip_slow && script %in% slow_scripts) {
+    return(tibble(pass = pass, script = script, role = "analysis",
+                  exit_status = NA_integer_, outcome = "skipped",
+                  stopped_at = NA_character_, log = ""))
+  }
   started <- Sys.time()
   result <- system2("Rscript", c("--vanilla", shQuote(script)),
                     stdout = TRUE, stderr = TRUE, timeout = timeout)

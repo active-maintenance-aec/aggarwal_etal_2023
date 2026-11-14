@@ -34,8 +34,17 @@ source(here::here("maintained", "text_descriptive_claims.R"))
 # to data plus code, and records where each one stopped. Then reads out of the
 # deposit every published quantity it can answer, which is what value_script in
 # the ground truth is built from. Nothing is ever run inside original/.
+#
+# Three deposited scripts need 10 to 14 GB each for their regressions on two
+# million rows, more than a CI runner holds beside this session. Set
+# ARCHIVE_RUN_SKIP_SLOW=1 to skip them in the rerun, recorded as skipped, and to
+# skip the readout, whose committed archive_values.csv then stands.
 source(here::here("ground_truth", "run_archive.R"))
-source(here::here("ground_truth", "extract_archive_values.R"))
+if (Sys.getenv("ARCHIVE_RUN_SKIP_SLOW", unset = "0") == "1") {
+  print("ARCHIVE_RUN_SKIP_SLOW=1: extract_archive_values.R skipped; the committed archive_values.csv stands.")
+} else {
+  source(here::here("ground_truth", "extract_archive_values.R"))
+}
 
 # Figure timestamps ----
 # R's pdf() device stamps a wall-clock /CreationDate and /ModDate into every figure it
